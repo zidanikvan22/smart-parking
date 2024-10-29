@@ -1,1 +1,5 @@
-halo saya adalah dashboard admin 
+@extends('layout/mainAdmin')
+
+@section('main')
+
+@endsection
