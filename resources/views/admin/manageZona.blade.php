@@ -1,1 +1,5 @@
-halo saya pusing
+@extends('layout/mainAdmin')
+
+@section('main')
+
+@endsection

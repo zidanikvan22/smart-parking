@@ -1,1 +1,5 @@
-Halo saya adalah admin yang akan mengelola user
+@extends('layout/mainAdmin')
+
+@section('main')
+
+@endsection
