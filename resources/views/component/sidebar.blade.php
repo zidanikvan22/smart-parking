@@ -13,7 +13,7 @@
             </a>
         </li>
         <div class="Menulist">
-            <li class="{{ $title == 'Dashboard Admin' ? 'active' : '' }}">
+            <li class="{{ $title == 'Dashboard Admin' ? 'active' : '' }} hover:px-5 hover:bg-blue-200">
                 <a href="{{ route('admin-dashboard') }}">
                     <div class="icon">
                         <svg class="{{ $title == 'Dashboard Admin' ? 'text-black' : 'text-gray-950' }} size-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -21,12 +21,12 @@
                           </svg>
                     </div>
                     <div
-                        class="text md:text-sm xl:text-lg font-[700px] {{ $title == 'Dashboard Admin' ? 'text-black' : 'text-white' }}">
+                        class="text md:text-sm xl:text-lg font-bold {{ $title == 'Dashboard Admin' ? 'text-black' : 'text-white' }}">
                         Dashboard
                     </div>
                 </a>
             </li>
-            <li class="{{ $title == 'ManageUsers' ? 'active' : '' }}">
+            <li class="{{ $title == 'ManageUsers' ? 'active' : '' }} hover:px-5 hover:bg-blue-200">
                 <a href="{{ route('admin-users') }}">
                     <div class="icon">
                         <svg class="{{ $title == 'ManageUsers' ? 'text-black' : 'text-gray-950' }} size-8"
@@ -37,12 +37,12 @@
                         </svg>
                     </div>
                     <div
-                        class="text md:text-sm xl:text-lg font-[700px] {{ $title == 'ManageUsers' ? 'text-black' : 'text-white' }}">
+                        class="text md:text-sm xl:text-lg font-bold {{ $title == 'ManageUsers' ? 'text-black' : 'text-white' }}">
                         Manage Users
                     </div>
                 </a>
             </li>
-            <li class="{{ $title == 'ManageZona' ? 'active' : '' }}">
+            <li class="{{ $title == 'ManageZona' ? 'active' : '' }}  hover:px-5 hover:bg-blue-200">
                 <a href="{{ route('admin-zona') }}">
                     <div class="icon">
                         <svg class="{{ $title == 'ManageZona' ? 'text-black' : 'text-gray-950' }} size-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -51,12 +51,12 @@
                           </svg>
                     </div>
                     <div
-                        class="text md:text-sm xl:text-lg font-medium {{ $title == 'ManageZona' ? 'text-black' : 'text-white' }}">
+                        class="text md:text-sm xl:text-lg font-bold {{ $title == 'ManageZona' ? 'text-black' : 'text-white' }}">
                         Manage Zona
                     </div>
                 </a>
             </li>
-            <li class="{{ $title == 'ManageAnalysis' ? 'active' : '' }}">
+            <li class="{{ $title == 'ManageAnalysis' ? 'active' : '' }} hover:px-5 hover:bg-blue-200">
                 <a href="{{ route('admin-analysis') }}">
                     <div class="icon">
                         <svg class="{{ $title == 'ManageAnalysis' ? 'text-black' : 'text-gray-950' }} size-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -64,7 +64,7 @@
                           </svg>
                     </div>
                     <div
-                        class="text md:text-sm xl:text-lg font-medium {{ $title == 'ManageAnalysis' ? 'text-black' : 'text-white' }}">
+                        class="text md:text-sm xl:text-lg font-bold  hover:px-5 {{ $title == 'ManageAnalysis' ? 'text-black' : 'text-white' }}">
                         Manage Analysis
                     </div>
                 </a>
