@@ -8,6 +8,8 @@ class AdminUserController extends Controller
 {
     public function index()
     {
-        return view('admin.manageUsers');
+        return view('admin.manageUsers', [
+            "title" => "ManageUsers"
+        ]);
     }
 }

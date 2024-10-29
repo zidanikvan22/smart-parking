@@ -8,6 +8,8 @@ class AdminAnalysisController extends Controller
 {
     public function index()
     {
-        return view('admin.manageAnalysis');
+        return view('admin.manageAnalysis', [
+            'title' => 'ManageAnalysis',
+        ]);
     }
 }
