@@ -38,7 +38,7 @@
                     </div>
                     <div
                         class="text md:text-sm xl:text-lg font-bold {{ $title == 'ManageUsers' ? 'text-black' : 'text-white' }}">
-                        Manage Users
+                        Pengguna
                     </div>
                 </a>
             </li>
@@ -52,7 +52,7 @@
                     </div>
                     <div
                         class="text md:text-sm xl:text-lg font-bold {{ $title == 'ManageZona' ? 'text-black' : 'text-white' }}">
-                        Manage Zona
+                        Zona Parkir
                     </div>
                 </a>
             </li>
@@ -65,7 +65,7 @@
                     </div>
                     <div
                         class="text md:text-sm xl:text-lg font-bold  hover:px-5 {{ $title == 'ManageAnalysis' ? 'text-black' : 'text-white' }}">
-                        Manage Analysis
+                        Analisis Data
                     </div>
                 </a>
             </li>
