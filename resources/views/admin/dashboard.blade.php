@@ -2,7 +2,7 @@
 
 @section('main')
     <!-- Awalan -->
-    <div class="text-2xl font-bold md:text-3xl xl:text-2xl">
+    <div class="pl-5 mb-4 text-2xl font-bold md:text-3xl xl:text-2xl">
         <span>Selamat datang, Admin</span>
     </div>
 

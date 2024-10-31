@@ -3,7 +3,7 @@
 @section('main')
 
     <div class="pl-5 mb-4 text-2xl font-bold md:text-3xl xl:text-2xl">
-        <span>DATA PENGGUNA</span>
+        <span>Data Pengguna</span>
     </div>
 
     <div class="grid grid-cols-1 p-5 mx-6 my-5">

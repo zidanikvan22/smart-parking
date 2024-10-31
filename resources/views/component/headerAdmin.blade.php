@@ -1,6 +1,6 @@
 <!-- Title -->
 <div class="flex items-center justify-start col-span-2">
-    <img class="w-20 h-16 pr-3" src="{{ asset('img/logoSIPPP.jpg') }}" alt="Sippp">
+    <img class="w-20 h-16 pr-3 rounded-lg" src="{{ asset('img/logoSIPPP.jpg') }}" alt="Sippp">
     <div
         class="text-lg font-bold md:text-2xl xl:text-3xl">
         SIPPP
