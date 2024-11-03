@@ -61,8 +61,7 @@
         <div class="flex flex-col max-w-sm mx-auto bg-[#95AFE5] border border-gray-200 shadow-md p-7 md:rounded-2xl hover:bg-blue-400">
             <div class="flex items-center mb-1">
                 <div class="pl-7 icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="#000000" viewBox="0 0 256 256"><path d="M128,40a96,96,0,1,0,96,96A96.11,96.11,0,0,0,128,40Zm0,176a80,80,0,1,1,80-80A80.09,80.09,0,0,1,128,216ZM173.66,90.34a8,8,0,0,1,0,11.32l-40,40a8,8,0,0,1-11.32-11.32l40-40A8,8,0,0,1,173.66,90.34ZM96,16a8,8,0,0,1,8-8h48a8,8,0,0,1,0,16H104A8,8,0,0,1,96,16Z"></path></svg>
-                </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="#000000" viewBox="0 0 256 256"><path d="M240,192h-8V98.67a16,16,0,0,0-7.12-13.31l-88-58.67a16,16,0,0,0-17.75,0l-88,58.67A16,16,0,0,0,24,98.67V192H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM40,98.67,128,40l88,58.66V192H192V136a8,8,0,0,0-8-8H72a8,8,0,0,0-8,8v56H40ZM176,144v16H136V144Zm-56,16H80V144h40ZM80,176h40v16H80Zm56,0h40v16H136Z"></path></svg>                </div>
                 <div class="flex flex-col flex-1">
                     <div class="flex flex-col">
                         <p data-hs-toggle-count='{
@@ -73,7 +72,7 @@
                             class="text-4xl font-semibold text-gray-800 pl-[2.2em]">
                             120
                         </p>
-                        <h4 class="text-black pl-[3em] pr-6 text-xl">Real-Time</h4>
+                        <h4 class="text-black pl-[3em] pr-6 text-xl">Slot Parkir</h4>
                     </div>
                 </div>
             </div>
