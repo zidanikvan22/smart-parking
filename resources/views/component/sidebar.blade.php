@@ -70,12 +70,8 @@
                 class="{{ $title == 'ManageSlot' ? 'active' : '' }}  hover:px-5 hover:bg-blue-200">
                 <a href="{{ route('admin-slot') }}">
                     <div class="icon">
-                        <svg class="{{ $title == 'ManageSlot' ? 'text-black' : 'text-gray-950' }} size-8"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                            <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                            <path
-                                d="M256 32l-74.8 0c-27.1 0-51.3 17.1-60.3 42.6L3.1 407.2C1.1 413 0 419.2 0 425.4C0 455.5 24.5 480 54.6 480L256 480l0-64c0-17.7 14.3-32 32-32s32 14.3 32 32l0 64 201.4 0c30.2 0 54.6-24.5 54.6-54.6c0-6.2-1.1-12.4-3.1-18.2L455.1 74.6C446 49.1 421.9 32 394.8 32L320 32l0 64c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-64zm64 192l0 64c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32s32 14.3 32 32z" />
-                        </svg>
+                        <svg
+                        class="{{ $title == 'ManageSlot' ? 'text-black' : 'text-gray-950' }} size-8" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M240,192h-8V98.67a16,16,0,0,0-7.12-13.31l-88-58.67a16,16,0,0,0-17.75,0l-88,58.67A16,16,0,0,0,24,98.67V192H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM40,98.67,128,40l88,58.66V192H192V136a8,8,0,0,0-8-8H72a8,8,0,0,0-8,8v56H40ZM176,144v16H136V144Zm-56,16H80V144h40ZM80,176h40v16H80Zm56,0h40v16H136Z"></path></svg>
                     </div>
                     <div
                         class="text md:text-sm xl:text-lg font-bold {{ $title == 'ManageZona' ? 'text-black' : 'text-white' }}">
@@ -87,12 +83,7 @@
                 class="{{ $title == 'ManageAnalysis' ? 'active' : '' }} hover:px-5 hover:bg-blue-200">
                 <a href="{{ route('admin-analysis') }}">
                     <div class="icon">
-                        <svg class="{{ $title == 'ManageAnalysis' ? 'text-black' : 'text-gray-950' }} size-8"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                            <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                            <path
-                                d="M160 80c0-26.5 21.5-48 48-48l32 0c26.5 0 48 21.5 48 48l0 352c0 26.5-21.5 48-48 48l-32 0c-26.5 0-48-21.5-48-48l0-352zM0 272c0-26.5 21.5-48 48-48l32 0c26.5 0 48 21.5 48 48l0 160c0 26.5-21.5 48-48 48l-32 0c-26.5 0-48-21.5-48-48L0 272zM368 96l32 0c26.5 0 48 21.5 48 48l0 288c0 26.5-21.5 48-48 48l-32 0c-26.5 0-48-21.5-48-48l0-288c0-26.5 21.5-48 48-48z" />
-                        </svg>
+                        <svg class="{{ $title == 'ManageAnalysis' ? 'text-black' : 'text-gray-950' }} size-8" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M224,200h-8V40a8,8,0,0,0-8-8H152a8,8,0,0,0-8,8V80H96a8,8,0,0,0-8,8v40H48a8,8,0,0,0-8,8v64H32a8,8,0,0,0,0,16H224a8,8,0,0,0,0-16ZM160,48h40V200H160ZM104,96h40V200H104ZM56,144H88v56H56Z"></path></svg>
                     </div>
                     <div
                         class="text md:text-sm xl:text-lg font-bold  hover:px-5 {{ $title == 'ManageAnalysis' ? 'text-black' : 'text-white' }}">
