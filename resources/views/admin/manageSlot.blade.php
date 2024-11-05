@@ -1,7 +1,7 @@
 @extends('layout/mainAdmin')
 
 @section('main')
-<div class="flex flex-col p-6 space-y-4">
+<div class="flex flex-col p-6 space-y-4 -ml-10 -mt-8">
     {{-- Dropdown untuk Memilih Zona --}}
     <div class="dropdown ml-8">
         <div tabindex="0" role="button" class="m-1 btn">
@@ -105,7 +105,7 @@
             <tbody class="text-center">
                 <tr>
                     <td class="p-3 text-sm border border-black">1</td>
-                    <td class="p-3 text-sm border border-black">Slot parkir telah tersedia</td>
+                    <td class="p-3 text-sm border border-black">Slot Parkiran Tersedia</td>
                     <td class="p-3 text-sm border border-black">
                         <button data-modal-target="edit-modal" data-modal-toggle="edit-modal" class="px-5 py-1 text-xs bg-red-400 rounded-lg hover:bg-blue-200">Edit</button>
                         <button data-modal-target="hapus-modal" data-modal-toggle="hapus-modal" class="px-3 py-1 text-xs bg-red-400 rounded-lg hover:bg-blue-200">Hapus</button>

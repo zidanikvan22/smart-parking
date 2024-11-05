@@ -2,7 +2,22 @@
 
 @section('main')
 
-<div class="flex mt-10 space-x-4">
+{{-- Dropdown untuk Memilih Zona --}}
+<div class="dropdown -mt-2 ">
+    <div tabindex="0" role="button" class="m-1 btn">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+        </svg>
+        Pilih Zona</div>
+    <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+        <li><a>Zona 1</a></li>
+        <li><a>Zona 2</a></li>
+        <li><a>Zona 3</a></li>
+    </ul>
+</div>
+
+<div class="flex mt-6 space-x-4">
 
     <div class="w-full max-w-sm p-4 bg-white border-2 rounded-lg shadow dark:bg-gray-800 md:p-4">
         <div class="flex justify-between pb-4 mb-4 border-b border-gray-400 dark:border-gray-700">

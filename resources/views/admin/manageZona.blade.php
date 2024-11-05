@@ -1,9 +1,9 @@
 @extends('layout/mainAdmin')
 
 @section('main')
-<div class="flex flex-col p-6 space-y-4">
+<div class="flex flex-col p-6 space-y-4 -ml-10 -mt-7">
     {{-- Tombol Tambah --}}
-    <div>
+    <div class="ml-10">
         <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
             class="rounded-full bg-base-200 hover:bg-[#95AFE5] p-2 px-2">
             <div class="flex items-center space-x-0">
