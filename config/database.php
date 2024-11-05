@@ -33,11 +33,8 @@ return [
 
         'mongodb' => [
             'driver' => 'mongodb',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', 27017),
-            'database' => env('DB_DATABASE', 'your_database'),
-            'username' => env('DB_USERNAME', ''),
-            'password' => env('DB_PASSWORD', ''),
+            'dsn' => env('MONGODB_URI', 'mongodb://localhost:27017'),
+            'database' => env('Database', 'sippp_db'),
         ],
 
         'sqlite' => [
