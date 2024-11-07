@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('slot', function (Blueprint $table) {
+        Schema::create('Slot', function (Blueprint $table) {
             $table->id('id_slot');
             $table->foreignId('id_area')->constrained('area');
             $table->string('no_slot');

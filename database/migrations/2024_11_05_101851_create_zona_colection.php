@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('zona', function (Blueprint $table) {
+        Schema::create('Zona', function (Blueprint $table) {
             $table->id('id_area');
             $table->foreignId('id_transaksi')->constrained('transaksi');
             $table->string('zona_parkir');

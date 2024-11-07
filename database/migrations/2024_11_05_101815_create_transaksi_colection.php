@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('transaksi', function (Blueprint $table) {
+        Schema::create('Transaksi', function (Blueprint $table) {
             $table->id('id_transaksi');
             $table->foreignId('id_pengguna')->constrained('pengguna');
             $table->timestamp('waktu')->useCurrent();
