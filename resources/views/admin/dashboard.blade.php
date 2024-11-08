@@ -30,7 +30,7 @@
                             "max": 150
                             }'
                                 class="text-4xl font-semibold text-center text-gray-800">
-                                120
+                                {{ $data['total_user'] }}
                             </p>
                             <h4 class="text-xl text-center text-black">Pengguna</h4>
                         </div>
@@ -60,7 +60,7 @@
                                 "max": 150
                                 }'
                                 class="text-4xl font-semibold text-center text-gray-800">
-                                120
+                                {{ $data['total_zona'] }}
                             </p>
                             <h4 class="text-xl text-center text-black">Zona Parkir</h4>
                         </div>
@@ -90,7 +90,7 @@
                                     "max": 150
                                     }'
                                 class="text-4xl font-semibold text-center text-gray-800">
-                                120
+                                {{ $data['total_slot'] }}
                             </p>
                             <h4 class="text-xl text-center text-black">Slot Parkir</h4>
                         </div>
@@ -121,7 +121,7 @@
                             "max": 150
                             }'
                             class="text-4xl font-semibold text-center text-gray-800">
-                            120
+                            {{ $data['total_transaksi'] }}
                         </p>
                         <h4 class="text-xl text-center text-black">Mobil</h4>
                     </div>
@@ -151,7 +151,7 @@
                             "max": 150
                             }'
                             class="text-4xl font-semibold text-center text-gray-800">
-                            120
+                            {{ $data['total_transaksi'] }}
                         </p>
                         <h4 class="text-lg text-center text-black">Analisis Data</h4>
                     </div>
