@@ -10,6 +10,7 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminZonaController;
+use App\Http\Controllers\AdminSlotController;
 use App\Http\Controllers\AdminAnalysisController;
 
 //Autentikasi
@@ -34,4 +35,5 @@ Route::prefix('admin')->group(function () {
     Route::get('/users', [AdminUserController::class, 'index'])->name('admin-users');
     Route::get('/zona', [AdminZonaController::class, 'index'])->name('admin-zona');
     Route::get('/analysis', [AdminAnalysisController::class, 'index'])->name('admin-analysis');
+    Route::get('/slot', [AdminSlotController::class, 'index'])->name('admin-slot');
 });

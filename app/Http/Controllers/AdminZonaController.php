@@ -8,6 +8,8 @@ class AdminZonaController extends Controller
 {
     public function index()
     {
-        return view('admin.manageZona');
+        return view('admin.manageZona', [
+            'title' => 'ManageZona',
+        ]);
     }
 }
