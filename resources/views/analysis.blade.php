@@ -1,22 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parking Information - Parkwell</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/LogoParkwell.png') }}">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body class="bg-gradient-to-b from-blue-500 to-white min-h-screen flex flex-col items-center justify-center">
-    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-xl">
+@extends('layout.mainUser')
+
+@section('main')
+    <div class="w-full max-w-xl p-6 bg-white rounded-lg shadow-lg">
         <a href="#" onclick="history.back();" class="flex items-center mb-4">
-            <i class="fas fa-arrow-left text-lg text-gray-600 mr-2"></i>
+            <i class="mr-2 text-lg text-gray-600 fas fa-arrow-left"></i>
             <span class="text-lg text-gray-600">Kembali</span>
         </a>
-        <h2 class="text-2xl font-bold text-center mb-6">Pilih Zona</h2>
-        <select id="zoneSelect" class="mb-6 p-2 border border-gray-300 rounded">
+        <h2 class="mb-6 text-2xl font-bold text-center">Pilih Zona</h2>
+        <select id="zoneSelect" class="p-2 mb-6 border border-gray-300 rounded">
             <option value="1">Zona 1</option>
             <option value="2">Zona 2</option>
             <option value="3">Zona 3</option>
@@ -30,7 +21,7 @@
             <canvas id="durationChart" width="400" height="200"></canvas>
         </div>
         <div>
-            <h3 class="text-lg font-semibold text-gray-700 mb-2">Jam Sibuk Parkir</h3>
+            <h3 class="mb-2 text-lg font-semibold text-gray-700">Jam Sibuk Parkir</h3>
             <ul class="text-gray-600">
                 <li>Senin: 08.00, 11.00, 14.00-16.00</li>
                 <li>Selasa: 08.00, 12.00</li>
@@ -42,6 +33,9 @@
             </ul>
         </div>
     </div>
+
+    <!-- Tambahkan Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
         // Data for vehicle chart
@@ -73,6 +67,7 @@
             type: 'bar',
             data: vehicleData,
             options: {
+                responsive: true,
                 scales: {
                     y: {
                         beginAtZero: true
@@ -86,6 +81,7 @@
             type: 'line',
             data: durationData,
             options: {
+                responsive: true,
                 scales: {
                     y: {
                         beginAtZero: true
@@ -106,5 +102,4 @@
             durationConfig
         );
     </script>
-</body>
-</html>
+@endsection
