@@ -8,6 +8,8 @@ class AnalysisController extends Controller
 {
     public function index()
     {
-        return view('analysis');
+        return view('analysis', [
+            'title' => 'analysis',
+        ]);
     }
 }

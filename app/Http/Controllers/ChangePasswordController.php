@@ -8,6 +8,8 @@ class ChangePasswordController extends Controller
 {
     public function index()
     {
-        return view('changePassword');
+        return view('changePassword', [
+            'title' => 'ubah sandi',
+        ]);
     }
 }
