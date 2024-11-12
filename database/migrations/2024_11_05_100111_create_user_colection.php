@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id('id_pengguna');
             $table->string('nama');
             $table->string('email')->unique();
-            $table->string('jenis_kendaraan');
+            $table->enum('jenis_kendaraan', ['mobil' , 'motor']);
             $table->string('qr_code');
             $table->string('no_plat');
             $table->string('foto_profile');
             $table->string('kata_sandi');
-            $table->string('role');
+            $table->enum('role', ['admin', 'pengguna']);
         });
     }
 
