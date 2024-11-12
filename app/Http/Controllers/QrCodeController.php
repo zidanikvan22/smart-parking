@@ -8,6 +8,8 @@ class QrCodeController extends Controller
 {
     public function index()
     {
-        return view('qrCode');
+        return view('qrCode', [
+            'title' => 'qr-code',
+        ]);
     }
 }
