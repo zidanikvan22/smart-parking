@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('Slot', function (Blueprint $table) {
+        Schema::create('slot', function (Blueprint $table) {
             $table->id('id_slot');
-            $table->foreignId('id_area')->constrained('area');
-            $table->string('no_slot');
+            $table->unsignedBigInteger('id_area');
             $table->enum('status_slot', ['kosong', 'terisi']);
             $table->timestamps();
+            $table->foreign('id_area')->references('id_area')->on('zona')->onDelete('cascade');
         });
     }
 

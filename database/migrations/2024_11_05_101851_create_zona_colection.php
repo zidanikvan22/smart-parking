@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('Zona', function (Blueprint $table) {
+        Schema::create('zona', function (Blueprint $table) {
             $table->id('id_area');
-            $table->foreignId('id_transaksi')->constrained('transaksi');
+            $table->unsignedBigInteger('id_transaksi')->nullable();
             $table->string('zona_parkir');
             $table->date('hari');
             $table->integer('total_kendaraan');
             $table->time('jam_sibuk');
             $table->timestamps();
+            $table->foreign('id_transaksi')->references('id_transaksi')->on('transaksi')->onDelete('set null');
         });
     }
 

@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('Transaksi', function (Blueprint $table) {
+        Schema::create('transaksi', function (Blueprint $table) {
             $table->id('id_transaksi');
-            $table->foreignId('id_pengguna')->constrained('pengguna');
+            $table->unsignedBigInteger('id_pengguna');
             $table->timestamp('waktu')->useCurrent();
             $table->enum('status_transaksi', ['berhasil', 'gagal']);
             $table->timestamps();
+            $table->foreign('id_pengguna')->references('id_pengguna')->on('pengguna')->onDelete('cascade');
         });
     }
 
