@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('no_plat');
             $table->string('foto_profile');
             $table->string('kata_sandi');
-            $table->enum('role', ['admin', 'pengguna']);
+            $table->enum('role', ['admin', 'pengguna'])->default('pengguna');
         });
     }
 

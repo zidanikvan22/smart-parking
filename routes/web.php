@@ -15,7 +15,9 @@ use App\Http\Controllers\AdminAnalysisController;
 
 //Autentikasi
 Route::get('/', [AuthController::class, 'login'])->name('login');
+Route::post('/login-proses', [AuthController::class, 'login_proses'])->name('login.proses');
 Route::get('/registrasi', [AuthController::class, 'registrasi'])->name('registrasi');
+Route::post('/registrasi-proses', [AuthController::class, 'registrasi_proses'])->name('registrasi_proses');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //Dashboard
