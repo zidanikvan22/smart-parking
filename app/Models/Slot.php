@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use MongoDB\Laravel\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class Slot extends Model
 {
     use HasFactory;
-    protected $connection = 'mongodb';
-    protected $collection = 'Slot';
+    protected $table = 'slot';
+    protected $primaryKey = 'id_slot';
     protected $guarded = [];
 }
