@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Parkwell</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('images/LogoParkwell.png') }}">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
     <style>
-        body { font-family: 'Roboto', sans-serif; }
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
         .carousel-container {
             position: relative;
             overflow: hidden;
         }
+
         .carousel-slide {
             display: flex;
             width: 300%;
             transition: transform 0.5s ease-in-out;
         }
+
         .carousel-slide img {
             width: 33.333%;
             flex-shrink: 0;
         }
+
         .dropdown-wrapper {
             position: relative;
         }
+
         .dropdown-menu {
             position: absolute;
             right: 0;
@@ -33,8 +41,10 @@
             z-index: 50;
             min-width: 12rem;
         }
+
     </style>
 </head>
+
 <body class="bg-gradient-to-b from-blue-500 to-blue-200 min-h-screen">
     <nav class="bg-blue-600 text-white p-4 relative z-50">
         <div class="container mx-auto flex justify-between items-center">
@@ -53,42 +63,53 @@
             </div>
         </div>
     </nav>
-    <main class="container mx-auto p-4">
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
-            <div class="carousel-container">
+    <main class="container mx-auto px-4 py-6 ">
+        
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-6 md:mb-8">
+            <div class="carousel-container relative">
+                
                 <div class="carousel-slide">
-                    <img alt="Modern parking facility with the text 'Parkwell: Your smart parking solution'" class="w-full h-64 object-cover" src="https://storage.googleapis.com/a1aa/image/qkghMJMzoe0KMqk1XUhkfaPK81f7P7SQR8g4Gpe5HmRLLAbOB.jpg"/>
-                    <img alt="Smart parking system interface" class="w-full h-64 object-cover" src="/api/placeholder/400/320" />
-                    <img alt="Aerial view of a large parking lot" class="w-full h-64 object-cover" src="/api/placeholder/400/320" />
+                    <img alt="Modern parking facility" class="w-full h-48 md:h-64 object-cover"
+                        src="{{ asset('img/techno.jpg') }}" />
+                    <img alt="Smart parking system interface" class="w-full h-48 md:h-64 object-cover"
+                        src="{{ asset('img/Gedung.jpg') }}" />
+                    <img alt="Aerial view of parking" class="w-full h-48 md:h-64 object-cover"
+                        src="{{ asset('img/cover.jpg') }}" />
+                </div>
+                
+                <div class="absolute bottom-4 left-0 right-0 flex justify-center">
+                    <div class="w-2 h-2 bg-white bg-opacity-50 rounded-full mx-1 carousel-dot"></div>
+                    <div class="w-2 h-2 bg-white bg-opacity-50 rounded-full mx-1 carousel-dot"></div>
+                    <div class="w-2 h-2 bg-white bg-opacity-50 rounded-full mx-1 carousel-dot"></div>
                 </div>
             </div>
-            <div class="flex justify-center py-2">
-                <div class="w-2 h-2 bg-gray-400 rounded-full mx-1 carousel-dot"></div>
-                <div class="w-2 h-2 bg-gray-400 rounded-full mx-1 carousel-dot"></div>
-                <div class="w-2 h-2 bg-gray-400 rounded-full mx-1 carousel-dot"></div>
-            </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div id="realTimeCard" class="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center cursor-pointer transition-transform duration-300 transform hover:scale-105">
-                <i class="fas fa-car text-4xl mb-4 text-blue-500"></i>
-                <p class="text-xl font-bold">Real-Time</p>
-                <p class="text-center mt-2">Monitor parkir secara real-time</p>
+        <div class="grid grid-cols-3 md:grid-cols-3 gap-2 md:gap-8 mb-6 md:mb-8">
+            <div id="realTimeCard"
+                class="bg-white rounded-lg shadow-lg p-3 md:p-6 flex flex-col items-center cursor-pointer transition-transform duration-300 transform hover:scale-105">
+                <i class="fas fa-car text-2xl md:text-4xl mb-2 md:mb-4 text-blue-500"></i>
+                <p class="text-sm md:text-xl font-bold">Real-Time</p>
+                <p class="text-center text-xs md:text-base mt-1 md:mt-2 hidden md:block">Monitor parkir secara real-time
+                </p>
             </div>
-            <div id="qrCodeCard" class="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center cursor-pointer transition-transform duration-300 transform hover:scale-105">
-                <i class="fas fa-qrcode text-4xl mb-4 text-blue-500"></i>
-                <p class="text-xl font-bold">QR-Code</p>
-                <p class="text-center mt-2">Akses mudah dengan QR Code</p>
+            <div id="qrCodeCard"
+                class="bg-white rounded-lg shadow-lg p-3 md:p-6 flex flex-col items-center cursor-pointer transition-transform duration-300 transform hover:scale-105">
+                <i class="fas fa-qrcode text-2xl md:text-4xl mb-2 md:mb-4 text-blue-500"></i>
+                <p class="text-sm md:text-xl font-bold">QR-Code</p>
+                <p class="text-center text-xs md:text-base mt-1 md:mt-2 hidden md:block">Akses mudah dengan QR Code</p>
             </div>
-            <div id="analysisCard" class="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center cursor-pointer transition-transform duration-300 transform hover:scale-105">
-                <i class="fas fa-chart-line text-4xl mb-4 text-blue-500"></i>
-                <p class="text-xl font-bold">Analisis</p>
-                <p class="text-center mt-2">Analisis penggunaan parkir</p>
+            <div id="analysisCard"
+                class="bg-white rounded-lg shadow-lg p-3 md:p-6 flex flex-col items-center cursor-pointer transition-transform duration-300 transform hover:scale-105">
+                <i class="fas fa-chart-line text-2xl md:text-4xl mb-2 md:mb-4 text-blue-500"></i>
+                <p class="text-sm md:text-xl font-bold">Analisis</p>
+                <p class="text-center text-xs md:text-base mt-1 md:mt-2 hidden md:block">Analisis penggunaan parkir</p>
             </div>
         </div>
         <div class="bg-white rounded-lg shadow-lg p-6">
-            <h2 class="text-2xl font-bold mb-4">Data Diri & Kendaraan Pengguna</h2>
+            <h2 class=" font-bold mb-4 text-lg-center">Data Diri & Kendaraan Pengguna</h2>
             <div class="flex items-center">
-                <img alt="Profile picture of the user" class="w-24 h-24 rounded-full mr-6" src="https://storage.googleapis.com/a1aa/image/43uVAAkjL2o5C9ucXnT9oqONeUqZkv0592nceoaOa8nwCwmTA.jpg"/>
+                <img alt="Profile picture of the user" class="w-24 h-24 rounded-full mr-6"
+                    src="https://storage.googleapis.com/a1aa/image/43uVAAkjL2o5C9ucXnT9oqONeUqZkv0592nceoaOa8nwCwmTA.jpg" />
                 <div>
                     <p class="mb-2"><span class="font-bold">Email:</span> cristiano@gmail.com</p>
                     <p class="mb-2"><span class="font-bold">Nama Pengguna:</span> Cristiano Ronaldo El Speed</p>
@@ -98,7 +119,7 @@
             </div>
         </div>
     </main>
-    <footer class="bg-blue-600 text-white py-4 mt-8">
+    <footer class="bg-blue-600 text-white py-4 fixed bottom-0 w-full ">
         <div class="container mx-auto text-center">
             <p>&copy; 2023 Parkwell. All rights reserved.</p>
         </div>
@@ -130,6 +151,7 @@
         const carouselDots = document.querySelectorAll('.carousel-dot');
         let counter = 0;
         const size = carouselImages[0].clientWidth;
+
         function slideImage() {
             if (counter >= carouselImages.length - 1) {
                 counter = 0;
@@ -139,14 +161,23 @@
             carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
             updateDots();
         }
+
         function updateDots() {
             carouselDots.forEach((dot, index) => {
-                dot.style.backgroundColor = index === counter ? '#3B82F6' : '#9CA3AF';
+                if (index === counter) {
+                    dot.classList.add('bg-white');
+                    dot.classList.remove('bg-opacity-50');
+                } else {
+                    dot.classList.add('bg-opacity-50');
+                    // dot.classList.remove('bg-white');
+                }
             });
         }
-        setInterval(slideImage, 5000); // Change image every 5 seconds
-        // Update dots on page load
+        setInterval(slideImage, 5000); // ganti gambar setiap 5 detik
+        
         updateDots();
+
     </script>
 </body>
+
 </html>
