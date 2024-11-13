@@ -21,25 +21,26 @@ class AuthController extends Controller
 
     public function login_proses(Request $request)
     {
-        // Validasi input
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        // Data untuk autentikasi
-        $credentials = $request->only('email', 'password');
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
 
-        // Proses autentikasi
         if (Auth::attempt($credentials)) {
-            // Jika autentikasi berhasil, arahkan ke halaman utama
-            return redirect()->route('home')->with('success', 'Login berhasil!');
+            if (Auth::user()->role === 'admin') {
+                return redirect()->route('admin-dashboard')->with('success', 'Login berhasil');
+            } else {
+                return redirect()->route('dashboard')->with('success', 'Login berhasil');
+            }
         } else {
-            // Jika autentikasi gagal, kembali ke halaman login dengan pesan error
             return redirect()->back()->withErrors(['error' => 'Email atau password salah.'])->withInput();
         }
     }
-
 
     public function registrasi()
     {

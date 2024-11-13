@@ -18,12 +18,13 @@
             <div class="w-full max-w-[90%] md:max-w-md -mt-2 md:-mt-5">
                 <div class="p-6 bg-white rounded-lg shadow-lg md:p-8">
                     <h2 class="mb-4 text-2xl font-bold text-center md:text-3xl md:mb-6">Masuk</h2>
-                    <form>
+                    <form action="{{ route('login_proses')}}" method="POST">
+                        @csrf
                         <!-- input email -->
                         <div class="mb-4">
                             <div class="flex items-center px-3 py-2 border rounded-lg md:py-3">
                                 <i class="text-gray-400 fas fa-envelope"></i>
-                                <input class="w-full ml-2 text-base border-none focus:ring-0 md:text-lg" placeholder="Email" type="email"/>
+                                <input class="w-full ml-2 text-base border-none focus:ring-0 md:text-lg" placeholder="Email" type="email" name="email"/>
                             </div>
                         </div>
 
@@ -31,7 +32,7 @@
                         <div class="mb-4 md:mb-6">
                             <div class="flex items-center px-3 py-2 border rounded-lg md:py-3">
                                 <i class="text-gray-400 fas fa-lock"></i>
-                                <input id="password" class="w-full ml-2 text-base border-none focus:ring-0 md:text-lg" placeholder="Kata Sandi" type="password"/>
+                                <input id="password" class="w-full ml-2 text-base border-none focus:ring-0 md:text-lg" placeholder="Kata Sandi" type="password" name="password"/>
                                 <i id="togglePassword" class="text-gray-400 cursor-pointer fas fa-eye" onclick="togglePassword('password', this)"></i>
                             </div>
                         </div>
