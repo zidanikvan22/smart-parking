@@ -1,183 +1,178 @@
-<!DOCTYPE html>
-<html lang="id">
+@extends('layout.mainUser')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Parkwell</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/LogoParkwell.png') }}">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-        }
+@include('component/headerUser')
 
-        .carousel-container {
-            position: relative;
-            overflow: hidden;
-        }
+@section('main')
 
-        .carousel-slide {
-            display: flex;
-            width: 300%;
-            transition: transform 0.5s ease-in-out;
-        }
 
-        .carousel-slide img {
-            width: 33.333%;
-            flex-shrink: 0;
-        }
+<main class="container mx-auto px-4 py-6 ">
 
-        .dropdown-wrapper {
-            position: relative;
-        }
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-6 md:mb-8">
+        <div class="carousel-container relative h-72">
 
-        .dropdown-menu {
-            position: absolute;
-            right: 0;
-            top: 100%;
-            z-index: 50;
-            min-width: 12rem;
-        }
+            <div class="carousel-slide">
+                <img alt="Modern parking facility" class="w-full h-72 md:h-64 object-cover"
+                    src="{{ asset('img/techno.jpg') }}" />
+                <img alt="Smart parking system interface" class="w-full h-72 md:h-64 object-cover"
+                    src="{{ asset('img/Gedung.jpg') }}" />
+                <img alt="Aerial view of parking" class="w-full h-72 md:h-64 object-cover"
+                    src="{{ asset('img/cover.jpg') }}" />
+            </div>
 
-    </style>
-</head>
+            <div class="absolute bottom-4 left-0 right-0 flex justify-center">
+                <div class="w-2 h-2 bg-white bg-opacity-50 rounded-full mx-1 carousel-dot"></div>
+                <div class="w-2 h-2 bg-white bg-opacity-50 rounded-full mx-1 carousel-dot"></div>
+                <div class="w-2 h-2 bg-white bg-opacity-50 rounded-full mx-1 carousel-dot"></div>
+            </div>
+        </div>
+    </div>
+    <div class="grid grid-cols-3 md:grid-cols-3 gap-2 md:gap-8 mb-6 md:mb-8">
+        <div id="realTimeCard"
+            class="bg-white rounded-lg shadow-lg p-3 md:p-6 flex flex-col items-center cursor-pointer transition-transform duration-300 transform hover:scale-105">
+            <i class="fas fa-car text-2xl md:text-4xl mb-2 md:mb-4 text-blue-500"></i>
+            <p class="text-sm md:text-xl font-bold">Real-Time</p>
+            <p class="text-center text-xs md:text-base mt-1 md:mt-2 hidden md:block">Monitor parkir secara real-time
+            </p>
+        </div>
+        <div id="qrCodeCard"
+            class="bg-white rounded-lg shadow-lg p-3 md:p-6 flex flex-col items-center cursor-pointer transition-transform duration-300 transform hover:scale-105">
+            <i class="fas fa-qrcode text-2xl md:text-4xl mb-2 md:mb-4 text-blue-500"></i>
+            <p class="text-sm md:text-xl font-bold">QR-Code</p>
+            <p class="text-center text-xs md:text-base mt-1 md:mt-2 hidden md:block">Akses mudah dengan QR Code</p>
+        </div>
+        <div id="analysisCard"
+            class="bg-white rounded-lg shadow-lg p-3 md:p-6 flex flex-col items-center cursor-pointer transition-transform duration-300 transform hover:scale-105">
+            <i class="fas fa-chart-line text-2xl md:text-4xl mb-2 md:mb-4 text-blue-500"></i>
+            <p class="text-sm md:text-xl font-bold">Analisis</p>
+            <p class="text-center text-xs md:text-base mt-1 md:mt-2 hidden md:block">Analisis penggunaan parkir</p>
+        </div>
+    </div>
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        <h2 class="font-bold mb-4 text-center text-lg">Data Diri & Kendaraan Pengguna</h2>
+        <hr class="border-t-2 border-gray-200 mb-4 mx-auto w-2/3">
 
-<body class="bg-gradient-to-b from-blue-500 to-blue-200 min-h-screen">
-    <nav class="bg-blue-600 text-white p-4 relative z-50">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold">Selamat Datang</h1>
-            <div class="dropdown-wrapper">
-                <div class="flex items-center cursor-pointer" id="profileDropdown">
-                    <span class="mr-2">Nama Pengguna</span>
-                    <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
-                        <i class="fas fa-user"></i>
+        <div class="flex items-start space-x-8">
+
+            <div class="relative">
+                <div class="w-32 h-32 rounded-full overflow-hidden ring-4 ring-blue-100 shadow-lg">
+                    <img alt="Profile picture of the user"
+                        src="https://storage.googleapis.com/a1aa/image/43uVAAkjL2o5C9ucXnT9oqONeUqZkv0592nceoaOa8nwCwmTA.jpg"
+                        class="w-full h-full object-cover">
+                </div>
+            </div>
+
+
+            <div class="flex-1 space-y-4">
+
+                <div class="border-b pb-2">
+                    <h3 class="text-base font-semibold text-gray-800">Cristiano Ronaldo El Speed</h3>
+                    <p class="text-gray-500 text-sm">Pengguna sejak {{ date('Y') }}</p>
+                </div>
+
+
+                <div class="grid grid-cols-1 gap-3">
+
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
+                            <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Email</p>
+                            <p class="font-medium text-gray-800">cristiano@gmail.com</p>
+                        </div>
+                    </div>
+
+
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-green-50 rounded-lg flex items-center justify-center">
+                            <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1z M16 17h-2 M18 17h2" />
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Jenis Kendaraan</p>
+                            <p class="font-medium text-gray-800">Mobil</p>
+                        </div>
+                    </div>
+
+
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center">
+                            <svg class="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 9a2 2 0 00-2-2H7a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2V9z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Plat Kendaraan</p>
+                            <p class="font-medium text-gray-800">BP 0770 KU</p>
+                        </div>
                     </div>
                 </div>
-                <div class="dropdown-menu mt-2 w-48 bg-white rounded-md shadow-lg hidden" id="dropdownMenu">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Ganti Password</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
-                </div>
             </div>
         </div>
-    </nav>
-    <main class="container mx-auto px-4 py-6 ">
-        
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-6 md:mb-8">
-            <div class="carousel-container relative">
-                
-                <div class="carousel-slide">
-                    <img alt="Modern parking facility" class="w-full h-48 md:h-64 object-cover"
-                        src="{{ asset('img/techno.jpg') }}" />
-                    <img alt="Smart parking system interface" class="w-full h-48 md:h-64 object-cover"
-                        src="{{ asset('img/Gedung.jpg') }}" />
-                    <img alt="Aerial view of parking" class="w-full h-48 md:h-64 object-cover"
-                        src="{{ asset('img/cover.jpg') }}" />
-                </div>
-                
-                <div class="absolute bottom-4 left-0 right-0 flex justify-center">
-                    <div class="w-2 h-2 bg-white bg-opacity-50 rounded-full mx-1 carousel-dot"></div>
-                    <div class="w-2 h-2 bg-white bg-opacity-50 rounded-full mx-1 carousel-dot"></div>
-                    <div class="w-2 h-2 bg-white bg-opacity-50 rounded-full mx-1 carousel-dot"></div>
-                </div>
-            </div>
-        </div>
-        <div class="grid grid-cols-3 md:grid-cols-3 gap-2 md:gap-8 mb-6 md:mb-8">
-            <div id="realTimeCard"
-                class="bg-white rounded-lg shadow-lg p-3 md:p-6 flex flex-col items-center cursor-pointer transition-transform duration-300 transform hover:scale-105">
-                <i class="fas fa-car text-2xl md:text-4xl mb-2 md:mb-4 text-blue-500"></i>
-                <p class="text-sm md:text-xl font-bold">Real-Time</p>
-                <p class="text-center text-xs md:text-base mt-1 md:mt-2 hidden md:block">Monitor parkir secara real-time
-                </p>
-            </div>
-            <div id="qrCodeCard"
-                class="bg-white rounded-lg shadow-lg p-3 md:p-6 flex flex-col items-center cursor-pointer transition-transform duration-300 transform hover:scale-105">
-                <i class="fas fa-qrcode text-2xl md:text-4xl mb-2 md:mb-4 text-blue-500"></i>
-                <p class="text-sm md:text-xl font-bold">QR-Code</p>
-                <p class="text-center text-xs md:text-base mt-1 md:mt-2 hidden md:block">Akses mudah dengan QR Code</p>
-            </div>
-            <div id="analysisCard"
-                class="bg-white rounded-lg shadow-lg p-3 md:p-6 flex flex-col items-center cursor-pointer transition-transform duration-300 transform hover:scale-105">
-                <i class="fas fa-chart-line text-2xl md:text-4xl mb-2 md:mb-4 text-blue-500"></i>
-                <p class="text-sm md:text-xl font-bold">Analisis</p>
-                <p class="text-center text-xs md:text-base mt-1 md:mt-2 hidden md:block">Analisis penggunaan parkir</p>
-            </div>
-        </div>
-        <div class="bg-white rounded-lg shadow-lg p-6">
-            <h2 class=" font-bold mb-4 text-lg-center">Data Diri & Kendaraan Pengguna</h2>
-            <div class="flex items-center">
-                <img alt="Profile picture of the user" class="w-24 h-24 rounded-full mr-6"
-                    src="https://storage.googleapis.com/a1aa/image/43uVAAkjL2o5C9ucXnT9oqONeUqZkv0592nceoaOa8nwCwmTA.jpg" />
-                <div>
-                    <p class="mb-2"><span class="font-bold">Email:</span> cristiano@gmail.com</p>
-                    <p class="mb-2"><span class="font-bold">Nama Pengguna:</span> Cristiano Ronaldo El Speed</p>
-                    <p class="mb-2"><span class="font-bold">Jenis Kendaraan:</span> Mobil</p>
-                    <p><span class="font-bold">Plat Kendaraan:</span> BP 0770 KU</p>
-                </div>
-            </div>
-        </div>
-    </main>
-    <footer class="bg-blue-600 text-white py-4 fixed bottom-0 w-full ">
-        <div class="container mx-auto text-center">
-            <p>&copy; 2023 Parkwell. All rights reserved.</p>
-        </div>
-    </footer>
-    <script>
-        const profileDropdown = document.getElementById('profileDropdown');
-        const dropdownMenu = document.getElementById('dropdownMenu');
-        profileDropdown.addEventListener('click', () => {
-            dropdownMenu.classList.toggle('hidden');
-        });
-        window.addEventListener('click', (event) => {
-            if (!profileDropdown.contains(event.target)) {
-                dropdownMenu.classList.add('hidden');
-            }
-        });
-        // Add interactivity to the feature cards
-        document.getElementById('realTimeCard').addEventListener('click', () => {
-            alert('Membuka fitur Real-Time Monitoring');
-        });
-        document.getElementById('qrCodeCard').addEventListener('click', () => {
-            alert('Membuka fitur QR Code Scanner');
-        });
-        document.getElementById('analysisCard').addEventListener('click', () => {
-            alert('Membuka fitur Analisis Parkir');
-        });
-        // Auto-sliding carousel
-        const carouselSlide = document.querySelector('.carousel-slide');
-        const carouselImages = document.querySelectorAll('.carousel-slide img');
-        const carouselDots = document.querySelectorAll('.carousel-dot');
-        let counter = 0;
-        const size = carouselImages[0].clientWidth;
+    </div>
+</main>
 
-        function slideImage() {
-            if (counter >= carouselImages.length - 1) {
-                counter = 0;
-            } else {
-                counter++;
-            }
-            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
-            updateDots();
-        }
+@include('component/footerUser')
 
-        function updateDots() {
-            carouselDots.forEach((dot, index) => {
-                if (index === counter) {
-                    dot.classList.add('bg-white');
-                    dot.classList.remove('bg-opacity-50');
-                } else {
-                    dot.classList.add('bg-opacity-50');
-                    // dot.classList.remove('bg-white');
-                }
-            });
+<script>
+    const profileDropdown = document.getElementById('profileDropdown');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    profileDropdown.addEventListener('click', () => {
+        dropdownMenu.classList.toggle('hidden');
+    });
+    window.addEventListener('click', (event) => {
+        if (!profileDropdown.contains(event.target)) {
+            dropdownMenu.classList.add('hidden');
         }
-        setInterval(slideImage, 5000); // ganti gambar setiap 5 detik
-        
+    });
+    // Add interactivity to the feature cards
+    document.getElementById('realTimeCard').addEventListener('click', () => {
+        alert('Membuka fitur Real-Time Monitoring');
+    });
+    document.getElementById('qrCodeCard').addEventListener('click', () => {
+        alert('Membuka fitur QR Code Scanner');
+    });
+    document.getElementById('analysisCard').addEventListener('click', () => {
+        alert('Membuka fitur Analisis Parkir');
+    });
+    // Auto-sliding carousel
+    const carouselSlide = document.querySelector('.carousel-slide');
+    const carouselImages = document.querySelectorAll('.carousel-slide img');
+    const carouselDots = document.querySelectorAll('.carousel-dot');
+    let counter = 0;
+    const size = carouselImages[0].clientWidth;
+
+    function slideImage() {
+        if (counter >= carouselImages.length - 1) {
+            counter = 0;
+        } else {
+            counter++;
+        }
+        carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
         updateDots();
+    }
 
-    </script>
-</body>
+    function updateDots() {
+        carouselDots.forEach((dot, index) => {
+            if (index === counter) {
+                dot.classList.add('bg-white');
+                dot.classList.remove('bg-opacity-50');
+            } else {
+                dot.classList.add('bg-opacity-50');
+                // dot.classList.remove('bg-white');
+            }
+        });
+    }
+    setInterval(slideImage, 5000); // ganti gambar setiap 5 detik
 
-</html>
+    updateDots();
+
+</script>
+
+@endsection
