@@ -46,7 +46,7 @@
                     <!-- link registrasi -->
                     <div class="mt-4 text-center md:mt-6">
                         <p class="text-sm text-gray-600 md:text-base">Atau</p>
-                        <a class="text-base font-bold text-blue-500 hover:text-blue-600 md:text-lg" href="#">Registrasi</a>
+                        <a class="text-base font-bold text-blue-500 hover:text-blue-600 md:text-lg" href="{{ route('registrasi')}}">Registrasi</a>
                     </div>
                 </div>
             </div>

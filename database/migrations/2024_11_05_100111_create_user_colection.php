@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('qr_code');
             $table->string('no_plat');
             $table->string('foto_profile');
-            $table->string('kata_sandi');
+            $table->string('password');
             $table->enum('role', ['admin', 'pengguna'])->default('pengguna');
         });
     }

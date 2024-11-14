@@ -32,6 +32,8 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
             if (Auth::user()->role === 'admin') {
                 return redirect()->route('admin-dashboard')->with('success', 'Login berhasil');
             } else {
@@ -85,7 +87,13 @@ class AuthController extends Controller
     }
 
 
-    public function logout()
+    public function logout(Request $request)
     {
+        Auth::logout();
+        $request->session()->invalidate();
+        dd($request);
+
+        $request->session()->regenerateToken();
+        return redirect()->route('login')->with('succes', 'Logout Berhasil');
     }
 }
