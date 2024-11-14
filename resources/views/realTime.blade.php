@@ -3,11 +3,13 @@
 @section('main')
 <div class="grid grid-cols-2 p-6 ">
     <div class="col-span-2 flex items-center">
-        <i class="fas fa-arrow-left text-gray-50 text-xl mr-2"></i>
-        <span class="text-gray-50 text-xl font-semibold">Kembali</span>
+        <a href="#" onclick="history.back();" class="flex items-center">
+            <i class="fas fa-arrow-left text-gray-50 text-xl mr-2"></i>
+            <span class="text-gray-50 text-xl font-semibold">Kembali</span>
+        </a>
     </div>
     <div class="col-span-2 mt-5">
-        <select class="w-1/3 p-3 border rounded-lg">
+        <select class="w-1/3 p-3 mb-6 border border-gray-300 rounded">
             <option>Zona 1</option>
             <option>Zona 2</option>
             <option>Zona 3</option>
