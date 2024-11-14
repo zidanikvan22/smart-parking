@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email')->unique();
             $table->enum('jenis_kendaraan', ['mobil' , 'motor']);
-            $table->string('qr_code');
+            $table->string('qr_code')->nullable();
             $table->string('no_plat');
             $table->string('foto_profile');
             $table->string('password');
