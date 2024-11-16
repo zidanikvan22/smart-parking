@@ -78,7 +78,7 @@ class AuthController extends Controller
             'email' => $validated['email'],
             'jenis_kendaraan' => $validated['kendaraan'],
             'no_plat' => $validated['no_plat'],
-            'kata_sandi' => Hash::make($validated['password']),
+            'password' => Hash::make($validated['password']),
             'foto_profile' => $gambar,
         ];
 
