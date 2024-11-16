@@ -7,9 +7,17 @@ use Illuminate\Http\Request;
 
 class AdminUserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::query()->paginate(5);
+        $search = $request->input('search');
+
+        $users = User::query()
+            ->when($search, function ($query, $search) {
+                $query->where('nama', 'like', "%{$search}%")
+                      ->orWhere('no_plat', 'like', "%{$search}%");
+            })
+            ->paginate(5); // Pagination
+
         return view('admin.manageUsers', [
             "title" => "ManageUsers",
             "penggunas" => $users
