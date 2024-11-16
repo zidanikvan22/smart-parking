@@ -11,7 +11,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
         rel="stylesheet">
-    @vite('resources/css/app.css')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+    @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 
 <body class="min-h-screen font-poppins bg-gradient-to-b from-blue-500 to-white">

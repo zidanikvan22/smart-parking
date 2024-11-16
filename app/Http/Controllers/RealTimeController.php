@@ -8,6 +8,9 @@ class RealTimeController extends Controller
 {
     public function index()
     {
-        return view('realTime');
+        return view('realTime', [
+            'title' => 'real-time',
+        ]);
+    
     }
 }
