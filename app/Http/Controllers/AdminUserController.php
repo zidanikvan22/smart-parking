@@ -23,4 +23,11 @@ class AdminUserController extends Controller
             "penggunas" => $users
         ]);
     }
+
+    public function delete($id_pengguna){
+        $user = User::findOrFail($id_pengguna);
+        $user->delete();
+        return redirect()->back()->with('success', 'User berhasil dihapus');
+    }
+
 }
