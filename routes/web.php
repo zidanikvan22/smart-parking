@@ -20,29 +20,34 @@ Route::get('/registrasi', [AuthController::class, 'registrasi'])->name('registra
 Route::post('/registrasi-proses', [AuthController::class, 'registrasi_proses'])->name('registrasi_proses');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-//Dashboard
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::middleware(['auth'])->group(function () {
 
-//Fitur Utama
-Route::get('/real-time', [RealTimeController::class, 'index'])->name('real-time');
-Route::get('/qr-code', [QrCodeController::class ,'index'])->name('qr-code');
-Route::get('/analysis', [AnalysisController::class ,'index'])->name('analysis');
+    Route::middleware('role:pengguna')->group(function(){
+    //Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    //Fitur Utama
+    Route::get('/real-time', [RealTimeController::class, 'index'])->name('real-time');
+    Route::get('/qr-code', [QrCodeController::class, 'index'])->name('qr-code');
+    Route::get('/analysis', [AnalysisController::class, 'index'])->name('analysis');
+    //ubah kata sandi
+    Route::get('/change-password', [ChangePasswordController::class, 'index'])->name('ubah-sandi');
+    });
 
-//ubah kata sandi
-Route::get('/change-password', [ChangePasswordController::class ,'index'])->name('ubah-sandi');
+    Route::middleware('role:admin')->group(function(){
+    //admin
+    Route::prefix('admin')->group(function () {
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
+        // user
+        Route::get('/users', [AdminUserController::class, 'index'])->name('admin-users');
+        Route::delete('/users/{id_pengguna}', [AdminUserController::class, 'delete'])->name('users.delete');
+        // zona
+        Route::get('/zona', [AdminZonaController::class, 'index'])->name('admin-zona');
+        Route::post('/addZona', [AdminZonaController::class, 'store'])->name('zona.store');
+        Route::put('/updateZona/{id_area}', [AdminZonaController::class, 'update'])->name('zona.update');
+        Route::delete('/deleteZona/{id_area}', [AdminZonaController::class, 'destroy'])->name('zona.destroy');
 
-//admin
-Route::prefix('admin')->group(function () {
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
-    // user
-    Route::get('/users', [AdminUserController::class, 'index'])->name('admin-users');
-    Route::delete('/users/{id_pengguna}', [AdminUserController::class, 'delete'])->name('users.delete');
-    // zona
-    Route::get('/zona', [AdminZonaController::class, 'index'])->name('admin-zona');
-    Route::post('/addZona', [AdminZonaController::class, 'store'])->name('zona.store');
-    Route::put('/updateZona/{id_area}', [AdminZonaController::class, 'update'])->name('zona.update');
-    Route::delete('/deleteZona/{id_area}', [AdminZonaController::class,'destroy'])->name('zona.destroy');
-
-    Route::get('/analysis', [AdminAnalysisController::class, 'index'])->name('admin-analysis');
-    Route::get('/slot', [AdminSlotController::class, 'index'])->name('admin-slot');
+        Route::get('/analysis', [AdminAnalysisController::class, 'index'])->name('admin-analysis');
+        Route::get('/slot', [AdminSlotController::class, 'index'])->name('admin-slot');
+    });
+    });
 });
