@@ -119,7 +119,8 @@
                     <td class="p-3 text-sm border border-black">{{ ($zonas->currentPage() - 1) * $zonas->perPage() + $loop->iteration }}</td>
                     <td class="p-3 text-sm border border-black">{{ $zona->zona_parkir }}</td>
                     <td class="p-3 text-sm border border-black">
-                        <button data-modal-target="edit-modal" data-modal-toggle="edit-modal"
+                        <button data-modal-target="edit-modal{{ $zona->id_area}}"
+                                data-modal-toggle="edit-modal{{ $zona->id_area}}"
                             class="px-5 py-1 text-xs bg-red-400 rounded-lg hover:bg-blue-200">Edit</button>
                         <button data-modal-target="hapus-modal" data-modal-toggle="hapus-modal" class="px-3 py-1 text-xs bg-red-400 rounded-lg hover:bg-blue-200">Hapus</button>
                     </td>
@@ -132,7 +133,8 @@
     </div>
 
     <!-- Main Modal Edit Zona -->
-    <div id="edit-modal" tabindex="-1" aria-hidden="true"
+    @foreach ($zonas as $zona)
+    <div id="edit-modal{{ $zona->id_area}}" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full max-w-md max-h-full p-4">
             <!-- Modal content -->
@@ -144,7 +146,7 @@
                     </h3>
                     <button type="button"
                         class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-toggle="edit-modal">
+                        data-modal-toggle="edit-modal{{ $zona->id_area}}">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -154,34 +156,32 @@
                     </button>
                 </div>
                 <!-- Modal body -->
-                <form class="p-4 md:p-5">
+                <form action="{{ route('zona.update', $zona->id_area)}}" method="POST" enctype="multipart/form-data" class="p-4 md:p-5">
+                    @csrf
+                    @method('PUT')
                     <div class="grid grid-cols-2 gap-4 mb-4">
                         <div class="col-span-2">
                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                 Zona</label>
-                            <input type="text" name="" id=""
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="" required="">
+                            <input type="text" name="nama" id="" value="{{ $zona->zona_parkir}}"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
                         </div>
                         <div class="col-span-2 ">
-
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                 for="file_input">Upload foto</label>
                             <input
                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                aria-describedby="file_input_help" id="file_input" type="file">
-                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG
-                                or GIF (MAX. 800x400px).</p>
-
+                                aria-describedby="file_input_help" id="file_input" type="file" name="gambar>
+                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">JPEG, PNG, JPG</p>
                         </div>
 
                         <div class="col-span-2">
                             <label for=""
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan
                                 Zona</label>
-                            <textarea id="" rows="4"
+                            <textarea id="" rows="4" name="deskripsi" required
                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder=""></textarea>
+                            >{{ $zona->deskripsi}}</textarea>
                         </div>
                     </div>
                     <button type="submit"
@@ -198,6 +198,7 @@
             </div>
         </div>
     </div>
+    @endforeach
 
 
 
