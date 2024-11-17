@@ -9,6 +9,6 @@ class Zona extends Model
 {
     use HasFactory;
     protected $table = 'zona';
-    protected $primaryKey = 'id_zona';
+    protected $primaryKey = 'id_area';
     protected $guarded = [];
 }

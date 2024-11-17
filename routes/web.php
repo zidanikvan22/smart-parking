@@ -34,9 +34,13 @@ Route::get('/change-password', [ChangePasswordController::class ,'index'])->name
 //admin
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
+    // user
     Route::get('/users', [AdminUserController::class, 'index'])->name('admin-users');
     Route::delete('/users/{id_pengguna}', [AdminUserController::class, 'delete'])->name('users.delete');
+    // zona
     Route::get('/zona', [AdminZonaController::class, 'index'])->name('admin-zona');
+    Route::post('/addZona', [AdminZonaController::class, 'store'])->name('zona.store');
+
     Route::get('/analysis', [AdminAnalysisController::class, 'index'])->name('admin-analysis');
     Route::get('/slot', [AdminSlotController::class, 'index'])->name('admin-slot');
 });

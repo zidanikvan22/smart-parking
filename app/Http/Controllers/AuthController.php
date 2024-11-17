@@ -71,7 +71,7 @@ class AuthController extends Controller
             'password.required' => 'Password harus diisi',
             'gambar.required' => 'Gambar harus diisi',
         ]);
-        $gambar = $request->file('gambar')->store('image/gambarKendaraan', 'public');
+        $gambar = $request->file('gambar')->store('image/fotoProfile', 'public');
 
         $store = [
             'nama' => $validated['nama'],
