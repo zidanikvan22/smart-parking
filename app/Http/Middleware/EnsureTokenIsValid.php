@@ -14,9 +14,8 @@ class EnsureTokenIsValid
             return redirect('login');
         }
 
-        // Asumsikan role disimpan di kolom 'role' pada model User
         if (auth()->user()->role !== $roles) {
-            abort(403, 'Unauthorized action.');
+            return redirect()->back()->with('error', 'You do not have permission to access this page.');
         }
 
         return $next($request);
