@@ -56,4 +56,10 @@ class AdminZonaController extends Controller
         return redirect()->back()->with('success', 'Data berhasil diubah');
     }
 
+    public function destroy($id_area){
+        $zona = Zona::findOrFail($id_area);
+        $zona->delete();
+        return redirect()->back()->with('success', 'Data berhasil dihapus');
+    }
+
 }
