@@ -15,13 +15,10 @@ return new class extends Migration
     {
         Schema::create('zona', function (Blueprint $table) {
             $table->id('id_area');
-            $table->unsignedBigInteger('id_transaksi')->nullable();
             $table->string('zona_parkir');
-            $table->date('hari');
-            $table->integer('total_kendaraan');
-            $table->time('jam_sibuk');
+            $table->string('foto_zona');
+            $table->string('deskripsi');
             $table->timestamps();
-            $table->foreign('id_transaksi')->references('id_transaksi')->on('transaksi')->onDelete('set null');
         });
     }
 
