@@ -27,6 +27,7 @@
         </div>
     </div>
     <div class="grid grid-cols-3 gap-2 mb-6 md:grid-cols-3 md:gap-8 md:mb-8">
+        <a href="{{ route('real-time')}}">
         <div id="realTimeCard"
             class="flex flex-col items-center p-3 transition-transform duration-300 transform bg-white rounded-lg shadow-lg cursor-pointer md:p-6 hover:scale-105">
             <i class="mb-2 text-2xl text-blue-500 fas fa-car md:text-4xl md:mb-4"></i>
@@ -34,18 +35,23 @@
             <p class="hidden mt-1 text-xs text-center md:text-base md:mt-2 md:block">Monitor parkir secara real-time
             </p>
         </div>
+        </a>
+        <a href="{{ route('qr-code')}}">
         <div id="qrCodeCard"
             class="flex flex-col items-center p-3 transition-transform duration-300 transform bg-white rounded-lg shadow-lg cursor-pointer md:p-6 hover:scale-105">
             <i class="mb-2 text-2xl text-blue-500 fas fa-qrcode md:text-4xl md:mb-4"></i>
             <p class="text-sm font-bold md:text-xl">QR-Code</p>
             <p class="hidden mt-1 text-xs text-center md:text-base md:mt-2 md:block">Akses mudah dengan QR Code</p>
         </div>
+        </a>
+        <a href="{{ route('analysis')}}">
         <div id="analysisCard"
             class="flex flex-col items-center p-3 transition-transform duration-300 transform bg-white rounded-lg shadow-lg cursor-pointer md:p-6 hover:scale-105">
             <i class="mb-2 text-2xl text-blue-500 fas fa-chart-line md:text-4xl md:mb-4"></i>
             <p class="text-sm font-bold md:text-xl">Analisis</p>
             <p class="hidden mt-1 text-xs text-center md:text-base md:mt-2 md:block">Analisis penggunaan parkir</p>
         </div>
+        </a>
     </div>
     <div class="p-6 bg-white rounded-lg shadow-lg">
         <h2 class="mb-4 text-lg font-bold text-center">Data Diri & Kendaraan Pengguna</h2>
@@ -56,7 +62,7 @@
             <div class="relative">
                 <div class="w-32 h-32 overflow-hidden rounded-full shadow-lg ring-4 ring-blue-100">
                     <img alt="Profile picture of the user"
-                        src="https://storage.googleapis.com/a1aa/image/43uVAAkjL2o5C9ucXnT9oqONeUqZkv0592nceoaOa8nwCwmTA.jpg"
+                        src="{{ Storage::url(auth()->user()->foto_profile) }}"
                         class="object-cover w-full h-full">
                 </div>
             </div>
@@ -65,7 +71,7 @@
             <div class="flex-1 space-y-4">
 
                 <div class="pb-2 border-b">
-                    <h3 class="text-base font-semibold text-gray-800">Cristiano Ronaldo El Speed</h3>
+                    <h3 class="text-base font-semibold text-gray-800">{{auth()->user()->nama}}</h3>
                     <p class="text-sm text-gray-500">Pengguna sejak {{ date('Y') }}</p>
                 </div>
 
@@ -81,7 +87,7 @@
                         </div>
                         <div>
                             <p class="text-sm text-gray-500">Email</p>
-                            <p class="font-medium text-gray-800">cristiano@gmail.com</p>
+                            <p class="font-medium text-gray-800">{{auth()->user()->email}}</p>
                         </div>
                     </div>
 
@@ -95,7 +101,7 @@
                         </div>
                         <div>
                             <p class="text-sm text-gray-500">Jenis Kendaraan</p>
-                            <p class="font-medium text-gray-800">Mobil</p>
+                            <p class="font-medium text-gray-800">{{auth()->user()->jenis_kendaraan}}</p>
                         </div>
                     </div>
 
@@ -109,7 +115,7 @@
                         </div>
                         <div>
                             <p class="text-sm text-gray-500">Plat Kendaraan</p>
-                            <p class="font-medium text-gray-800">BP 0770 KU</p>
+                            <p class="font-medium text-gray-800">{{auth()->user()->no_plat}}</p>
                         </div>
                     </div>
                 </div>
@@ -131,16 +137,7 @@
             dropdownMenu.classList.add('hidden');
         }
     });
-    // Add interactivity to the feature cards
-    document.getElementById('realTimeCard').addEventListener('click', () => {
-        alert('Membuka fitur Real-Time Monitoring');
-    });
-    document.getElementById('qrCodeCard').addEventListener('click', () => {
-        alert('Membuka fitur QR Code Scanner');
-    });
-    document.getElementById('analysisCard').addEventListener('click', () => {
-        alert('Membuka fitur Analisis Parkir');
-    });
+
     // Auto-sliding carousel
     const carouselSlide = document.querySelector('.carousel-slide');
     const carouselImages = document.querySelectorAll('.carousel-slide img');
