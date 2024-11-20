@@ -5,7 +5,7 @@
 @section('main')
 
 
-<main class="container mx-auto px-4 py-6 ">
+<main class="container mx-auto px-4 py-6 content-wrapper pb-20">
 
     <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-6 md:mb-8">
         <div class="carousel-container relative h-72">
@@ -48,7 +48,7 @@
         </div>
     </div>
     <div class="bg-white rounded-lg shadow-lg p-6">
-        <h2 class="font-bold mb-4 text-center text-lg">Data Diri & Kendaraan Pengguna</h2>
+        <h2 class="font-bold mb-4 text-center text-lg">DATA DIRI PENGGUNA</h2>
         <hr class="border-t-2 border-gray-200 mb-4 mx-auto w-2/3">
 
         <div class="flex items-start space-x-8">
@@ -59,6 +59,12 @@
                         src="https://storage.googleapis.com/a1aa/image/43uVAAkjL2o5C9ucXnT9oqONeUqZkv0592nceoaOa8nwCwmTA.jpg"
                         class="w-full h-full object-cover">
                 </div>
+                <!-- <button data-modal-target="image-modal" data-modal-toggle="image-modal"
+                    class="ml-1 mt-5 px-2 py-2 bg-blue-500 text-white text-xs rounded shadow hover:bg-blue-600 focus:outline-none flex items-center space-x-2">
+                    <i class="fas fa-car"></i>
+                    <span>Lihat Kendaraan</span>
+                </button> -->
+
             </div>
 
 
@@ -74,48 +80,82 @@
 
                     <div class="flex items-center space-x-2">
                         <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
-                            <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
+                            <i class="w-4 h-4 text-green-500 fas fa-id-card"></i>
                         </div>
                         <div>
-                            <p class="text-sm text-gray-500">Email</p>
-                            <p class="font-medium text-gray-800">cristiano@gmail.com</p>
+                            <p class="text-sm text-gray-500">NIM/NIK/NIDN</p>
+                            <p class="font-medium text-gray-800">3312311189</p>
                         </div>
                     </div>
 
 
                     <div class="flex items-center space-x-2">
                         <div class="w-8 h-8 bg-green-50 rounded-lg flex items-center justify-center">
-                            <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1z M16 17h-2 M18 17h2" />
-                            </svg>
+                            <i class="w-4 h-4 fas fa-list text-purple-600"></i>
                         </div>
                         <div>
-                            <p class="text-sm text-gray-500">Jenis Kendaraan</p>
-                            <p class="font-medium text-gray-800">Mobil</p>
+                            <p class="text-sm text-gray-500">Jenis Pengguna</p>
+                            <p class="font-medium text-gray-800">Mahasiswa</p>
                         </div>
                     </div>
 
 
                     <div class="flex items-center space-x-2">
                         <div class="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center">
-                            <svg class="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 9a2 2 0 00-2-2H7a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2V9z" />
-                            </svg>
+                            <i class="w-4 h-4 fas fa-envelope text-orange-300"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Email</p>
+                            <p class="font-medium text-gray-800">yanto@gmail.com</p>
+                        </div>
+                    </div>
+                    <!-- <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center">
+                            <i class="w-4 h-4 fas fa-car text-cyan-500"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Jenis Kendaraan</p>
+                            <p class="font-medium text-gray-800">Motor</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center">
+                            <i class="w-4 h-4 fas fa-id-card text-indigo-950"></i>
                         </div>
                         <div>
                             <p class="text-sm text-gray-500">Plat Kendaraan</p>
                             <p class="font-medium text-gray-800">BP 0770 KU</p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
     </div>
+
+
+    <!-- modal foto kendaraan -->
+    <!-- <div id="image-modal" tabindex="-1" aria-hidden="true"
+        class="hidden fixed inset-0 z-50 w-full h-full overflow-y-auto overflow-x-hidden flex items-center justify-center bg-black/70">
+        <div class="relative w-full max-w-xl mx-4 md:mx-auto"> -->
+            <!-- Close Button -->
+            <!-- <button type="button"
+                class="absolute -top-10 right-0 z-50 text-white hover:text-gray-300 transition-colors duration-300"
+                data-modal-hide="image-modal">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+                <span class="sr-only">Close modal</span>
+            </button> -->
+
+            <!-- Image Container -->
+            <!-- <div class="bg-white rounded-xl shadow-2xl overflow-hidden">
+                <img src="{{ asset('img/kendaraan.jpg') }}" alt="Vehicle Image"
+                    class="w-full h-auto object-cover transition-transform duration-300 hover:scale-105">
+            </div>
+        </div>
+    </div> -->
 </main>
 
 @include('component/footerUser')

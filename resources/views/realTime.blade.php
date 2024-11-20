@@ -10,6 +10,7 @@
     </div>
     <div class="col-span-2 mt-5">
         <select class="w-1/3 p-3 mb-6 border border-gray-300 rounded">
+            <option>Pilih Zona</option>
             <option>Zona 1</option>
             <option>Zona 2</option>
             <option>Zona 3</option>
@@ -19,9 +20,9 @@
         <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-6 md:mb-8">
             <img class="w-full h-64 md:h-64 object-cover" src="{{ asset('img/peta.png') }}" alt="">
         </div>
-        <button class="bg-blue-500 text-white w-1/3 py-3 rounded-lg flex items-center justify-center text-sm -mt-3">
-            <i class="fas fa-eye mr-2"></i>
-            Lihat Peta Parkir
+        <button class="bg-blue-500 text-white w-1/2 py-3 rounded-lg flex items-center justify-center text-sm -mt-3">
+            <i class="fas fa-download mr-2"></i>
+            Download Peta Parkir
         </button>
     </div>
 </div>
@@ -86,11 +87,35 @@
     </div>
 
     <div class="flex justify-center mt-6">
-        <button
+        <button data-modal-target="lihat-zona" data-modal-toggle="lihat-zona"
             class="bg-blue-500 text-white w-1/3 py-3 rounded-lg flex items-center justify-center hover:bg-blue-600 transition duration-300">
             <i class="fas fa-eye mr-2"></i>
             Lihat Zona
         </button>
+    </div>
+</div>
+
+<!-- modal foto kendaraan -->
+<div id="lihat-zona" tabindex="-1" aria-hidden="true"
+    class="hidden fixed inset-0 z-50 w-full h-full overflow-y-auto overflow-x-hidden flex items-center justify-center bg-black/70">
+    <div class="relative w-full max-w-xl mx-4 md:mx-auto">
+        <!-- tombol tutup -->
+        <button type="button"
+            class="absolute -top-10 right-0 z-50 text-white hover:text-gray-300 transition-colors duration-300"
+            data-modal-hide="lihat-zona">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                </path>
+            </svg>
+            <span class="sr-only">Close modal</span>
+        </button>
+
+        <!-- container foto -->
+        <div class="bg-white rounded-xl shadow-2xl overflow-hidden">
+            <img src="{{ asset('foto parkir/zona 3/IMG-20240920-WA0014.jpg') }}" alt="Vehicle Image"
+                class="w-full h-auto object-cover transition-transform duration-300 hover:scale-105">
+        </div>
     </div>
 </div>
 

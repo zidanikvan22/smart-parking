@@ -19,19 +19,46 @@
                 <div class="px-8 pt-6 pb-8 bg-white rounded-lg shadow-lg">
                     <h2 class="mb-4 text-2xl font-bold text-center md:text-3xl md:mb-6">Registrasi</h2>
                     <form>
-                        <!-- input nama pengguna -->
                         <div class="mb-4">
-                            <label class="block mb-2 text-sm font-bold text-gray-700" for="username">
-                                <i class="mr-2 fas fa-user"></i>Nama Pengguna
+                            <label class="block mb-2 text-sm font-bold text-gray-700" for="Nomor Identitas">
+                                <i class="mr-2 fas fa-id-card"></i>NIM/NIDN/NIP/NIK
                             </label>
-                            <input class="w-full px-4 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline md:text-base " id="username" placeholder="Nama Pengguna" type="text"/>
+                            <input class="w-full px-4 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline md:text-base " id="nomor identitas" placeholder="Nomor Identitas" type="number"/>
                         </div>
+                        <div class="mb-4">
+                            <label class="block mb-2 text-sm font-bold text-gray-700" for="vehicle">
+                                <i class="mr-2 fas fa-list"></i>Jenis Pengguna
+                            </label>
+                            <select class="w-full px-4 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline md:text-base" id="jenis pengguna">
+                                <option>Pilih Jenis Pengguna</option>
+                                <option>Mahasiswa</option>
+                                <option>Dosen</option>
+                                <option>Karyawan</option>
+                                <option>Tamu</option>
+                            </select>
+                        </div>
+                        
                         <!-- input email -->
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
                                 <i class="mr-2 fas fa-envelope"></i>Email
                             </label>
                             <input class="w-full px-4 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline md:text-base" id="email" placeholder="Email" type="email"/>
+                        </div>
+                        <!-- input nama pengguna -->
+                        <div class="mb-4">
+                            <label class="block mb-2 text-sm font-bold text-gray-700" for="username">
+                                <i class="mr-2 fas fa-user"></i>Nama Pengguna
+                            </label>
+                            <input class="w-full px-4 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline md:text-base " id="username" placeholder="Nama Pengguna" type="text"/>
+                            <p class="mt-1 text-xs text-gray-500 dark:text-gray-300" id="">*Sesuaikan dengan KTP anda</p>
+                        </div>
+                        <!-- input kata sandi -->
+                        <div class="mb-4">
+                            <label class="block mb-2 text-sm font-bold text-gray-700" for="password">
+                                <i class="mr-2 fas fa-lock"></i>Kata Sandi
+                            </label>
+                            <input class="w-full px-4 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline md:text-base" id="password" placeholder="Kata Sandi" type="password"/>
                         </div>
                         <!-- input jenis kendaraan -->
                         <div class="mb-4">
@@ -51,19 +78,22 @@
                             </label>
                             <input class="w-full px-4 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline md:text-base" id="plate" placeholder="Plat Kendaraan" type="text"/>
                         </div>
-                        <!-- input kata sandi -->
+                        
+                        <!-- input file -->
                         <div class="mb-4">
-                            <label class="block mb-2 text-sm font-bold text-gray-700" for="password">
-                                <i class="mr-2 fas fa-lock"></i>Kata Sandi
+                            <label class="block mb-2 text-sm font-bold text-gray-700" for="file">
+                                <i class="mr-2 fas fa-camera"></i>Foto Kendaraan
                             </label>
-                            <input class="w-full px-4 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline md:text-base" id="password" placeholder="Kata Sandi" type="password"/>
+                            <input class="w-full px-4 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline md:text-base" id="file kendaraan" type="file"/>
+                            <p class="mt-1 text-xs text-gray-500 dark:text-gray-300" id="file_input_help">*PNG, JPG or JPEG | Tampilan motor dari depan terlihat Plat Nomor| Max. 5 mb</p>
                         </div>
                         <!-- input file -->
                         <div class="mb-6">
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="file">
-                                <i class="mr-2 fas fa-camera"></i>Pilih File
+                                <i class="mr-2 fas fa-image"></i>Foto Pengguna
                             </label>
-                            <input class="w-full px-4 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline md:text-base" id="file" type="file"/>
+                            <input class="w-full px-4 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline md:text-base" id="file pengguna" type="file"/>
+                            <p class="mt-1 text-xs text-gray-500 dark:text-gray-300" id="file_input_help">*PNG, JPG or JPEG | Muka Pengguna Terlihat Jelas | Max. 5 mb</p>
                         </div>
                         <!-- button registrasi -->
                         <div class="flex items-center justify-between">

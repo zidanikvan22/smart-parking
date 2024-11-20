@@ -8,6 +8,7 @@
     </a>
     <!-- <h2 class="mb-6 text-2xl font-bold text-center">Pilih Zona</h2> -->
     <select id="zoneSelect" class="w-1/3 p-3 mb-6 border border-gray-300 rounded">
+        <option value="1">Pilih Zona</option>
         <option value="1">Zona 1</option>
         <option value="2">Zona 2</option>
         <option value="3">Zona 3</option>
