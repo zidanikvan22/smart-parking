@@ -14,10 +14,10 @@
         </li>
         <div class="Menulist">
             <li
-                class="{{ $title == 'Dashboard Admin' ? 'active' : '' }} transition-all delay-75 hover:px-5 hover:bg-blue-200">
+                class="{{ $title == 'Admin Dashboard' ? 'active' : '' }} transition-all delay-75 hover:px-5 hover:bg-blue-200">
                 <a href="{{ route('admin-dashboard') }}">
                     <div class="icon">
-                        <svg class="{{ $title == 'Dashboard Admin' ? 'text-black' : 'text-gray-950' }} size-8"
+                        <svg class="{{ $title == 'Admin Dashboard' ? 'text-black' : 'text-gray-950' }} size-8"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -25,7 +25,7 @@
                         </svg>
                     </div>
                     <div
-                        class="text md:text-sm xl:text-lg font-bold {{ $title == 'Dashboard Admin' ? 'text-black' : 'text-white' }}">
+                        class="text md:text-sm xl:text-lg font-bold {{ $title == 'Admin Dashboard' ? 'text-black' : 'text-white' }}">
                         Dashboard
                     </div>
                 </a>

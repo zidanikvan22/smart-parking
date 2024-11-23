@@ -9,7 +9,6 @@
 
     <div class="mb-6 overflow-hidden bg-white rounded-lg shadow-lg md:mb-8">
         <div class="relative carousel-container h-72">
-
             <div class="carousel-slide">
                 <img alt="Modern parking facility" class="object-cover w-full h-72 md:h-64"
                     src="{{ asset('img/techno.jpg') }}" />

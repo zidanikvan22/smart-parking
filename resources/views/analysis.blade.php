@@ -1,18 +1,20 @@
 @extends('layout.mainUser')
 
 @section('main')
-<div class="w-full max-w-xl p-6 ">
+<div class="p-5">
     <a href="#" onclick="history.back();" class="flex items-center mb-4">
-        <i class="fas fa-arrow-left text-gray-50 text-xl mr-2"></i>
-        <span class="text-gray-50 text-xl font-semibold">Kembali</span>
+        <i class="mr-2 text-xl fas fa-arrow-left text-gray-50"></i>
+        <span class="text-xl font-semibold text-gray-50">Kembali</span>
     </a>
-    <!-- <h2 class="mb-6 text-2xl font-bold text-center">Pilih Zona</h2> -->
     <select id="zoneSelect" class="w-1/3 p-3 mb-6 border border-gray-300 rounded">
         <option value="1">Zona 1</option>
         <option value="2">Zona 2</option>
         <option value="3">Zona 3</option>
     </select>
-    <div class="w-full max-w-xl p-4 bg-white border-2 rounded-lg shadow dark:bg-gray-800 md:p-4">
+</div>
+<div class="grid w-screen grid-cols-1 gap-4 px-4 md:grid-cols-2">
+    <!-- <h2 class="mb-6 text-2xl font-bold text-center">Pilih Zona</h2> -->
+    <div class="w-full col-span-1 mx-auto bg-white border-2 rounded-lg shadow p-4-w dark:bg-gray-800 md:p-4">
         <div class="flex justify-between pb-4 mb-4 border-b border-gray-400 dark:border-gray-700">
             <div class="flex items-center">
                 <div class="flex items-center justify-center bg-gray-100 rounded-lg dark:bg-gray-700 me-3">
@@ -31,7 +33,7 @@
     </div>
 
 
-    <div class="w-full max-w-xl p-4 bg-white border-2 mt-5 rounded-lg shadow dark:bg-gray-800 md:p-4">
+    <div class="w-full h-full col-span-1 p-4 mx-auto bg-white border-2 rounded-lg shadow dark:bg-gray-800 md:p-4">
         <div class="flex justify-between pb-4 mb-4 border-b border-gray-400 dark:border-gray-700">
             <div class="flex items-center">
                 <div class="flex items-center justify-center bg-gray-100 rounded-lg dark:bg-gray-700 me-3">
@@ -49,7 +51,7 @@
         <canvas id="durationChart" width="400" height="200"></canvas>
     </div>
 
-    <div class="w-full max-w-xl p-4 bg-white border-2 mt-5 rounded-lg shadow dark:bg-gray-800 md:p-4">
+    <div class="w-full max-w-xl p-4 mt-5 bg-white border-2 rounded-lg shadow dark:bg-gray-800 md:p-4">
         <div class="flex justify-between pb-4 mb-4 border-b border-gray-400 dark:border-gray-700">
             <div class="flex items-center">
                 <div class="flex items-center justify-center bg-gray-100 rounded-lg dark:bg-gray-700 me-3">
