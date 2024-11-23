@@ -5,7 +5,7 @@
 @section('main')
 
 
-<main class="container px-4 py-6 mx-auto ">
+<main class="container px-4 py-6 pb-20 mx-auto content-wrapper">
 
     <div class="mb-6 overflow-hidden bg-white rounded-lg shadow-lg md:mb-8">
         <div class="relative carousel-container h-72">
@@ -79,48 +79,56 @@
 
                     <div class="flex items-center space-x-2">
                         <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50">
-                            <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
+                            <i class="w-4 h-4 text-green-500 fas fa-id-card"></i>
                         </div>
                         <div>
                             <p class="text-sm text-gray-500">Email</p>
                             <p class="font-medium text-gray-800">{{auth()->user()->email}}</p>
+
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">NIM/NIK/NIDN</p>
+                            <p class="font-medium text-gray-800">3312311189</p>
                         </div>
                     </div>
 
 
                     <div class="flex items-center space-x-2">
-                        <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-green-50">
-                            <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1z M16 17h-2 M18 17h2" />
-                            </svg>
+                        <div class="flex items-center justify-center">
+                            <i class="w-4 h-4 text-purple-600 fas fa-list"></i>
                         </div>
                         <div>
-                            <p class="text-sm text-gray-500">Jenis Kendaraan</p>
-                            <p class="font-medium text-gray-800">{{auth()->user()->jenis_kendaraan}}</p>
+                            <p class="text-sm text-gray-500">Jenis Pengguna</p>
+                            <p class="font-medium text-gray-800">Mahasiswa</p>
                         </div>
                     </div>
 
 
                     <div class="flex items-center space-x-2">
                         <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-purple-50">
-                            <svg class="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 9a2 2 0 00-2-2H7a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2V9z" />
-                            </svg>
+                            <i class="w-4 h-4 text-orange-300 fas fa-envelope"></i>
                         </div>
                         <div>
-                            <p class="text-sm text-gray-500">Plat Kendaraan</p>
-                            <p class="font-medium text-gray-800">{{auth()->user()->no_plat}}</p>
+                            <p class="text-sm text-gray-500">Email</p>
+                            <p class="font-medium text-gray-800">yanto@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-purple-50">
+                            <i class="w-4 h-4 text-blue-300 fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Nomor Telepon</p>
+                            <p class="font-medium text-gray-800">098765432345678</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
 </main>
 
 @include('component/footerUser')

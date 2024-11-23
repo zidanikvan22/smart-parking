@@ -153,7 +153,7 @@
                             class="text-4xl font-semibold text-center text-gray-800">
                             {{ $data['total_transaksi'] }}
                         </p>
-                        <h4 class="text-lg text-center text-black">Analisis Data</h4>
+                        <h4 class="text-lg text-center text-black">Motor</h4>
                     </div>
                 </div>
             </div>

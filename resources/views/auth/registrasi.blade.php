@@ -22,8 +22,8 @@
                         @csrf
                         <!-- input nama pengguna -->
                         <div class="mb-4">
-                            <label class="block mb-2 text-sm font-bold text-gray-700" for="username">
-                                <i class="mr-2 fas fa-user"></i>Nama Pengguna
+                            <label class="block mb-2 text-sm font-bold text-gray-700" for="vehicle">
+                                <i class="mr-2 fas fa-list"></i>Jenis Pengguna
                             </label>
                             <input class="w-full px-4 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline md:text-base " id="username" placeholder="Nama Pengguna" type="text" name="nama" required/>
                         </div>
@@ -54,15 +54,15 @@
                         </div>
                         <!-- input kata sandi -->
                         <div class="mb-4">
-                            <label class="block mb-2 text-sm font-bold text-gray-700" for="password">
-                                <i class="mr-2 fas fa-lock"></i>Kata Sandi
+                            <label class="block mb-2 text-sm font-bold text-gray-700" for="file">
+                                <i class="mr-2 fas fa-camera"></i>Foto Kendaraan
                             </label>
                             <input class="w-full px-4 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline md:text-base" id="password" placeholder="Kata Sandi" type="password" name="password" required/>
                         </div>
                         <!-- input file -->
                         <div class="mb-6">
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="file">
-                                <i class="mr-2 fas fa-camera"></i>Pilih File
+                                <i class="mr-2 fas fa-image"></i>Foto Pengguna
                             </label>
                             <input class="w-full px-4 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline md:text-base" id="file" type="file" name="gambar" required/>
                         </div>

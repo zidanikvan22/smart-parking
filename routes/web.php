@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminZonaController;
 use App\Http\Controllers\AdminSlotController;
 use App\Http\Controllers\AdminAnalysisController;
+use App\Http\Controllers\AdminApprovalController;
 
 //Autentikasi
 Route::get('/', [AuthController::class, 'login'])->name('login');
