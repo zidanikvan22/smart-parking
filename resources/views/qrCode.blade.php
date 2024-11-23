@@ -23,13 +23,13 @@
                     src="https://storage.googleapis.com/a1aa/image/pdKDUcyVPCYkPVayGUf704CWc4jHDmFgDdl4HZlLTjvS5XzJA.jpg" />
             </div>
             <div class="space-y-4 text-gray-600">
-                <h2 class="mb-6 text-3xl font-bold text-blue-500">Data Kendaraan 1</h2>
+                <h2 class="mb-6 text-2xl font-bold text-blue-500">Informasi Qr Code :</h2>
                 <!-- <p>
                     <span class="text-lg font-bold">Email</span><br />
                     cristiano@gmail.com
                 </p> -->
                 <p>
-                    <span class="text-lg font-bold">Nama Pengguna</span><br />
+                    <span class="text-lg font-bold">Nama Lengkap</span><br />
                     Cristiano Ronaldo El Speed
                 </p>
                 <p>
@@ -83,7 +83,7 @@
     </div>
 </div>
 
-<!-- Main Modal Tambah zona -->
+<!-- Main Modal Tambah kendaraan -->
 <div id="tambah-kendaraan" tabindex="-1" aria-hidden="true"
     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-md max-h-full">

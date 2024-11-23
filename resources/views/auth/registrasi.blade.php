@@ -21,7 +21,7 @@
                     <form>
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="Nomor Identitas">
-                                <i class="mr-2 fas fa-id-card"></i>NIM/NIDN/NIP/NIK
+                                <i class="mr-2 fas fa-id-badge"></i>NIM/NIDN/NIP/NIK
                             </label>
                             <input class="w-full px-4 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline md:text-base " id="nomor identitas" placeholder="Nomor Identitas" type="number"/>
                         </div>
@@ -45,12 +45,18 @@
                             </label>
                             <input class="w-full px-4 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline md:text-base" id="email" placeholder="Email" type="email"/>
                         </div>
+                        <div class="mb-4">
+                            <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
+                                <i class="mr-2 fas fa-phone"></i>Nomor Telepon
+                            </label>
+                            <input class="w-full px-4 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline md:text-base" id="email" placeholder="contoh : 089765432345" type="number"/>
+                        </div>
                         <!-- input nama pengguna -->
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="username">
-                                <i class="mr-2 fas fa-user"></i>Nama Pengguna
+                                <i class="mr-2 fas fa-user"></i>Nama Lengkap
                             </label>
-                            <input class="w-full px-4 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline md:text-base " id="username" placeholder="Nama Pengguna" type="text"/>
+                            <input class="w-full px-4 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline md:text-base " id="username" placeholder="Nama Lengkap" type="text"/>
                             <p class="mt-1 text-xs text-gray-500 dark:text-gray-300" id="">*Sesuaikan dengan KTP anda</p>
                         </div>
                         <!-- input kata sandi -->

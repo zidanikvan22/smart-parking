@@ -58,13 +58,7 @@
                     <img alt="Profile picture of the user"
                         src="https://storage.googleapis.com/a1aa/image/43uVAAkjL2o5C9ucXnT9oqONeUqZkv0592nceoaOa8nwCwmTA.jpg"
                         class="w-full h-full object-cover">
-                </div>
-                <!-- <button data-modal-target="image-modal" data-modal-toggle="image-modal"
-                    class="ml-1 mt-5 px-2 py-2 bg-blue-500 text-white text-xs rounded shadow hover:bg-blue-600 focus:outline-none flex items-center space-x-2">
-                    <i class="fas fa-car"></i>
-                    <span>Lihat Kendaraan</span>
-                </button> -->
-
+                </div>                
             </div>
 
 
@@ -109,53 +103,22 @@
                             <p class="font-medium text-gray-800">yanto@gmail.com</p>
                         </div>
                     </div>
-                    <!-- <div class="flex items-center space-x-2">
-                        <div class="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center">
-                            <i class="w-4 h-4 fas fa-car text-cyan-500"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm text-gray-500">Jenis Kendaraan</p>
-                            <p class="font-medium text-gray-800">Motor</p>
-                        </div>
-                    </div>
                     <div class="flex items-center space-x-2">
                         <div class="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center">
-                            <i class="w-4 h-4 fas fa-id-card text-indigo-950"></i>
+                            <i class="w-4 h-4 fas fa-phone text-blue-300"></i>
                         </div>
                         <div>
-                            <p class="text-sm text-gray-500">Plat Kendaraan</p>
-                            <p class="font-medium text-gray-800">BP 0770 KU</p>
+                            <p class="text-sm text-gray-500">Nomor Telepon</p>
+                            <p class="font-medium text-gray-800">098765432345678</p>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
 
-    <!-- modal foto kendaraan -->
-    <!-- <div id="image-modal" tabindex="-1" aria-hidden="true"
-        class="hidden fixed inset-0 z-50 w-full h-full overflow-y-auto overflow-x-hidden flex items-center justify-center bg-black/70">
-        <div class="relative w-full max-w-xl mx-4 md:mx-auto"> -->
-            <!-- Close Button -->
-            <!-- <button type="button"
-                class="absolute -top-10 right-0 z-50 text-white hover:text-gray-300 transition-colors duration-300"
-                data-modal-hide="image-modal">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                    </path>
-                </svg>
-                <span class="sr-only">Close modal</span>
-            </button> -->
-
-            <!-- Image Container -->
-            <!-- <div class="bg-white rounded-xl shadow-2xl overflow-hidden">
-                <img src="{{ asset('img/kendaraan.jpg') }}" alt="Vehicle Image"
-                    class="w-full h-auto object-cover transition-transform duration-300 hover:scale-105">
-            </div>
-        </div>
-    </div> -->
+    
 </main>
 
 @include('component/footerUser')

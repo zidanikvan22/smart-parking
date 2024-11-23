@@ -31,6 +31,22 @@
                 </a>
             </li>
             <li
+                class="{{ $title == 'approval' ? 'active' : '' }} transition-all delay-75 hover:px-5 hover:bg-blue-200">
+                <a href="{{ route('admin-approval') }}">
+                    <div class="icon">
+                        <svg class="{{ $title == 'approval' ? 'text-black' : 'text-gray-950' }} size-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                            <path
+                                d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                            </svg>
+                    </div>
+                    <div
+                        class="text md:text-sm xl:text-lg font-bold {{ $title == 'approval' ? 'text-black' : 'text-white' }}">
+                        Persetujuan
+                    </div>
+                </a>
+            </li>
+            <li
                 class="{{ $title == 'ManageUsers' ? 'active' : '' }} transition-all delay-75 hover:px-5 hover:bg-blue-200">
                 <a href="{{ route('admin-users') }}">
                     <div class="icon">
@@ -70,8 +86,13 @@
                 class="{{ $title == 'ManageSlot' ? 'active' : '' }} transition-all delay-75 hover:px-5 hover:bg-blue-200">
                 <a href="{{ route('admin-slot') }}">
                     <div class="icon">
-                        <svg
-                        class="{{ $title == 'ManageSlot' ? 'text-black' : 'text-gray-950' }} size-8" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M240,192h-8V98.67a16,16,0,0,0-7.12-13.31l-88-58.67a16,16,0,0,0-17.75,0l-88,58.67A16,16,0,0,0,24,98.67V192H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM40,98.67,128,40l88,58.66V192H192V136a8,8,0,0,0-8-8H72a8,8,0,0,0-8,8v56H40ZM176,144v16H136V144Zm-56,16H80V144h40ZM80,176h40v16H80Zm56,0h40v16H136Z"></path></svg>
+                        <svg class="{{ $title == 'ManageSlot' ? 'text-black' : 'text-gray-950' }} size-8"
+                            xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000"
+                            viewBox="0 0 256 256">
+                            <path
+                                d="M240,192h-8V98.67a16,16,0,0,0-7.12-13.31l-88-58.67a16,16,0,0,0-17.75,0l-88,58.67A16,16,0,0,0,24,98.67V192H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM40,98.67,128,40l88,58.66V192H192V136a8,8,0,0,0-8-8H72a8,8,0,0,0-8,8v56H40ZM176,144v16H136V144Zm-56,16H80V144h40ZM80,176h40v16H80Zm56,0h40v16H136Z">
+                            </path>
+                        </svg>
                     </div>
                     <div
                         class="text md:text-sm xl:text-lg font-bold {{ $title == 'ManageSlot' ? 'text-black' : 'text-white' }}">
@@ -83,7 +104,13 @@
                 class="{{ $title == 'ManageAnalysis' ? 'active' : '' }} transition-all delay-75 hover:px-5 hover:bg-blue-200">
                 <a href="{{ route('admin-analysis') }}">
                     <div class="icon">
-                        <svg class="{{ $title == 'ManageAnalysis' ? 'text-black' : 'text-gray-950' }} size-8" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M224,200h-8V40a8,8,0,0,0-8-8H152a8,8,0,0,0-8,8V80H96a8,8,0,0,0-8,8v40H48a8,8,0,0,0-8,8v64H32a8,8,0,0,0,0,16H224a8,8,0,0,0,0-16ZM160,48h40V200H160ZM104,96h40V200H104ZM56,144H88v56H56Z"></path></svg>
+                        <svg class="{{ $title == 'ManageAnalysis' ? 'text-black' : 'text-gray-950' }} size-8"
+                            xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000"
+                            viewBox="0 0 256 256">
+                            <path
+                                d="M224,200h-8V40a8,8,0,0,0-8-8H152a8,8,0,0,0-8,8V80H96a8,8,0,0,0-8,8v40H48a8,8,0,0,0-8,8v64H32a8,8,0,0,0,0,16H224a8,8,0,0,0,0-16ZM160,48h40V200H160ZM104,96h40V200H104ZM56,144H88v56H56Z">
+                            </path>
+                        </svg>
                     </div>
                     <div
                         class="text md:text-sm xl:text-lg font-bold  hover:px-5 {{ $title == 'ManageAnalysis' ? 'text-black' : 'text-white' }}">
