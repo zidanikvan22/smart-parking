@@ -11,4 +11,9 @@ class Slot extends Model
     protected $table = 'slot';
     protected $primaryKey = 'id_slot';
     protected $guarded = [];
+
+    public function zona()
+    {
+        return $this->belongsTo(Zona::class, 'id_area','id_area');
+    }
 }

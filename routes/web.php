@@ -46,8 +46,10 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/updateZona/{id_area}', [AdminZonaController::class, 'update'])->name('zona.update');
         Route::delete('/deleteZona/{id_area}', [AdminZonaController::class, 'destroy'])->name('zona.destroy');
 
-        Route::get('/analysis', [AdminAnalysisController::class, 'index'])->name('admin-analysis');
         Route::get('/slot', [AdminSlotController::class, 'index'])->name('admin-slot');
+        Route::post('/addSlot', [AdminSlotController::class, 'store'])->name('slot.store');
+
+        Route::get('/analysis', [AdminAnalysisController::class, 'index'])->name('admin-analysis');
     });
     });
 });

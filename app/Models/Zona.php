@@ -11,4 +11,10 @@ class Zona extends Model
     protected $table = 'zona';
     protected $primaryKey = 'id_area';
     protected $guarded = [];
+
+    public function slots()
+    {
+        return $this->hasMany(Slot::class, 'id_area', 'id_area');
+    }
+
 }
