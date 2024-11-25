@@ -34,13 +34,36 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            if (Auth::user()->role === 'admin') {
-                return redirect()->route('admin-dashboard')->with('success', 'Login berhasil');
-            } else {
-                return redirect()->route('dashboard')->with('success', 'Login berhasil');
+            $status = Auth::user()->status;
+
+            switch ($status) {
+                case 'nonAktif':
+                    return redirect()
+                        ->back()
+                        ->with('error', 'Akun Anda belum diaktivasi. Silahkan tunggu admin mengaktivasi akun Anda.');
+
+                case 'ditolak':
+                    return redirect()
+                        ->back()
+                        ->with('error', 'Mohon maaf, pendaftaran Anda ditolak oleh admin.');
+
+                case 'aktif':
+                    if (Auth::user()->role === 'admin') {
+                        return redirect()->route('admin-dashboard')->with('success', 'Login berhasil');
+                    } else {
+                        return redirect()->route('dashboard')->with('success', 'Login berhasil');
+                    }
+
+                default:
+                    return redirect()
+                        ->back()
+                        ->with('error', 'Status akun tidak valid.');
             }
+
         } else {
-            return redirect()->back()->withErrors(['error' => 'Email atau password salah.'])->withInput();
+            return redirect()
+                ->back()
+                ->with('error', 'Email atau password salah.');
         }
     }
 
