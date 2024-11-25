@@ -27,16 +27,13 @@
 
 
     <div class="grid grid-cols-1 p-5 mx-6 ">
-
-        @foreach ($penggunas as $pengguna)
-        @endforeach
         <table class="font-medium border border-black table-fixed">
             <thead class="bg-[#95AFE5]">
                 <tr>
                     <th class="p-3 text-sm border border-black">No</th>
                     <th class="p-3 text-sm border border-black">Nama Lengkap</th>
                     <!-- <th class="p-3 text-sm border border-black">Email</th>
-                        <th class="p-3 text-sm border border-black">Jenis Kendaraan</th> -->
+                            <th class="p-3 text-sm border border-black">Jenis Kendaraan</th> -->
                     <th class="p-3 text-sm border border-black">No Plat Kendaraan</th>
                     <th class="p-3 text-sm border border-black">Aksi</th>
                 </tr>
@@ -49,7 +46,7 @@
                             {{ ($penggunas->currentPage() - 1) * $penggunas->perPage() + $loop->iteration }}</td>
                         <td class="p-3 text-sm border border-black">{{ $pengguna->nama }}</td>
                         <!-- <td class="p-3 text-sm border border-black">email@gmail.com</td>
-                        <td class="p-3 text-sm border border-black">Mobil</td> -->
+                            <td class="p-3 text-sm border border-black">Mobil</td> -->
                         <td class="p-3 text-sm border border-black">{{ $pengguna->no_plat }}</td>
                         <td class="p-3 text-sm border border-black">
                             <button data-modal-target="small-modal{{ $pengguna->id_pengguna }}"
@@ -90,8 +87,10 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                         </svg>
-                        <h3 class="mb-5 text-lg font-bold text-gray-500 dark:text-gray-400">Apakah anda ingin menghapus pengguna {{ $pengguna->nama }}</h3>
-                        <form action="{{ route('users.delete', $pengguna->id_pengguna) }}" method="POST" class="inline-block">
+                        <h3 class="mb-5 text-lg font-bold text-gray-500 dark:text-gray-400">Apakah anda ingin menghapus
+                            pengguna {{ $pengguna->nama }}</h3>
+                        <form action="{{ route('users.delete', $pengguna->id_pengguna) }}" method="POST"
+                            class="inline-block">
                             @csrf
                             @method('DELETE')
                             <button type="submit"
@@ -123,8 +122,8 @@
                             data-modal-hide="small-modal{{ $pengguna->id_pengguna }}">
                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 14 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                             </svg>
                             <span class="sr-only">Close modal</span>
                         </button>

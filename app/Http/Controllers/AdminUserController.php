@@ -11,7 +11,7 @@ class AdminUserController extends Controller
     {
         $search = $request->input('search');
 
-        $users = User::query()
+        $users = User::where('status', 'aktif')
             ->when($search, function ($query, $search) {
                 $query->where('nama', 'like', "%{$search}%")
                       ->orWhere('no_plat', 'like', "%{$search}%");
