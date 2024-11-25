@@ -43,6 +43,8 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/users/{id_pengguna}', [AdminUserController::class, 'delete'])->name('users.delete');
         //aprove
         Route::get('/approval', [AdminApprovalController::class, 'index'])->name('admin-approval');
+        Route::put('/approval/{id_pengguna}', [AdminApprovalController::class, 'updateUserStatus'])->name('update.userStatus');
+
         // zona
         Route::get('/zona', [AdminZonaController::class, 'index'])->name('admin-zona');
         Route::post('/addZona', [AdminZonaController::class, 'store'])->name('zona.store');
