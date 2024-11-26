@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_area');
             $table->enum('status_slot', ['kosong', 'terisi']);
             $table->timestamps();
-            $table->foreign('id_area')->references('id_area')->on('zona')->onDelete('cascade');
+            // $table->foreign('id_area')->references('id_area')->on('zona')->onDelete('cascade');
         });
     }
 

@@ -51,6 +51,10 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/updateZona/{id_area}', [AdminZonaController::class, 'update'])->name('zona.update');
         Route::delete('/deleteZona/{id_area}', [AdminZonaController::class, 'destroy'])->name('zona.destroy');
 
+        Route::post('/addSubzona', [AdminZonaController::class, 'storeSubzona'])->name('subzona.store');
+        Route::put('/updateSubzona/{id}', [AdminZonaController::class, 'updateSubzona'])->name('subzona.update');
+        Route::delete('/deleteSubzona/{id}', [AdminZonaController::class, 'destroySubzona'])->name('subzona.destroy');
+
         Route::get('/slot', [AdminSlotController::class, 'index'])->name('admin-slot');
         Route::post('/addSlot', [AdminSlotController::class, 'store'])->name('slot.store');
 

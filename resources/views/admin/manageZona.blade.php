@@ -1,258 +1,492 @@
 @extends('layout/mainAdmin')
 
 @section('main')
-    <div class="flex flex-col p-6 -ml-10 space-y-4 -mt-7">
-        {{-- Tombol Tambah --}}
-        <div class="ml-10">
-            <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
-                class="rounded-full bg-base-200 hover:bg-[#95AFE5] p-2 px-2">
-                <div class="flex items-center space-x-0">
-                    <i>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                        </svg>
-                    </i>
-                    <p class="text-md">Tambah Zona</p>
-                </div>
-            </button>
-        </div>
 
-        <!-- Main Modal Tambah zona -->
-        <div id="crud-modal" tabindex="-1" aria-hidden="true"
-            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-            <div class="relative w-full max-w-md max-h-full p-4">
-                <!-- Modal content -->
-                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                    <!-- Modal header -->
-                    <div class="flex items-center justify-between p-4 border-b rounded-t md:p-5 dark:border-gray-600">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                            Tambah Zona Baru
-                        </h3>
-                        <button type="button"
-                            class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto dark:hover:bg-gray-600 dark:hover:text-white"
-                            data-modal-toggle="crud-modal">
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 14 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                            </svg>
-                            <span class="sr-only">Close modal</span>
-                        </button>
-                    </div>
-                    <!-- Modal body -->
-                    <form action="{{ route('zona.store') }}" method="POST" enctype="multipart/form-data"
-                        class="p-4 md:p-5">
-                        @csrf
-                        <div class="grid grid-cols-2 gap-4 mb-4">
-                            <div class="col-span-2">
-                                <label for="name"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
-                                    Zona</label>
-                                <input type="text" name="nama" id="nama"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="" required="">
-                            </div>
-                            <div class="col-span-2 ">
-
-                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                    for="file_input">Upload foto</label>
-                                <input
-                                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                    aria-describedby="file_input_help" id="file_input" type="file" name="gambar">
-                                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">JPEG, PNG, JPG
-                                </p>
-
-                            </div>
-
-                            <div class="col-span-2">
-                                <label for=""
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan
-                                    Zona</label>
-                                <textarea id="" rows="4" name="deskripsi"
-                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder=""></textarea>
-                            </div>
-                        </div>
-                        <button type="submit"
-                            class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            <svg class="w-5 h-5 me-1 -ms-1" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                            Tambah Zona
-                        </button>
-                    </form>
-                </div>
+<div class="flex flex-col p-6 space-y-4 -ml-5 -mt-7">
+    <!-- tombol tambah zona -->
+    <div class="ml-10">
+        <button data-modal-target="tambah-zona" data-modal-toggle="tambah-zona"
+            class="rounded-md bg-base-200 hover:bg-[#95AFE5] p-2 px-2">
+            <div class="flex items-center space-x-0">
+                <i class="fas fa-plus me-2 ">
+                </i>
+                <p class="text-md font-bold">Tambah Zona</p>
             </div>
-        </div>
-
-
-        <!-- {{-- Dropdown untuk Memilih Zona --}}
-            <div class="dropdown">
-                <div tabindex="0" role="button" class="m-1 btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                      </svg>
-                    Pilih Zona</div>
-                <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                  <li><a>Zona 1</a></li>
-                  <li><a>Zona 2</a></li>
-                  <li><a>Zona 3</a></li>
-                </ul>
-              </div> -->
-
-        <div class="grid grid-cols-1 p-5 mx-6">
-            <!-- <div class="pb-2 font-bold md:text-2xl">
-                    <p>Zona 1</p>
-                </div> -->
-            <table class="font-medium border border-black table-fixed">
-                <thead class="bg-[#95AFE5]">
-                    <tr>
-                        <th class="p-3 text-sm font-bold border border-black">No</th>
-                        <th class="p-3 text-sm font-bold border border-black w-[35em]">Nama Zona</th>
-                        <th class="p-3 text-sm font-bold border border-black">Aksi</th>
-                    </tr>
-                </thead>
-                @foreach ($zonas as $zona)
-                    <tbody class="text-center">
-                        <tr>
-                            <td class="p-3 text-sm border border-black">
-                                {{ ($zonas->currentPage() - 1) * $zonas->perPage() + $loop->iteration }}</td>
-                            <td class="p-3 text-sm border border-black">{{ $zona->zona_parkir }}</td>
-                            <td class="p-3 text-sm border border-black">
-                                <button data-modal-target="edit-modal{{ $zona->id_area }}"
-                                    data-modal-toggle="edit-modal{{ $zona->id_area }}"
-                                    class="px-5 py-1 text-xs bg-red-400 rounded-lg hover:bg-blue-200">Edit</button>
-                                <button data-modal-target="hapus-modal{{ $zona->id_area }}"
-                                    data-modal-toggle="hapus-modal{{ $zona->id_area }}"
-                                    class="px-3 py-1 text-xs bg-red-400 rounded-lg hover:bg-blue-200">Hapus</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                @endforeach
-            </table>
-        </div>
-        <div class="mt-4">
-            {{ $zonas->links('pagination::tailwind') }}
-        </div>
-
-        <!-- Main Modal Edit Zona -->
-        @foreach ($zonas as $zona)
-            <div id="edit-modal{{ $zona->id_area }}" tabindex="-1" aria-hidden="true"
-                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                <div class="relative w-full max-w-md max-h-full p-4">
-                    <!-- Modal content -->
-                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                        <!-- Modal header -->
-                        <div class="flex items-center justify-between p-4 border-b rounded-t md:p-5 dark:border-gray-600">
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                                Edit Zona
-                            </h3>
-                            <button type="button"
-                                class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto dark:hover:bg-gray-600 dark:hover:text-white"
-                                data-modal-toggle="edit-modal{{ $zona->id_area }}">
-                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 14 14">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                                </svg>
-                                <span class="sr-only">Close modal</span>
-                            </button>
-                        </div>
-                        <!-- Modal body -->
-                        <form action="{{ route('zona.update', $zona->id_area) }}" method="POST"
-                            enctype="multipart/form-data" class="p-4 md:p-5">
-                            @csrf
-                            @method('PUT')
-                            <div class="grid grid-cols-2 gap-4 mb-4">
-                                <div class="col-span-2">
-                                    <label for="name"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
-                                        Zona</label>
-                                    <input type="text" name="nama" id=""
-                                        value="{{ $zona->zona_parkir }}"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                        required>
-                                </div>
-                                <div class="col-span-2 ">
-                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                        for="file_input">Upload foto</label>
-                                    <input
-                                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                        aria-describedby="file_input_help" id="file_input" type="file"
-                                        name="gambar>
-                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">JPEG, PNG, JPG</p>
-                                </div>
-
-                                <div class="col-span-2">
-                                    <label for=""
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan
-                                        Zona</label>
-                                    <textarea id="" rows="4" name="deskripsi" required
-                                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ $zona->deskripsi }}</textarea>
-                                </div>
-                            </div>
-                            <button type="submit"
-                                class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                <!-- <svg class="w-5 h-5 me-1 -ms-1" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"></path>
-                            </svg> -->
-                                Simpan
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Main Modal hapus zona -->
-            <div id="hapus-modal{{ $zona->id_area }}" tabindex="-1"
-                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                <div class="relative w-full max-w-md max-h-full p-4">
-                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                        <button type="button"
-                            class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                            data-modal-hide="hapus-modal{{ $zona->id_area }}">
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 14 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                            </svg>
-                            <span class="sr-only">Close modal</span>
-                        </button>
-                        <div class="p-4 text-center md:p-5">
-                            <svg class="w-12 h-12 mx-auto mb-4 text-gray-400 dark:text-gray-200" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                            </svg>
-                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda ingin
-                                menghapus Zona ini?</h3>
-                            <form action="{{ route('zona.destroy', $zona->id_area) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <div class="flex justify-center space-x-3">
-                                    <button type="submit"
-                                        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
-                                        Iya
-                                    </button>
-                                    <button data-modal-hide="hapus-modal{{ $zona->id_area }}" type="button"
-                                        class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                                        Tidak
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        @endforeach
-
+        </button>
     </div>
+    <!-- tabel zona -->
+    <div class="grid grid-cols-1 p-5 mx-6 w-9/12 ">
+
+        <table
+            class="text-sm font-medium table-fixed text-left rtl:text-right text-gray-500 dark:text-gray-400 shadow-md shadow-blue-300 rounded-lg">
+            <thead class="bg-[#95AFE5] text-xs text-gray-700  dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-3 py-3 text-sm font-bold rounded-tl-lg">No</th>
+                    <th scope="col" class="px-9 py-3 text-sm font-bold ">Nama Zona</th>
+                    <th scope="col" class="px-1 py-3 text-sm font-bold rounded-tr-lg">Aksi</th>
+                </tr>
+            </thead>
+            <tbody class="">
+                @foreach($zonas as $index => $zona)
+                    <tr
+                        class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+
+                        <th scope="row"
+                            class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white rounded-bl-lg">
+                            {{ $index + 1 }}
+                        </th>
+                        <td class="px-9 py-2">
+                            {{ $zona->nama_zona }}
+                        </td>
+                        <td class="px-1 py-2 rounded-br-lg ">
+                            <button data-modal-target="edit-zona-{{ $zona->id }}"
+                                data-modal-toggle="edit-zona-{{ $zona->id }}"
+                                class=" py-1 text-sm text-blue-500 hover:underline inline-flex items-center justify-center">
+                                <i class="w-3 h-3 me-2 text-blue-500 fas fa-pen "></i>Edit</button>
+                            <button data-modal-target="hapus-zona-{{ $zona->id }}"
+                                data-modal-toggle="hapus-zona-{{ $zona->id }}"
+                                class="px-2 py-1 text-sm text-red-400 hover:underline inline-flex items-center justify-center">
+                                <i class="w-3 h-3 me-2 text-red-400 fas fa-trash "></i>Hapus</button>
+                        </td>
+                    </tr>
+                @endforeach
+
+
+            </tbody>
+        </table>
+    </div>
+
+    <!-- tombol tambah sub zona -->
+    <div class="ml-10">
+        <button data-modal-target="tambah-subzona" data-modal-toggle="tambah-subzona"
+            class="rounded-md bg-base-200 hover:bg-[#95AFE5] p-2 px-2">
+            <div class="flex items-center space-x-0">
+                <i class="fas fa-plus me-2">
+                </i>
+                <p class="text-md font-bold">Tambah Sub-Zona</p>
+            </div>
+        </button>
+    </div>
+
+
+    <!-- dropdown pilih zona untuk subzona -->
+    <form method="GET" action="{{ route('admin-zona') }}">
+        <div class="ml-11 ">
+            <label for="zona_id" class="block text-sm font-bold text-gray-700">Pilih Zona:</label>
+            <select name="zona_id" id="zona_id" onchange="this.form.submit()"
+                class="mt-1 font-bold block w-36 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring-indigo-500 sm:text-sm">
+                @foreach($zonas as $zona)
+                    <option class="" value="{{ $zona->id }}"
+                        {{ $zona->id == $zonaId ? 'selected' : '' }}>
+                        {{ $zona->nama_zona }}
+                    </option>
+                @endforeach
+            </select>
+
+        </div>
+    </form>
+
+
+
+    <!-- tabel Subzona -->
+
+    <div class="grid grid-cols-1 p-5 mx-6 w-9/12 ">
+
+        <table
+            class="text-sm font-medium table-fixed text-left rtl:text-right text-gray-500 dark:text-gray-400 shadow-md shadow-blue-300 rounded-lg">
+            <thead class="bg-[#95AFE5] text-xs text-gray-700  dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-3 py-3 text-sm font-bold rounded-tl-lg">No</th>
+                    <th scope="col" class="px-9 py-3 text-sm font-bold ">Nama SubZona</th>
+                    <th scope="col" class="px-1 py-3 text-sm font-bold ">Aksi</th>
+                    <th scope="col" class="px-1 py-3 text-sm font-bold rounded-tr-lg">Aksi</th>
+                </tr>
+            </thead>
+            <tbody class="">
+                @foreach($subzonas as $index => $subzona)
+                    <tr
+                        class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+
+                        <th scope="row"
+                            class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white rounded-bl-lg">
+                            {{ $index + 1 }}
+                        </th>
+                        <td class="px-9 py-2">
+                            {{ $subzona->nama_subzona }}
+                        </td>
+                        <td class="px-1 py-2 rounded-br-lg ">
+                            <button data-modal-target="" data-modal-toggle=""
+                                class=" py-1 text-sm text-blue-500 hover:underline inline-flex items-center justify-center">
+                                <i class="w-3 h-3 me-2 text-blue-500 fas fa-pen "></i>Lihat Area</button>
+                        </td>
+                        <td class="px-1 py-2 rounded-br-lg ">
+                            <button data-modal-target="edit-subzona-{{ $subzona->id }}"
+                                data-modal-toggle="edit-subzona-{{ $subzona->id }}"
+                                class=" py-1 text-sm text-blue-500 hover:underline inline-flex items-center justify-center">
+                                <i class="w-3 h-3 me-2 text-blue-500 fas fa-pen "></i>Edit</button>
+                            <button data-modal-target="hapus-subzona-{{ $subzona->id }}"
+                                data-modal-toggle="hapus-subzona-{{ $subzona->id }}"
+                                class="px-2 py-1 text-sm text-red-400 hover:underline inline-flex items-center justify-center">
+                                <i class="w-3 h-3 me-2 text-red-400 fas fa-trash "></i>Hapus</button>
+                        </td>
+                    </tr>
+                @endforeach
+
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+</div>
+
+<!-- Main Modal Tambah zona -->
+<div id="tambah-zona" tabindex="-1" aria-hidden="true"
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div
+                class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 bg-[#95AFE5]">
+                <h3 class="text-lg font-semibold text-white dark:text-white">
+                    Tambah Zona Baru
+                </h3>
+                <button type="button"
+                    class="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-toggle="tambah-zona">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form action="{{ route('zona.store') }}" method="POST" class="p-4 md:p-5">
+                @csrf
+                <div class="grid gap-4 mb-4 grid-cols-2">
+                    <div class="col-span-2">
+                        <label for="nama_zona" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
+                            Zona</label>
+                        <input type="text" name="nama_zona" id="nama_zona"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Masukkan Nama Zona" required="">
+                    </div>
+
+
+                    <div class="col-span-2">
+                        <label for="keterangan"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan
+                            Zona</label>
+                        <textarea id="keterangan" name="keterangan" rows="4"
+                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder=""></textarea>
+                    </div>
+                </div>
+                <button type="submit"
+                    class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    Tambah Zona
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Main Modal Edit Zona -->
+@foreach($zonas as $zona)
+    <div id="edit-zona-{{ $zona->id }}" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <!-- Modal header -->
+                <div
+                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 bg-[#95AFE5]">
+                    <h3 class="text-lg font-semibold text-white dark:text-white">
+                        Edit Zona
+                    </h3>
+                    <button type="button"
+                        class="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-toggle="edit-zona-{{ $zona->id }}">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <form class="p-4 md:p-5" action="{{ route('zona.update', $zona->id) }}"
+                    method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="grid gap-4 mb-4 grid-cols-2">
+                        <div class="col-span-2">
+                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
+                                Zona</label>
+                            <input type="text" value="{{ $zona->nama_zona }}" disabled
+                                class="bg-gray-200 border border-gray-300 text-gray-500 text-sm rounded-lg block w-full p-2.5"
+                                placeholder="" required="">
+                        </div>
+
+                        <div class="col-span-2">
+                            <label for=""
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan
+                                Zona</label>
+                            <textarea id="" rows="4"
+                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Masukkan Keterangan Zona">{{ $zona->keterangan }}</textarea>
+                        </div>
+                    </div>
+                    <button type="submit"
+                        class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Simpan
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+@endforeach
+
+<!-- Main Modal Tambah sub-zona -->
+<div id="tambah-subzona" tabindex="-1" aria-hidden="true"
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div
+                class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 bg-[#95AFE5]">
+                <h3 class="text-lg font-semibold text-white dark:text-white">
+                    Tambah Sub-Zona Baru
+                </h3>
+                <button type="button"
+                    class="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-toggle="tambah-subzona">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form class="p-4 md:p-5" action="{{ route('subzona.store') }}" method="POST"
+                enctype="multipart/form-data">
+                @csrf
+                <div class="grid gap-4 mb-4 grid-cols-2">
+                    <div class="col-span-2">
+                        <label for="zona_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
+                            Zona</label>
+                        <select name="zona_id" id="zona_id"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            required>
+                            <option value="">Pilih Zona</option>
+                            @foreach($zonas as $zona)
+                                <option value="{{ $zona->id }}">{{ $zona->nama_zona }}</option>
+                            @endforeach
+                        </select>
+
+                    </div>
+                    <div class="col-span-2">
+                        <label for="nama_subzona"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
+                            Sub-Zona</label>
+                        <input type="text" name="nama_subzona" id="nama_subzona"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Masukkan Nama Subzona" required>
+                    </div>
+                    <div class="col-span-2 ">
+
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="foto">Foto Area
+                            Sub-Zona</label>
+                        <input
+                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                            aria-describedby="file_input_help" id="foto" type="file" name="foto" accept="image/*">
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG
+                            or GIF (MAX. 800x400px).</p>
+
+                    </div>
+                </div>
+                <button type="submit"
+                    class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    Tambah Sub-Zona
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Main Modal Edit sub-Zona -->
+@foreach($subzonas as $subzona)
+    <div id="edit-subzona-{{ $subzona->id }}" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <!-- Modal header -->
+                <div
+                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 bg-[#95AFE5]">
+                    <h3 class="text-lg font-semibold text-white dark:text-white">
+                        Edit Sub-Zona
+                    </h3>
+                    <button type="button"
+                        class="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-toggle="edit-subzona-{{ $subzona->id }}">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <form class="p-4 md:p-5" action="{{ route('subzona.update', $subzona->id) }}"
+                    method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="grid gap-4 mb-4 grid-cols-2">
+                        <div class="col-span-2">
+                            <label for="zona_id_edit"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
+                                Zona</label>
+                            <select name="zona_id" id="zona_id_edit"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                <option value="{{ $subzona->zona_id }}">{{ $subzona->zona->nama_zona }}</option>
+                            </select>
+
+                        </div>
+                        <div class="col-span-2">
+                            <label for="nama_subzona_edit"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
+                                Sub-Zona</label>
+                            <input type="text" value="{{ $subzona->nama_subzona }}" disabled
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        </div>
+                        <div class="col-span-2 ">
+
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="foto">Foto
+                                Area Sub-Zona</label>
+                            <input
+                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                aria-describedby="file_input_help" type="file" name="foto" id="foto" accept="image/*">
+                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG
+                                or GIF (MAX. 800x400px).</p>
+
+                        </div>
+
+                    </div>
+                    <button type="submit"
+                        class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Simpan
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+@endforeach
+
+
+
+<!-- Main Modal hapus zona -->
+@foreach($zonas as $zona)
+    <div id="hapus-zona-{{ $zona->id }}" tabindex="-1"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <button type="button"
+                    class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-hide="hapus-zona-{{ $zona->id }}">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <form action="{{ route('zona.destroy', $zona->id) }}" method="POST"
+                    class="p-4 md:p-5 ">
+                    @csrf
+                    @method('DELETE')
+                    <div class="text-center">
+                        <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda ingin
+                            menghapus
+                            "{{ $zona->nama_zona }}" ini ?</h3>
+                        <button type="submit"
+                            class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                            Iya
+                        </button>
+                        <button data-modal-toggle="hapus-zona-{{ $zona->id }}" type="button"
+                            class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Tidak</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endforeach
+
+<!-- Main Modal hapus sub-zona -->
+@foreach($subzonas as $subzona)
+    <div id="hapus-subzona-{{ $subzona->id }}" tabindex="-1"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <button type="button"
+                    class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-hide="hapus-subzona-{{ $subzona->id }}">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <form action="{{ route('subzona.destroy', $subzona->id) }}" method="POST"
+                    class="p-4 md:p-5 ">
+                    @csrf
+                    @method('DELETE')
+                    <div class="text-center">
+                        <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda ingin
+                            menghapus
+                            {{ $subzona->nama_subzona }} ini?</h3>
+                        <button type="submit"
+                            class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                            Iya
+                        </button>
+                        <button data-modal-toggle="hapus-subzona-{{ $subzona->id }}" type="button"
+                            class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Tidak</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endforeach
 @endsection
