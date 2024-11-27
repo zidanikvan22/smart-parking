@@ -33,7 +33,7 @@
                     <th class="p-3 text-sm border border-black">No</th>
                     <th class="p-3 text-sm border border-black">Nama Lengkap</th>
                     <!-- <th class="p-3 text-sm border border-black">Email</th>
-                                <th class="p-3 text-sm border border-black">Jenis Kendaraan</th> -->
+                                    <th class="p-3 text-sm border border-black">Jenis Kendaraan</th> -->
                     <th class="p-3 text-sm border border-black">No Plat Kendaraan</th>
                     <th class="p-3 text-sm border border-black">Aksi</th>
                 </tr>
@@ -46,7 +46,7 @@
                             {{ ($penggunas->currentPage() - 1) * $penggunas->perPage() + $loop->iteration }}</td>
                         <td class="p-3 text-sm border border-black">{{ $pengguna->nama }}</td>
                         <!-- <td class="p-3 text-sm border border-black">email@gmail.com</td>
-                                <td class="p-3 text-sm border border-black">Mobil</td> -->
+                                    <td class="p-3 text-sm border border-black">Mobil</td> -->
                         <td class="p-3 text-sm border border-black">{{ $pengguna->no_plat }}</td>
                         <td class="p-3 text-sm border border-black">
                             <button data-modal-target="small-modal{{ $pengguna->id_pengguna }}"
@@ -129,7 +129,7 @@
                         </button>
                     </div>
                     <div class="flex items-center p-4 space-x-4 md:p-5">
-                        <img src="{{ asset('storage/' . $pengguna->foto_profile) }}" alt="User Profile"
+                        <img src="{{ asset('storage/' . $pengguna->foto_pengguna) }}" alt="User Profile"
                             class="object-cover w-48 h-56 rounded-md -pt-5">
                         <div class="space-y-1">
                             <div class="text-base font-semibold text-gray-900 dark:text-white">Email</div>
