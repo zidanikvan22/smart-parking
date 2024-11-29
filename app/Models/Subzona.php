@@ -16,4 +16,9 @@ class Subzona extends Model
     {
         return $this->belongsTo(Zona::class, 'zona_id');
     }
+
+    public function slot()
+    {
+    return $this->hasMany(Slot::class, 'subzona_id');
+    }
 }

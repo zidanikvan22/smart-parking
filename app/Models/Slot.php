@@ -9,11 +9,10 @@ class Slot extends Model
 {
     use HasFactory;
     protected $table = 'slot';
-    protected $primaryKey = 'id_slot';
-    protected $guarded = [];
+    protected $fillable = ['subzona_id', 'nomor_slot', 'keterangan'];
 
-    public function zona()
+    public function subzona()
     {
-        return $this->belongsTo(Zona::class, 'id_area','id_area');
+        return $this->belongsTo(Subzona::class, 'subzona_id');
     }
 }

@@ -10,10 +10,10 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminZonaController;
-use App\Http\Controllers\AdminSlotController;
 use App\Http\Controllers\AdminAnalysisController;
 use App\Http\Controllers\AdminApprovalController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\AdminSlotController;
 
 //Autentikasi
 Route::get('/', [AuthController::class, 'login'])->name('login');
@@ -56,13 +56,19 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/updateZona/{id_area}', [AdminZonaController::class, 'update'])->name('zona.update');
             Route::delete('/deleteZona/{id_area}', [AdminZonaController::class, 'destroy'])->name('zona.destroy');
 
+            // Subzona
             Route::post('/addSubzona', [AdminZonaController::class, 'storeSubzona'])->name('subzona.store');
             Route::put('/updateSubzona/{id}', [AdminZonaController::class, 'updateSubzona'])->name('subzona.update');
             Route::delete('/deleteSubzona/{id}', [AdminZonaController::class, 'destroySubzona'])->name('subzona.destroy');
 
-            Route::get('/slot', [AdminSlotController::class, 'index'])->name('admin-slot');
-            Route::post('/addSlot', [AdminSlotController::class, 'store'])->name('slot.store');
+            // Slot
+            Route::get('/slot/{zona?}', [AdminSlotController::class, 'index'])->name('admin-slot');
+            Route::get('/slot/subzona/{subzonaId}', [AdminSlotController::class, 'getSlotsBySubzona'])->name('slot.getBySubzona');
+            Route::post('/slot', [AdminSlotController::class, 'store'])->name('slot.store');
+            Route::put('/slot/{id}', [AdminSlotController::class, 'update'])->name('slot.update');
+            Route::delete('/slot/{id}', [AdminSlotController::class, 'destroy'])->name('slot.destroy');
 
+            // Analysis
             Route::get('/analysis', [AdminAnalysisController::class, 'index'])->name('admin-analysis');
         });
     });
