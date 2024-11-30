@@ -61,7 +61,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-4 gap-3 p-5 m-5 bg-white rounded-lg shadow-lg">
+        <div class="grid grid-cols-4 gap-3 p-5 m-5 rounded-lg shadow-lg">
             @foreach ($slots as $slot)
                 <div
                     class="p-3 text-center text-white {{ $slot->keterangan == 'Terisi' ? 'bg-red-500' : ($slot->keterangan == 'Tersedia' ? 'bg-green-500' : 'bg-yellow-500') }} rounded-lg">
