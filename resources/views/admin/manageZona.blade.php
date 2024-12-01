@@ -75,6 +75,7 @@
             <label for="zona_id" class="block text-sm font-bold text-gray-700">Pilih Zona:</label>
             <select name="zona_id" id="zona_id" onchange="this.form.submit()"
                 class="mt-1 font-bold block w-36 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring-indigo-500 sm:text-sm">
+                <option value="">Pilih Zona</option>
                 @foreach($zonas as $zona)
                     <option class="" value="{{ $zona->id }}"
                         {{ $zona->id == $zonaId ? 'selected' : '' }}>
@@ -98,7 +99,7 @@
                 <tr>
                     <th scope="col" class="px-3 py-3 text-sm font-bold rounded-tl-lg">No</th>
                     <th scope="col" class="px-9 py-3 text-sm font-bold ">Nama SubZona</th>
-                    <th scope="col" class="px-1 py-3 text-sm font-bold ">Aksi</th>
+                    <!-- <th scope="col" class="px-1 py-3 text-sm font-bold ">Aksi</th> -->
                     <th scope="col" class="px-1 py-3 text-sm font-bold rounded-tr-lg">Aksi</th>
                 </tr>
             </thead>
@@ -114,11 +115,11 @@
                         <td class="px-9 py-2">
                             {{ $subzona->nama_subzona }}
                         </td>
-                        <td class="px-1 py-2 rounded-br-lg ">
+                        <!-- <td class="px-1 py-2 rounded-br-lg ">
                             <button data-modal-target="" data-modal-toggle=""
                                 class=" py-1 text-sm text-blue-500 hover:underline inline-flex items-center justify-center">
                                 <i class="w-3 h-3 me-2 text-blue-500 fas fa-pen "></i>Lihat Area</button>
-                        </td>
+                        </td> -->
                         <td class="px-1 py-2 rounded-br-lg ">
                             <button data-modal-target="edit-subzona-{{ $subzona->id }}"
                                 data-modal-toggle="edit-subzona-{{ $subzona->id }}"
@@ -165,7 +166,7 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form action="{{ route('zona.store') }}" method="POST" class="p-4 md:p-5">
+            <form action="{{ route('zona.store') }}" method="POST" enctype="multipart/form-data" class="p-4 md:p-5">
                 @csrf
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2">
@@ -184,6 +185,20 @@
                         <textarea id="keterangan" name="keterangan" rows="4"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder=""></textarea>
+                    </div>
+                    <div class="col-span-2">
+                        <div id="image-preview" class="hidden mb-2">
+                            <img src="" alt="Preview Foto" class="w-full h-32 object-cover rounded-lg">
+                        </div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="fotozona">
+                            Foto Area Zona
+                        </label>
+                        <input
+                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                            aria-describedby="file_input_help" id="fotozona" type="file" name="fotozona" accept="image/*">
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">
+                            SVG, PNG, JPG or GIF (MAX. 800x400px).
+                        </p>
                     </div>
                 </div>
                 <button type="submit"
@@ -226,7 +241,7 @@
                     </button>
                 </div>
                 <!-- Modal body -->
-                <form class="p-4 md:p-5" action="{{ route('zona.update', $zona->id) }}"
+                <form class="p-4 md:p-5" action="{{ route('zona.update', $zona->id) }} " enctype="multipart/form-data"
                     method="POST">
                     @csrf
                     @method('PUT')
@@ -240,12 +255,29 @@
                         </div>
 
                         <div class="col-span-2">
-                            <label for=""
+                            <label for="keterangan"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan
                                 Zona</label>
-                            <textarea id="" rows="4"
+                            <textarea id="keterangan" name="keterangan" rows="4"
                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Masukkan Keterangan Zona">{{ $zona->keterangan }}</textarea>
+                        </div>
+                        <div class="col-span-2">
+                            @if($zona->fotozona)
+                                <div class="mb-2">
+                                    <img src="{{ asset($zona->fotozona) }}" alt="Foto Zona"
+                                        class="w-full h-32 object-cover rounded-lg">
+                                </div>
+                            @endif
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="fotozona">
+                                Foto Area Zona
+                            </label>
+                            <input
+                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                aria-describedby="file_input_help" type="file" name="fotozona" id="fotozona" accept="image/*">
+                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">
+                                SVG, PNG, JPG or GIF (MAX. 800x400px).
+                            </p>
                         </div>
                     </div>
                     <button type="submit"
@@ -307,16 +339,19 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                             placeholder="Masukkan Nama Subzona" required>
                     </div>
-                    <div class="col-span-2 ">
-
-                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="foto">Foto Area
-                            Sub-Zona</label>
+                    <div class="col-span-2">
+                        <div id="image-previewsubzona" class="hidden mb-2">
+                            <img src="" alt="Preview Foto" class="w-full h-32 object-cover rounded-lg">
+                        </div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="foto">
+                            Foto Area Sub-Zona
+                        </label>
                         <input
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             aria-describedby="file_input_help" id="foto" type="file" name="foto" accept="image/*">
-                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG
-                            or GIF (MAX. 800x400px).</p>
-
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">
+                            SVG, PNG, JPG or GIF (MAX. 800x400px).
+                        </p>
                     </div>
                 </div>
                 <button type="submit"
@@ -381,16 +416,22 @@
                             <input type="text" value="{{ $subzona->nama_subzona }}" disabled
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                         </div>
-                        <div class="col-span-2 ">
-
-                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="foto">Foto
-                                Area Sub-Zona</label>
+                        <div class="col-span-2">
+                            @if($subzona->foto)
+                                <div class="mb-2">
+                                    <img src="{{ asset($subzona->foto) }}" alt="Foto Subzona"
+                                        class="w-full h-32 object-cover rounded-lg">
+                                </div>
+                            @endif
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="foto">
+                                Foto Area Sub-Zona
+                            </label>
                             <input
                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                 aria-describedby="file_input_help" type="file" name="foto" id="foto" accept="image/*">
-                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG
-                                or GIF (MAX. 800x400px).</p>
-
+                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">
+                                SVG, PNG, JPG or GIF (MAX. 800x400px).
+                            </p>
                         </div>
 
                     </div>
@@ -489,4 +530,39 @@
         </div>
     </div>
 @endforeach
+
+<script>
+    document.getElementById('foto').addEventListener('change', function (event) {
+        const preview = document.getElementById('image-previewsubzona');
+        const file = event.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.querySelector('img').src = e.target.result;
+                preview.classList.remove('hidden');
+            }
+            reader.readAsDataURL(file);
+        } else {
+            preview.classList.add('hidden');
+        }
+    });
+
+    document.getElementById('fotozona').addEventListener('change', function (event) {
+        const preview = document.getElementById('image-preview');
+        const file = event.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.querySelector('img').src = e.target.result;
+                preview.classList.remove('hidden');
+            }
+            reader.readAsDataURL(file);
+        } else {
+            preview.classList.add('hidden');
+        }
+    });
+
+</script>
 @endsection

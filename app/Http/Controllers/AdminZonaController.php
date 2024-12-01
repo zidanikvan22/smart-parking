@@ -35,8 +35,17 @@ class AdminZonaController extends Controller
     {
         $validated = $request->validate([
             'nama_zona' => 'required|unique:zona,nama_zona',
-            'keterangan' => 'nullable|string'
+            'keterangan' => 'nullable|string',
+            'fotozona' => 'image|max:2048'
         ]);
+
+        if ($request->hasFile('fotozona')) {
+            // penyimpanan foto ke direktori public/datafoto
+            $foto = $request->file('fotozona');
+            $fotoName = 'zona_' . uniqid() . '.' . $foto->getClientOriginalExtension();
+            $foto->move(public_path('datafoto'), $fotoName);
+            $validated['fotozona'] = 'datafoto/' . $fotoName;
+        }
 
         Zona::create($validated);
         return redirect()->back()->with('success', 'Zona berhasil ditambahkan');
@@ -47,8 +56,25 @@ class AdminZonaController extends Controller
         $zona = Zona::findOrFail($id);
         
         $validated = $request->validate([
-            'keterangan' => 'nullable|string'
+            'keterangan' => 'required|string',
+            'foto' => 'nullable|image|max:2048'
         ]);
+
+        if ($request->hasFile('fotozona')) {
+            // Hapus foto lama jika ada
+            if ($zona->fotozona) {
+                $oldFotoPath = public_path($zona->fotozona);
+                if (file_exists($oldFotoPath)) {
+                    unlink($oldFotoPath);
+                }
+            }
+    
+            // Simpan foto baru
+            $foto = $request->file('fotozona');
+            $fotoName = 'zona_' . uniqid() . '.' . $foto->getClientOriginalExtension();
+            $foto->move(public_path('datafoto'), $fotoName);
+            $validated['fotozona'] = 'datafoto/' . $fotoName;
+        }
 
         $zona->update($validated);
         return redirect()->back()->with('success', 'Keterangan zona berhasil diupdate');
@@ -69,16 +95,19 @@ class AdminZonaController extends Controller
             'nama_subzona' => 'required|unique:subzona,nama_subzona',
             'foto' => 'nullable|image|max:2048'
         ]);
-
+    
         if ($request->hasFile('foto')) {
-            $fotoPath = $request->file('foto')->store('subzona_fotos', 'public');
-            $validated['foto'] = $fotoPath;
+            // penyimpanan foto ke direktori public/datafoto
+            $foto = $request->file('foto');
+            $fotoName = 'subzona_' . uniqid() . '.' . $foto->getClientOriginalExtension();
+            $foto->move(public_path('datafoto'), $fotoName);
+            $validated['foto'] = 'datafoto/' . $fotoName;
         }
-
+    
         Subzona::create($validated);
         return redirect()->back()->with('success', 'Subzona berhasil ditambahkan');
     }
-
+    
     public function updateSubzona(Request $request, $id)
     {
         $subzona = Subzona::findOrFail($id);
@@ -86,18 +115,23 @@ class AdminZonaController extends Controller
         $validated = $request->validate([
             'foto' => 'nullable|image|max:2048'
         ]);
-
+    
         if ($request->hasFile('foto')) {
             // Hapus foto lama jika ada
             if ($subzona->foto) {
-                Storage::disk('public')->delete($subzona->foto);
+                $oldFotoPath = public_path($subzona->foto);
+                if (file_exists($oldFotoPath)) {
+                    unlink($oldFotoPath);
+                }
             }
-
+    
             // Simpan foto baru
-            $fotoPath = $request->file('foto')->store('subzona_fotos', 'public');
-            $validated['foto'] = $fotoPath;
+            $foto = $request->file('foto');
+            $fotoName = 'subzona_' . uniqid() . '.' . $foto->getClientOriginalExtension();
+            $foto->move(public_path('datafoto'), $fotoName);
+            $validated['foto'] = 'datafoto/' . $fotoName;
         }
-
+    
         $subzona->update($validated);
         return redirect()->back()->with('success', 'Foto subzona berhasil diupdate');
     }
@@ -108,9 +142,14 @@ class AdminZonaController extends Controller
         
         // Hapus foto jika ada
         if ($subzona->foto) {
-            Storage::disk('public')->delete($subzona->foto);
+            $fotoPath = public_path($subzona->foto);
+            
+            // Periksa apakah file foto ada sebelum dihapus
+            if (file_exists($fotoPath)) {
+                unlink($fotoPath);
+            }
         }
-
+    
         $subzona->delete();
         return redirect()->back()->with('success', 'Subzona berhasil dihapus');
     }

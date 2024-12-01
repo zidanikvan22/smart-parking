@@ -29,6 +29,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         //Fitur Utama
         Route::get('/real-time', [RealTimeController::class, 'index'])->name('real-time');
+        Route::get('/get-subzonas', [RealTimeController::class, 'getSubzonas']);
+
         Route::get('/qr-code', [QrCodeController::class, 'index'])->name('qr-code');
         Route::get('/analysis', [AnalysisController::class, 'index'])->name('analysis');
         //ubah kata sandi
