@@ -27,26 +27,26 @@
 
 
     <div class="grid grid-cols-1 p-5 mx-6 ">
-        <table class="font-medium border border-black table-fixed">
+        <table class="font-medium border border-collapse border-black bordetable-auto">
             <thead class="bg-[#95AFE5]">
                 <tr>
                     <th class="p-3 text-sm border border-black">No</th>
                     <th class="p-3 text-sm border border-black">Nama Lengkap</th>
                     <!-- <th class="p-3 text-sm border border-black">Email</th>
-                                    <th class="p-3 text-sm border border-black">Jenis Kendaraan</th> -->
+                                            <th class="p-3 text-sm border border-black">Jenis Kendaraan</th> -->
                     <th class="p-3 text-sm border border-black">No Plat Kendaraan</th>
                     <th class="p-3 text-sm border border-black">Aksi</th>
                 </tr>
             </thead>
 
-            @foreach ($penggunas as $pengguna)
-                <tbody class="text-center" id="userTableBody">
+            <tbody class="text-center" id="userTableBody">
+                @foreach ($penggunas as $pengguna)
                     <tr>
                         <td class="p-3 text-sm border border-black">
                             {{ ($penggunas->currentPage() - 1) * $penggunas->perPage() + $loop->iteration }}</td>
                         <td class="p-3 text-sm border border-black">{{ $pengguna->nama }}</td>
                         <!-- <td class="p-3 text-sm border border-black">email@gmail.com</td>
-                                    <td class="p-3 text-sm border border-black">Mobil</td> -->
+                                            <td class="p-3 text-sm border border-black">Mobil</td> -->
                         <td class="p-3 text-sm border border-black">{{ $pengguna->no_plat }}</td>
                         <td class="p-3 text-sm border border-black">
                             <button data-modal-target="small-modal{{ $pengguna->id_pengguna }}"
@@ -57,8 +57,8 @@
                                 class="px-2 py-1 text-xs bg-red-400 rounded-lg hover:bg-blue-200">Hapus</button>
                         </td>
                     </tr>
-                </tbody>
-            @endforeach
+                @endforeach
+            </tbody>
         </table>
     </div>
     <div class="mt-4">
