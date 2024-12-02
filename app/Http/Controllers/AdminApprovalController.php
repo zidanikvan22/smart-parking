@@ -32,10 +32,8 @@ class AdminApprovalController extends Controller
         if ($status === 'aktif') {
             // Generate QR Code with JSON format for better readability and scanning
             $qrCodeContent = json_encode([
-                'user_id' => $approval->id_pengguna,
                 'nama' => $approval->nama,
-                'email' => $approval->email,
-                'jenis_pengguna' => $approval->jenis_pengguna,
+                'jenis_kendaraan' => $approval->jenis_kendaraan,
                 'plat_kendaraan' => $approval->no_plat
             ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 
