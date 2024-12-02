@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/analysis', [AnalysisController::class, 'index'])->name('analysis');
         //ubah kata sandi
         Route::get('/change-password', [ChangePasswordController::class, 'index'])->name('ubah-sandi');
+        Route::post('/change-password', [ChangePasswordController::class, 'changePassword'])->name('change.password');
     });
 
     Route::middleware('role:admin')->group(function () {
