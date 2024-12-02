@@ -32,6 +32,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/get-subzonas', [RealTimeController::class, 'getSubzonas']);
 
         Route::get('/qr-code', [QrCodeController::class, 'index'])->name('qr-code');
+        Route::get('generate-pdf', [QrCodeController::class, 'generatePDF'])->name('generate.pdf');
+        //analysis
         Route::get('/analysis', [AnalysisController::class, 'index'])->name('analysis');
         //ubah kata sandi
         Route::get('/change-password', [ChangePasswordController::class, 'index'])->name('ubah-sandi');
