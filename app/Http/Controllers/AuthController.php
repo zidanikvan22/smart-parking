@@ -34,13 +34,36 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            if (Auth::user()->role === 'admin') {
-                return redirect()->route('admin-dashboard')->with('success', 'Login berhasil');
-            } else {
-                return redirect()->route('dashboard')->with('success', 'Login berhasil');
+            $status = Auth::user()->status;
+
+            switch ($status) {
+                case 'nonAktif':
+                    return redirect()
+                        ->back()
+                        ->with('error', 'Akun Anda belum diaktivasi. Silahkan tunggu admin mengaktivasi akun Anda.');
+
+                case 'ditolak':
+                    return redirect()
+                        ->back()
+                        ->with('error', 'Mohon maaf, pendaftaran Anda ditolak oleh admin.');
+
+                case 'aktif':
+                    if (Auth::user()->role === 'admin') {
+                        return redirect()->route('admin-dashboard')->with('success', 'Login berhasil');
+                    } else {
+                        return redirect()->route('dashboard')->with('success', 'Login berhasil');
+                    }
+
+                default:
+                    return redirect()
+                        ->back()
+                        ->with('error', 'Status akun tidak valid.');
             }
+
         } else {
-            return redirect()->back()->withErrors(['error' => 'Email atau password salah.'])->withInput();
+            return redirect()
+                ->back()
+                ->with('error', 'Email atau password salah.');
         }
     }
 
@@ -54,36 +77,56 @@ class AuthController extends Controller
     public function registrasi_proses(Request $request)
     {
         $validated = $request->validate([
-            'nama' => 'required',
+            'identitas' => 'required',
+            'jenis_pengguna' => 'required',
             'email' => 'required|unique:pengguna|email',
-            'kendaraan' => 'required',
-            'no_plat' => 'required',
+            'nomor_telepon' => 'required',
+            'nama' => 'required',
             'password' => 'required',
-            'gambar' => 'required|image|file|mimes:jpeg,png,jpg',
+            'jenis_kendaraan' => 'required',
+            'no_plat' => 'required',
+            'foto_kendaraan' => 'required|image|file|mimes:jpeg,png,jpg',
+            'foto_pengguna' => 'required|image|file|mimes:jpeg,png,jpg',
         ], [
+            'identitas.required' => 'Identitas wajib diisi',
+            'jenis_pengguna.required' => 'Jenis pengguna wajib diisi',
             'nama.required' => 'Nama Lengkap harus diisi',
             'email.required' => 'Email harus diisi',
             'email.unique' => 'Email sudah terdaftar',
             'email.email' => 'Email harus diisi dengan format email',
-            'kendaraan.required' => 'Jenis kendaraan harus diisi',
+            'nomor_telepon.required' => 'Nomor telepon wajib diisi',
+            'password.required' => 'Password wajib diisi',
+            'jenis_kendaraan.required' => 'Jenis kendaraan harus diisi',
             'no_plat.required' => 'No Plat harus diisi',
-            'nik.required' => 'NIK harus diisi',
-            'password.required' => 'Password harus diisi',
-            'gambar.required' => 'Gambar harus diisi',
+            'foto_kendaraan.required' => 'Foto kendaraan harus diisi',
+            'foto_kendaraan.mimes' => 'Foto kendaraan tidak sesuai format yang di tentukan',
+            'foto_pengguna.required' => 'Foto pengguna harus diisi',
+            'foto_pengguna.mimes' => 'Foto pengguna tidak sesuai dengan format yang di tentukan'
         ]);
-        $gambar = $request->file('gambar')->store('image/fotoProfile', 'public');
+
+        $foto_kendaraan = $request->file('foto_kendaraan')->store('image/fotoKendaraan', 'public');
+        $foto_pengguna = $request->file('foto_pengguna')->store('image/fotoPengguna', 'public');
 
         $store = [
-            'nama' => $validated['nama'],
+            'identitas' => $validated['identitas'],
             'email' => $validated['email'],
-            'jenis_kendaraan' => $validated['kendaraan'],
+            'nomor_telepon' => $validated['nomor_telepon'],
+            'nama' => $validated['nama'],
+            'jenis_pengguna' => $validated['jenis_pengguna'],
+            'jenis_kendaraan' => $validated['jenis_kendaraan'],
             'no_plat' => $validated['no_plat'],
             'password' => Hash::make($validated['password']),
-            'foto_profile' => $gambar,
+            'foto_pengguna' => $foto_pengguna,
+            'foto_kendaraan' => $foto_kendaraan,
         ];
 
-        User::create($store);
-        return redirect()->route('login')->with('berhasil', 'Pendaftaran Berhasil');
+        $user = User::create($store);
+        if ($user) {
+            return redirect()->route('login')->with('success', 'Pendaftaran berhasil');
+        } else {
+            return back()->with('error', 'Pendaftaran gagal');
+        }
+
     }
 
 

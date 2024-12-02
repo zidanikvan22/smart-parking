@@ -6,17 +6,17 @@
     </div>
 
     <div class="">
-        <form class="ml-10 max-w-96 ">
+        <form class="ml-10 max-w-96" id="searchForm">
             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
             <div class="relative">
                 <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
-                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 20 20">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                     </svg>
                 </div>
-                <input type="search" id="default-search" value="{{ request('search') }}" name="search"
+                <input type="search" id="searchInput" value="{{ request('search') }}" name="search"
                     class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg ps-10 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search Nama pengguna, Plat nomor..." required />
                 <button type="submit"
@@ -27,29 +27,26 @@
 
 
     <div class="grid grid-cols-1 p-5 mx-6 ">
-
-        @foreach ($penggunas as $pengguna)
-        @endforeach
-        <table class="font-medium border border-black table-fixed">
+        <table class="font-medium border border-collapse border-black bordetable-auto">
             <thead class="bg-[#95AFE5]">
                 <tr>
                     <th class="p-3 text-sm border border-black">No</th>
                     <th class="p-3 text-sm border border-black">Nama Lengkap</th>
                     <!-- <th class="p-3 text-sm border border-black">Email</th>
-                        <th class="p-3 text-sm border border-black">Jenis Kendaraan</th> -->
+                                            <th class="p-3 text-sm border border-black">Jenis Kendaraan</th> -->
                     <th class="p-3 text-sm border border-black">No Plat Kendaraan</th>
                     <th class="p-3 text-sm border border-black">Aksi</th>
                 </tr>
             </thead>
 
-            @foreach ($penggunas as $pengguna)
-                <tbody class="text-center">
+            <tbody class="text-center" id="userTableBody">
+                @foreach ($penggunas as $pengguna)
                     <tr>
                         <td class="p-3 text-sm border border-black">
                             {{ ($penggunas->currentPage() - 1) * $penggunas->perPage() + $loop->iteration }}</td>
                         <td class="p-3 text-sm border border-black">{{ $pengguna->nama }}</td>
                         <!-- <td class="p-3 text-sm border border-black">email@gmail.com</td>
-                        <td class="p-3 text-sm border border-black">Mobil</td> -->
+                                            <td class="p-3 text-sm border border-black">Mobil</td> -->
                         <td class="p-3 text-sm border border-black">{{ $pengguna->no_plat }}</td>
                         <td class="p-3 text-sm border border-black">
                             <button data-modal-target="small-modal{{ $pengguna->id_pengguna }}"
@@ -60,8 +57,8 @@
                                 class="px-2 py-1 text-xs bg-red-400 rounded-lg hover:bg-blue-200">Hapus</button>
                         </td>
                     </tr>
-                </tbody>
-            @endforeach
+                @endforeach
+            </tbody>
         </table>
     </div>
     <div class="mt-4">
@@ -90,8 +87,10 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                         </svg>
-                        <h3 class="mb-5 text-lg font-bold text-gray-500 dark:text-gray-400">Apakah anda ingin menghapus pengguna {{ $pengguna->nama }}</h3>
-                        <form action="{{ route('users.delete', $pengguna->id_pengguna) }}" method="POST" class="inline-block">
+                        <h3 class="mb-5 text-lg font-bold text-gray-500 dark:text-gray-400">Apakah anda ingin menghapus
+                            pengguna {{ $pengguna->nama }}</h3>
+                        <form action="{{ route('users.delete', $pengguna->id_pengguna) }}" method="POST"
+                            class="inline-block">
                             @csrf
                             @method('DELETE')
                             <button type="submit"
@@ -123,14 +122,14 @@
                             data-modal-hide="small-modal{{ $pengguna->id_pengguna }}">
                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 14 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                             </svg>
                             <span class="sr-only">Close modal</span>
                         </button>
                     </div>
                     <div class="flex items-center p-4 space-x-4 md:p-5">
-                        <img src="{{ asset('storage/' . $pengguna->foto_profile) }}" alt="User Profile"
+                        <img src="{{ asset('storage/' . $pengguna->foto_pengguna) }}" alt="User Profile"
                             class="object-cover w-48 h-56 rounded-md -pt-5">
                         <div class="space-y-1">
                             <div class="text-base font-semibold text-gray-900 dark:text-white">Email</div>
@@ -151,4 +150,42 @@
             </div>
         </div>
     @endforeach
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#searchInput').on('keyup', function() {
+                var search = $(this).val();
+
+                $.ajax({
+                    url: "{{ route('search') }}",
+                    method: 'GET',
+                    data: {
+                        search: search
+                    },
+                    success: function(response) {
+                        var tableBody = $('tbody#userTableBody');
+
+                        // Filter baris yang ada berdasarkan pencarian
+                        tableBody.find('tr').each(function() {
+                            var nama = $(this).find('td:nth-child(2)').text()
+                                .toLowerCase();
+                            var noPlat = $(this).find('td:nth-child(3)').text()
+                                .toLowerCase();
+
+                            if (nama.includes(search.toLowerCase()) || noPlat.includes(
+                                    search.toLowerCase())) {
+                                $(this).show();
+                            } else {
+                                $(this).hide();
+                            }
+                        });
+                    },
+                    error: function(xhr) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('zona', function (Blueprint $table) {
-            $table->id('id_area');
-            $table->string('zona_parkir');
-            $table->string('foto_zona');
-            $table->string('deskripsi');
+            $table->id();
+            $table->string('nama_zona')->unique();
+            $table->string('keterangan');
+            $table->string('fotozona');
             $table->timestamps();
         });
     }

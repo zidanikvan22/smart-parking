@@ -9,6 +9,12 @@ class Zona extends Model
 {
     use HasFactory;
     protected $table = 'zona';
-    protected $primaryKey = 'id_area';
-    protected $guarded = [];
+
+    protected $fillable = ['nama_zona', 'keterangan', 'fotozona'];
+
+    public function subzonas()
+    {
+        return $this->hasMany(Subzona::class, 'zona_id');
+    }
+
 }
