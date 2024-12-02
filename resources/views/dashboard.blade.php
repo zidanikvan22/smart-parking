@@ -6,13 +6,13 @@
     <main class="container px-4 py-6 pb-20 mx-auto content-wrapper">
 
         <div class="mb-6 overflow-hidden bg-white rounded-lg shadow-lg md:mb-8">
-            <div class="relative carousel-container h-72">
+            <div class="relative h-72 carousel-container">
                 <div class="carousel-slide">
-                    <img alt="Modern parking facility" class="object-cover w-full h-72 md:h-64"
+                    <img alt="Modern parking facility" class="object-cover w-full h-auto md:h-72"
                         src="{{ asset('img/techno.jpg') }}" />
-                    <img alt="Smart parking system interface" class="object-cover w-full h-72 md:h-64"
+                    <img alt="Smart parking system interface" class="object-cover w-full h-auto md:h-72"
                         src="{{ asset('img/Gedung.jpg') }}" />
-                    <img alt="Aerial view of parking" class="object-cover w-full h-72 md:h-64"
+                    <img alt="Aerial view of parking" class="object-cover w-full h-auto md:h-72"
                         src="{{ asset('img/cover.jpg') }}" />
                 </div>
 
