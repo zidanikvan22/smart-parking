@@ -1,9 +1,9 @@
 <nav class="relative z-50 p-4 text-white bg-blue-600">
     <div class="container flex items-center justify-between mx-auto">
-        <h1 class="pl-2 text-base font-bold">Hallo, Selamat Datang</h1>
+        <h1 class="pl-2 text-base font-bold leading-loose">Hallo, Selamat Datang</h1>
         <div class="relative">
             <div class="flex items-center cursor-pointer" id="profileDropdown" onclick="toggleDropdown()">
-                <span class="mr-2 text-xl">{{ auth()->user()->nama }}</span>
+                <span class="mr-2 text-lg leading-loose">{{ auth()->user()->nama }}</span>
                 <div class="flex items-center justify-center w-10 bg-gray-300 rounded-full">
                     <img src="{{ Storage::url(auth()->user()->foto_pengguna) }}" alt="Profile Picture"
                         class="object-cover w-full h-full rounded-full">
