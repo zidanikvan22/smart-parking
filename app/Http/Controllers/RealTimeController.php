@@ -17,7 +17,7 @@ class RealTimeController extends Controller
         // Ambil zona berdasarkan ID dari request atau default ke zona pertama
         $selectedZona = $request->has('zona') 
             ? Zona::find($request->zona) 
-            : $zonas->first();
+            : null;
 
         // Ambil subzona untuk zona yang dipilih
         $subzonas = $selectedZona ? $selectedZona->subzonas()->with('slot')->get() : collect();
