@@ -2,10 +2,8 @@
 
 ## Description
 
-    "Parkwell" adalah sistem parkir pintar berbasis website yang menggunakan teknologi IoT. Sistem ini memanfaatkan data secara real-time untuk memberikan solusi parkir yang lebih cerdas, mengurangi waktu yang diperlukan untuk mencari tempat parkir. Sistem ini dirancang untuk parkir off-street baik bagi motor dan mobil, sehingga memungkinkan pengaturan parkir yang lebih terstruktur. 
+Parkwell" adalah sistem parkir pintar berbasis website yang menggunakan teknologi IoT. Sistem ini memanfaatkan data secara real-time untuk memberikan solusi parkir yang lebih cerdas, mengurangi waktu yang diperlukan untuk mencari tempat parkir. Sistem ini dirancang untuk parkir off-street baik bagi motor dan mobil, sehingga memungkinkan pengaturan parkir yang lebih terstruktur. 
    ![Poster](public/images/DashboardSIPPP.jpg)
-
----
 
 ---
 
