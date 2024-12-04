@@ -14,16 +14,11 @@ class AdminZonaController extends Controller
     {
         $zonas = Zona::all();
 
-        // mengambil zona id pertama sebagai default atau sesuai dengan permintaan zona maana yang ingin dilihat
-        $zonaId = $request->get('zona_id', $zonas->first()->id ?? null);
+        // Zona ID default null jika tidak ada yang dipilih
+        $zonaId = $request->get('zona_id') ?? null;
     
-        // Pastikan zona_id valid
-        if (!$zonaId) {
-            return redirect()->back()->with('error', 'Tidak ada zona yang tersedia.');
-        }
-    
-        // Filter subzona berdasarkan zona_id
-        $subzonas = Subzona::with('zona')->where('zona_id', $zonaId)->get();
+        // Filter subzona berdasarkan zona_id jika ada
+        $subzonas = $zonaId ? Subzona::with('zona')->where('zona_id', $zonaId)->get() : collect([]);
     
         return view('admin.manageZona', compact('zonas', 'subzonas', 'zonaId'), [
             "title" => "ManageZona",
@@ -35,8 +30,16 @@ class AdminZonaController extends Controller
     {
         $validated = $request->validate([
             'nama_zona' => 'required|unique:zona,nama_zona',
-            'keterangan' => 'nullable|string',
-            'fotozona' => 'image|max:2048'
+            'keterangan' => 'required|string',
+            'fotozona' => 'required|image|max:5000',
+        ], [
+            'nama_zona.required' => 'Nama Zona wajib diisi.',
+            'nama_zona.unique' => 'Nama Zona sudah terdaftar.',
+            'keterangan.required' => 'Keterangan Zona wajib diisi.',
+            'fotozona.image' => 'File yang diunggah harus berupa gambar.',
+            'fotozona.max' => 'Ukuran gambar tidak boleh lebih dari 5MB.',
+            'fotozona.required' => 'Foto area zona wajib diisi.'
+            
         ]);
 
         if ($request->hasFile('fotozona')) {
@@ -49,6 +52,7 @@ class AdminZonaController extends Controller
 
         Zona::create($validated);
         return redirect()->back()->with('success', 'Zona berhasil ditambahkan');
+        return redirect()->back()->with('error', 'Terjadi kesalahan dalam proses validasi.');
     }
 
     public function update(Request $request, $id)
@@ -57,7 +61,13 @@ class AdminZonaController extends Controller
         
         $validated = $request->validate([
             'keterangan' => 'required|string',
-            'foto' => 'nullable|image|max:2048'
+            'fotozona' => 'image|max:5000',
+        ], [
+
+            'keterangan.required' => 'Keterangan Zona wajib diisi.',
+            'fotozona.image' => 'File yang diunggah harus berupa gambar.',
+            'fotozona.max' => 'Ukuran gambar tidak boleh lebih dari 5MB.'
+
         ]);
 
         if ($request->hasFile('fotozona')) {
@@ -83,6 +93,16 @@ class AdminZonaController extends Controller
     public function destroy($id)
     {
         $zona = Zona::findOrFail($id);
+
+        // Hapus foto jika ada
+        if ($zona->fotozona) {
+            $fotoPath = public_path($zona->fotozona);
+            
+            // Periksa apakah file foto ada sebelum dihapus
+            if (file_exists($fotoPath)) {
+                unlink($fotoPath);
+            }
+        }
         $zona->delete();
         return redirect()->back()->with('success', 'Zona berhasil dihapus');
     }
@@ -93,7 +113,16 @@ class AdminZonaController extends Controller
         $validated = $request->validate([
             'zona_id' => 'required|exists:zona,id',
             'nama_subzona' => 'required|unique:subzona,nama_subzona',
-            'foto' => 'nullable|image|max:2048'
+            'foto' => 'required|image|max:5000'
+        ], [
+            'zona_id.required' => 'Nama Zona wajib diisi.',            
+            'keterangan.required' => 'Keterangan Zona wajib diisi.',
+            'nama_subzona.unique' => 'Nama Subzona telah terdaftar',
+            'nama_subzona.required' => 'Nama Subzona wajib diisi',
+            'foto.required' => 'Foto area Sub-Zona wajib diisi.',
+            'foto.image' => 'file yang disubmit harus berupa gambar.',
+            'foto.max' => 'Ukuran gambar tidak boleh lebih dari 5MB.'
+            
         ]);
     
         if ($request->hasFile('foto')) {
@@ -113,7 +142,11 @@ class AdminZonaController extends Controller
         $subzona = Subzona::findOrFail($id);
         
         $validated = $request->validate([
-            'foto' => 'nullable|image|max:2048'
+            'foto' => 'required|image|max:5000'
+        ], [
+
+            'foto.image' => 'file yang disubmit harus berupa gambar.',
+            'foto.max' => 'Ukuran gambar tidak boleh lebih dari 5MB.'
         ]);
     
         if ($request->hasFile('foto')) {

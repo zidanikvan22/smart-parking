@@ -56,6 +56,8 @@
         </table>
     </div>
 
+
+
     <!-- tombol tambah sub zona -->
     <div class="ml-10">
         <button data-modal-target="tambah-subzona" data-modal-toggle="tambah-subzona"
@@ -69,73 +71,93 @@
     </div>
 
 
-    <!-- dropdown pilih zona untuk subzona -->
     <form method="GET" action="{{ route('admin-zona') }}">
-        <div class="ml-11 ">
-            <label for="zona_id" class="block text-sm font-bold text-gray-700">Pilih Zona:</label>
+        <div class="ml-11">
+            <!-- <label for="zona_id" class="block text-sm font-bold text-gray-700">Pilih Zona:</label> -->
             <select name="zona_id" id="zona_id" onchange="this.form.submit()"
                 class="mt-1 font-bold block w-36 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring-indigo-500 sm:text-sm">
                 <option value="">Pilih Zona</option>
                 @foreach($zonas as $zona)
-                    <option class="" value="{{ $zona->id }}"
+                    <option value="{{ $zona->id }}"
                         {{ $zona->id == $zonaId ? 'selected' : '' }}>
                         {{ $zona->nama_zona }}
                     </option>
                 @endforeach
             </select>
-
         </div>
     </form>
 
-
-
-    <!-- tabel Subzona -->
-
-    <div class="grid grid-cols-1 p-5 mx-6 w-9/12 ">
-
+    <!-- Tabel Subzona -->
+    <div class="grid grid-cols-1 p-5 mx-6 w-9/12">
         <table
             class="text-sm font-medium table-fixed text-left rtl:text-right text-gray-500 dark:text-gray-400 shadow-md shadow-blue-300 rounded-lg">
-            <thead class="bg-[#95AFE5] text-xs text-gray-700  dark:bg-gray-700 dark:text-gray-400">
+            <thead class="bg-[#95AFE5] text-xs text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-3 py-3 text-sm font-bold rounded-tl-lg">No</th>
-                    <th scope="col" class="px-9 py-3 text-sm font-bold ">Nama SubZona</th>
-                    <!-- <th scope="col" class="px-1 py-3 text-sm font-bold ">Aksi</th> -->
+                    <th scope="col" class="px-9 py-3 text-sm font-bold">Nama SubZona</th>
                     <th scope="col" class="px-1 py-3 text-sm font-bold rounded-tr-lg">Aksi</th>
                 </tr>
             </thead>
-            <tbody class="">
-                @foreach($subzonas as $index => $subzona)
-                    <tr
-                        class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-
-                        <th scope="row"
-                            class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white rounded-bl-lg">
-                            {{ $index + 1 }}
-                        </th>
-                        <td class="px-9 py-2">
-                            {{ $subzona->nama_subzona }}
-                        </td>
-                        <!-- <td class="px-1 py-2 rounded-br-lg ">
-                            <button data-modal-target="" data-modal-toggle=""
-                                class=" py-1 text-sm text-blue-500 hover:underline inline-flex items-center justify-center">
-                                <i class="w-3 h-3 me-2 text-blue-500 fas fa-pen "></i>Lihat Area</button>
-                        </td> -->
-                        <td class="px-1 py-2 rounded-br-lg ">
-                            <button data-modal-target="edit-subzona-{{ $subzona->id }}"
-                                data-modal-toggle="edit-subzona-{{ $subzona->id }}"
-                                class=" py-1 text-sm text-blue-500 hover:underline inline-flex items-center justify-center">
-                                <i class="w-3 h-3 me-2 text-blue-500 fas fa-pen "></i>Edit</button>
-                            <button data-modal-target="hapus-subzona-{{ $subzona->id }}"
-                                data-modal-toggle="hapus-subzona-{{ $subzona->id }}"
-                                class="px-2 py-1 text-sm text-red-400 hover:underline inline-flex items-center justify-center">
-                                <i class="w-3 h-3 me-2 text-red-400 fas fa-trash "></i>Hapus</button>
+            <tbody>
+                @if($zonaId === null)
+                    <tr>
+                        <td colspan="3" class="px-3 py-2 text-center text-gray-500 dark:text-gray-400">
+                            Tidak ada zona yang dipilih.
                         </td>
                     </tr>
-                @endforeach
-
-
+                @elseif($subzonas->isEmpty())
+                    <tr>
+                        <td colspan="3" class="px-3 py-2 text-center text-gray-500 dark:text-gray-400">
+                            Tidak ada subzona untuk zona yang dipilih.
+                        </td>
+                    </tr>
+                @else
+                    @foreach($subzonas as $index => $subzona)
+                        <tr
+                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <th scope="row"
+                                class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white rounded-bl-lg">
+                                {{ $index + 1 }}
+                            </th>
+                            <td class="px-9 py-2">
+                                {{ $subzona->nama_subzona }}
+                            </td>
+                            <td class="px-1 py-2 rounded-br-lg">
+                                <button data-modal-target="edit-subzona-{{ $subzona->id }}"
+                                    data-modal-toggle="edit-subzona-{{ $subzona->id }}"
+                                    class="py-1 text-sm text-blue-500 hover:underline inline-flex items-center justify-center">
+                                    <i class="w-3 h-3 me-2 text-blue-500 fas fa-pen"></i>Edit</button>
+                                <button data-modal-target="hapus-subzona-{{ $subzona->id }}"
+                                    data-modal-toggle="hapus-subzona-{{ $subzona->id }}"
+                                    class="px-2 py-1 text-sm text-red-400 hover:underline inline-flex items-center justify-center">
+                                    <i class="w-3 h-3 me-2 text-red-400 fas fa-trash"></i>Hapus</button>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
             </tbody>
         </table>
+    </div>
+
+    <!-- Pop-Up Error Message -->
+    <div id="validation-popup" class="fixed inset-x-0 top-0 z-50 flex justify-center hidden">
+        <div
+            class="relative bg-white rounded-lg p-6 max-w-sm w-full border-l-4 border-red-500 shadow-red-500/80 shadow-lg">
+            <div class="flex items-center">
+                <svg class="w-6 h-6 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.054 0 1.63-1.08.928-1.918l-6.928-8.562a1.25 1.25 0 00-1.856 0l-6.928 8.562c-.702.838-.126 1.918.928 1.918z" />
+                </svg>
+                <span class="ml-3 text-sm font-medium text-gray-900" id="popup-message"></span>
+            </div>
+            <button onclick="closePopup()" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
     </div>
 
 
@@ -166,7 +188,8 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form action="{{ route('zona.store') }}" method="POST" enctype="multipart/form-data" class="p-4 md:p-5">
+            <form action="{{ route('zona.store') }}" method="POST" enctype="multipart/form-data"
+                class="p-4 md:p-5">
                 @csrf
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2">
@@ -174,7 +197,7 @@
                             Zona</label>
                         <input type="text" name="nama_zona" id="nama_zona"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Masukkan Nama Zona" required="">
+                            placeholder="Masukkan Nama Zona" value="{{ old('nama_zona') }}" required>
                     </div>
 
 
@@ -184,7 +207,7 @@
                             Zona</label>
                         <textarea id="keterangan" name="keterangan" rows="4"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder=""></textarea>
+                            placeholder="Informasi yang berkaitan dengan zona" required>{{ old('keterangan') }}</textarea>
                     </div>
                     <div class="col-span-2">
                         <div id="image-preview" class="hidden mb-2">
@@ -195,7 +218,8 @@
                         </label>
                         <input
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                            aria-describedby="file_input_help" id="fotozona" type="file" name="fotozona" accept="image/*">
+                            aria-describedby="file_input_help" id="fotozona" type="file" name="fotozona"
+                            accept="image/*" required>
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">
                             SVG, PNG, JPG or GIF (MAX. 800x400px).
                         </p>
@@ -212,6 +236,8 @@
                     Tambah Zona
                 </button>
             </form>
+
+
         </div>
     </div>
 </div>
@@ -241,8 +267,8 @@
                     </button>
                 </div>
                 <!-- Modal body -->
-                <form class="p-4 md:p-5" action="{{ route('zona.update', $zona->id) }} " enctype="multipart/form-data"
-                    method="POST">
+                <form class="p-4 md:p-5" action="{{ route('zona.update', $zona->id) }} "
+                    enctype="multipart/form-data" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="grid gap-4 mb-4 grid-cols-2">
@@ -250,8 +276,7 @@
                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                 Zona</label>
                             <input type="text" value="{{ $zona->nama_zona }}" disabled
-                                class="bg-gray-200 border border-gray-300 text-gray-500 text-sm rounded-lg block w-full p-2.5"
-                                placeholder="" required="">
+                                class="bg-gray-200 border border-gray-300 text-gray-500 text-sm rounded-lg block w-full p-2.5">
                         </div>
 
                         <div class="col-span-2">
@@ -274,7 +299,8 @@
                             </label>
                             <input
                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                aria-describedby="file_input_help" type="file" name="fotozona" id="fotozona" accept="image/*">
+                                aria-describedby="file_input_help" type="file" name="fotozona" id="fotozona"
+                                accept="image/*">
                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">
                                 SVG, PNG, JPG or GIF (MAX. 800x400px).
                             </p>
@@ -335,7 +361,7 @@
                         <label for="nama_subzona"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                             Sub-Zona</label>
-                        <input type="text" name="nama_subzona" id="nama_subzona"
+                        <input type="text" name="nama_subzona" id="nama_subzona" value="{{ old('nama_subzona') }}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                             placeholder="Masukkan Nama Subzona" required>
                     </div>
@@ -348,7 +374,7 @@
                         </label>
                         <input
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                            aria-describedby="file_input_help" id="foto" type="file" name="foto" accept="image/*">
+                            aria-describedby="file_input_help" id="foto" type="file" name="foto" accept="image/*" required>
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">
                             SVG, PNG, JPG or GIF (MAX. 800x400px).
                         </p>
@@ -403,18 +429,16 @@
                             <label for="zona_id_edit"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                 Zona</label>
-                            <select name="zona_id" id="zona_id_edit"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                <option value="{{ $subzona->zona_id }}">{{ $subzona->zona->nama_zona }}</option>
-                            </select>
-
+                            <input type="text" value="{{ $subzona->zona->nama_zona }}" disabled
+                                class="bg-gray-200 border border-gray-300 text-gray-500 text-sm rounded-lg block w-full p-2.5">
                         </div>
+
                         <div class="col-span-2">
                             <label for="nama_subzona_edit"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                 Sub-Zona</label>
                             <input type="text" value="{{ $subzona->nama_subzona }}" disabled
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                class="bg-gray-200 border border-gray-300 text-gray-500 text-sm rounded-lg block w-full p-2.5">
                         </div>
                         <div class="col-span-2">
                             @if($subzona->foto)
@@ -516,8 +540,8 @@
                                 d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                         </svg>
                         <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda ingin
-                            menghapus
-                            {{ $subzona->nama_subzona }} ini?</h3>
+                            menghapus Subzona
+                            "{{ $subzona->nama_subzona }}"" ini?</h3>
                         <button type="submit"
                             class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                             Iya
@@ -563,6 +587,24 @@
             preview.classList.add('hidden');
         }
     });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const errors = @json($errors->all());
+        if (errors.length > 0) {
+            const popup = document.getElementById("validation-popup");
+            const messageContainer = document.getElementById("popup-message");
+
+            // Set error messages
+            messageContainer.innerHTML = errors.map(error => `<p>${error}</p>`).join("");
+
+            // Show the popup
+            popup.classList.remove("hidden");
+        }
+    });
+
+    function closePopup() {
+        document.getElementById("validation-popup").classList.add("hidden");
+    }
 
 </script>
 @endsection
