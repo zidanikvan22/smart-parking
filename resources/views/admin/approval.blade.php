@@ -2,33 +2,30 @@
 
 @section('main')
     <div class="">
-        <form class="ml-12 max-w-96 ">
-            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white ">Search</label>
-            <div class="relative ">
-                <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3 ">
+        <form class="ml-11 max-w-96" id="searchForm">
+            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
                     <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                     </svg>
                 </div>
-                <input type="search" id="default-search" value="{{ request('search') }}" name="search"
-                    class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg ps-10 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Search Nama pengguna, No.Identitas..." required />
-                <button type="submit"
-                    class=" absolute end-2.5 bottom-2.5 bg-[#95AFE5] hover:bg-blue-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                <input type="search" id="searchInput" value="{{ request('search') }}" name="search"
+                    class="block w-full p-4 text-sm text-gray-900 border border-gray-400 rounded-lg ps-10 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Search Nama pengguna, Nomor Plat Kendaraan" required />
             </div>
         </form>
-    </div>
     </div>
 
     <div class="grid grid-cols-1 px-12 pt-5 mx-12 ps-0 ">
         @if (session('success'))
-        <div class="p-4 mb-4 text-sm text-green-800 bg-green-400 rounded-lg dark:bg-gray-800 dark:text-green-400"
-            role="alert">
-            <span class="font-medium">Success!</span> {{ session('success') }}
-        </div>
-    @endif
+            <div class="p-4 mb-4 text-sm text-green-800 bg-green-400 rounded-lg dark:bg-gray-800 dark:text-green-400"
+                role="alert">
+                <span class="font-medium">Success!</span> {{ session('success') }}
+            </div>
+        @endif
         <div class="mb-4 text-xl font-bold ">
             <span>Persetujuan Akun Baru Pengguna</span>
         </div>
@@ -36,20 +33,20 @@
         <table class="font-medium table-fixed ">
             <thead class="bg-[#95AFE5]">
                 <tr>
-                    <th class="px-1 py-2 text-sm rounded-tl-lg">No</th>
-                    <th class="px-1 py-2 text-sm ">Nama Lengkap</th>
-                    <th class="px-1 py-2 text-sm ">NIK/NIDN/NIM/NIP</th>
-                    <th class="px-1 py-2 text-sm rounded-tr-lg ">Aksi</th>
+                    <th class="px-1 py-2 text-sm rounded-tl-lg w-[5rem]">No</th>
+                    <th class="px-1 py-2 text-sm w-[30rem]">Nama Lengkap</th>
+                    <th class="px-1 py-2 text-sm w-[15rem]">No Plat Kendaraan</th>
+                    <th class="px-1 py-2 text-sm rounded-tr-lg">Aksi</th>
                 </tr>
             </thead>
-            <tbody class="text-center ">
+            <tbody class="text-center" id="userTableBody">
                 @foreach ($approvals as $approval)
                     <tr class="text-center bg-slate-50 hover:bg-slate-100">
                         <td class="px-1 py-2 text-sm">
                             {{ ($approvals->currentPage() - 1) * $approvals->perPage() + $loop->iteration }}
                         </td>
                         <td class="px-1 py-2 text-sm">{{ $approval->nama }}</td>
-                        <td class="px-1 py-2 text-sm">{{ $approval->identitas }}</td>
+                        <td class="px-1 py-2 text-sm">{{ $approval->no_plat }}</td>
                         <td class="px-1 py-2 text-sm">
                             <button data-modal-target="detail-akunbaru{{ $approval->id_pengguna }}"
                                 data-modal-toggle="detail-akunbaru{{ $approval->id_pengguna }}"
@@ -231,16 +228,16 @@
         <table class="font-medium table-fixed ">
             <thead class="bg-[#95AFE5]">
                 <tr>
-                    <th class="px-1 py-2 text-sm rounded-tl-lg">No</th>
-                    <th class="px-1 py-2 text-sm ">Nama Lengkap</th>
-                    <th class="px-1 py-2 text-sm ">NIK/NIDN/NIM/NIP</th>
+                    <th class="px-1 py-2 text-sm rounded-tl-lg w-[5rem]">No</th>
+                    <th class="px-1 py-2 text-sm w-[30rem]">Nama Lengkap</th>
+                    <th class="px-1 py-2 text-sm w-[15rem]">NIK/NIDN/NIM/NIP</th>
                     <th class="px-1 py-2 text-sm rounded-tr-lg ">Aksi</th>
                 </tr>
             </thead>
             <tbody class="text-center ">
                 <tr class="bg-slate-50 hover:bg-slate-100">
                     <td class="px-1 py-2 text-sm ">1</td>
-                    <td class="px-1 py-2 text-sm ">Lorem Epsum Sikocak Siolhok ggdsgds </td>
+                    <td class="px-1 py-2 text-sm ">Lorem Epsum Sikocak</td>
                     <td class="px-1 py-2 text-sm ">553253553</td>
                     <td class="px-1 py-2 text-sm ">
                         <button data-modal-target="detail-tambahkendaraan" data-modal-toggle="detail-tambahkendaraan"
@@ -405,6 +402,7 @@
             </div>
         </div>
 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
             setTimeout(() => {
                 const alert = document.querySelector('[role="alert"]');
@@ -414,5 +412,40 @@
                     setTimeout(() => alert.remove(), 500);
                 }
             }, 5000);
+
+            $(document).ready(function() {
+                $('#searchInput').on('keyup', function() {
+                    var search = $(this).val();
+
+                    $.ajax({
+                        url: "{{ route('search') }}",
+                        method: 'GET',
+                        data: {
+                            search: search
+                        },
+                        success: function(response) {
+                            var tableBody = $('tbody#userTableBody');
+
+                            // Filter baris yang ada berdasarkan pencarian
+                            tableBody.find('tr').each(function() {
+                                var nama = $(this).find('td:nth-child(2)').text()
+                                    .toLowerCase();
+                                var noPlat = $(this).find('td:nth-child(3)').text()
+                                    .toLowerCase();
+
+                                if (nama.includes(search.toLowerCase()) || noPlat.includes(
+                                        search.toLowerCase())) {
+                                    $(this).show();
+                                } else {
+                                    $(this).hide();
+                                }
+                            });
+                        },
+                        error: function(xhr) {
+                            console.log(xhr.responseText);
+                        }
+                    });
+                });
+            });
         </script>
     @endsection
