@@ -18,10 +18,8 @@
                 </svg>
             </div>
             <input type="search" id="searchInput" value="{{ request('search') }}" name="search"
-                class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg ps-10 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Search Nama pengguna, Plat nomor..." required />
-            <button type="submit"
-                class="absolute end-2.5 bottom-2.5 bg-[#95AFE5] hover:bg-blue-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                class="block w-full p-4 text-sm text-gray-900 border border-gray-400 rounded-lg ps-10 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Search Nama pengguna, Nomor Plat Kendaraan" required />
         </div>
     </form>
 </div>
@@ -31,31 +29,31 @@
     <table class="font-medium table-fixed ">
         <thead class="bg-[#95AFE5]">
             <tr>
-                <th class="py-2 px-1 text-sm rounded-tl-lg">No</th>
-                <th class="py-2 px-1 text-sm ">Nama Lengkap</th>
-                <th class="py-2 px-1 text-sm ">No Plat Kendaraan</th>
-                <th class="py-2 px-1 text-sm rounded-tr-lg ">Aksi</th>
+                <th class="px-1 py-2 text-sm rounded-tl-lg">No</th>
+                <th class="px-1 py-2 text-sm ">Nama Lengkap</th>
+                <th class="px-1 py-2 text-sm ">No Plat Kendaraan</th>
+                <th class="px-1 py-2 text-sm rounded-tr-lg ">Aksi</th>
             </tr>
         </thead>
 
         <tbody class="text-center" id="userTableBody">
             @foreach($penggunas as $pengguna)
                 <tr class="bg-slate-50 hover:bg-slate-100">
-                    <td class="py-2 px-1 text-sm">
+                    <td class="px-1 py-2 text-sm">
                         {{ ($penggunas->currentPage() - 1) * $penggunas->perPage() + $loop->iteration }}
                     </td>
-                    <td class="py-2 px-1 text-sm">{{ $pengguna->nama }}</td>
+                    <td class="px-1 py-2 text-sm">{{ $pengguna->nama }}</td>
 
-                    <td class="py-2 px-1 text-sm">{{ $pengguna->no_plat }}</td>
-                    <td class="py-2 px-1 text-sm">
+                    <td class="px-1 py-2 text-sm">{{ $pengguna->no_plat }}</td>
+                    <td class="px-1 py-2 text-sm">
                         <button data-modal-target="small-modal{{ $pengguna->id_pengguna }}"
                             data-modal-toggle="small-modal{{ $pengguna->id_pengguna }}"
-                            class="px-2 py-1 text-sm text-blue-500 hover:underline inline-flex items-center justify-center">
-                            <i class="w-3 h-3 me-2 text-blue-500 fas fa-eye"></i>Detail</button>
+                            class="inline-flex items-center justify-center px-2 py-1 text-sm text-blue-500 hover:underline">
+                            <i class="w-3 h-3 text-blue-500 me-2 fas fa-eye"></i>Detail</button>
                         <button data-modal-target="hapus-modal{{ $pengguna->id_pengguna }}"
                             data-modal-toggle="hapus-modal{{ $pengguna->id_pengguna }}"
-                            class="px-2 py-1 text-sm text-red-400 hover:underline inline-flex items-center justify-center">
-                            <i class="w-3 h-3 me-2 text-red-400 fas fa-trash"></i>Hapus</button>
+                            class="inline-flex items-center justify-center px-2 py-1 text-sm text-red-400 hover:underline">
+                            <i class="w-3 h-3 text-red-400 me-2 fas fa-trash"></i>Hapus</button>
                     </td>
                 </tr>
             @endforeach
@@ -122,7 +120,7 @@
                         Data Diri & Kendaraan Pengguna
                     </h3>
                     <button type="button"
-                        class="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        class="inline-flex items-center justify-center w-8 h-8 text-sm text-white bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto dark:hover:bg-gray-600 dark:hover:text-white"
                         data-modal-hide="small-modal{{ $pengguna->id_pengguna }}">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -133,24 +131,24 @@
                     </button>
                 </div>
                 <!-- Modal body -->
-                <div class="p-4 md:p-5 flex space-x-4 items-center">
+                <div class="flex items-center p-4 space-x-4 md:p-5">
                     <!-- Profile Image -->
-                    <div class="flex flex-col space-y-2 mb-24">
+                    <div class="flex flex-col mb-24 space-y-2">
                         <div class="flex justify-center">
                             <img src="{{ asset('storage/' . $pengguna->foto_pengguna) }}" alt="User Profile"
-                                class="w-48 h-56 rounded-md object-cover shadow-md">
+                                class="object-cover w-48 h-56 rounded-md shadow-md">
                         </div>
                         <div class="flex flex-col space-y-2">
                             <button type="button" data-modal-target="lihat-kendaraan1-{{ $pengguna->id_pengguna }}"
                                 data-modal-toggle="lihat-kendaraan1-{{ $pengguna->id_pengguna }}"
                                 class="w-full bg-white hover:underline text-gray-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-center">
-                                <i class="w-4 h-4 me-2 mt-1 fas fa-car "></i>
+                                <i class="w-4 h-4 mt-1 me-2 fas fa-car "></i>
                                 Lihat Kendaraan 1
                             </button>
                             <!-- <button type="button" data-modal-target="lihat-kendaraan2"
                                 data-modal-toggle="lihat-kendaraan2"
                                 class="w-full bg-white hover:underline text-gray-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-center">
-                                <i class="w-4 h-4 me-2 mt-1 fas fa-car "></i>
+                                <i class="w-4 h-4 mt-1 me-2 fas fa-car "></i>
                                 Lihat Kendaraan 2
                             </button> -->
                         </div>
@@ -161,7 +159,7 @@
                     <div class="flex-1 space-y-4 ">
                         <div class="grid grid-cols-1 gap-3 ml-5">
                             <div class="flex items-center space-x-2">
-                                <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
+                                <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50">
                                     <i class="w-4 h-4 text-gray-700 fas fa-id-card"></i>
                                 </div>
                                 <div>
@@ -170,7 +168,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center space-x-2">
-                                <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
+                                <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50">
                                     <i class="w-4 h-4 text-gray-700 fas fa-list"></i>
                                 </div>
                                 <div>
@@ -179,7 +177,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center space-x-2">
-                                <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
+                                <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50">
                                     <i class="w-4 h-4 text-gray-700 fas fa-envelope"></i>
                                 </div>
                                 <div>
@@ -189,7 +187,7 @@
                             </div>
 
                             <div class="flex items-center space-x-2">
-                                <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
+                                <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50">
                                     <i class="w-4 h-4 text-gray-700 fas fa-user"></i>
                                 </div>
                                 <div>
@@ -198,7 +196,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center space-x-2">
-                                <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
+                                <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50">
                                     <i class="w-4 h-4 text-gray-700 fas fa-phone"></i>
                                 </div>
                                 <div>
@@ -208,7 +206,7 @@
                             </div>
 
                             <div class="flex items-center space-x-2">
-                                <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
+                                <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50">
                                     <i class="w-4 h-4 text-gray-700 fas fa-car"></i>
                                 </div>
                                 <div>
@@ -218,7 +216,7 @@
                             </div>
 
                             <div class="flex items-center space-x-2">
-                                <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
+                                <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50">
                                     <i class="w-4 h-4 text-gray-700 fas fa-id-card"></i>
                                 </div>
                                 <div>
@@ -227,7 +225,7 @@
                                 </div>
                             </div>
                             <!-- <div class="flex items-center space-x-2">
-                                <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
+                                <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50">
                                     <i class="w-4 h-4 text-gray-700 fas fa-car"></i>
                                 </div>
                                 <div>
@@ -237,7 +235,7 @@
                             </div>
 
                             <div class="flex items-center space-x-2">
-                                <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
+                                <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50">
                                     <i class="w-4 h-4 text-gray-700 fas fa-id-card"></i>
                                 </div>
                                 <div>
@@ -247,7 +245,7 @@
                             </div>
 
                             <div class="flex items-center space-x-2">
-                                <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
+                                <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50">
                                     <i class="w-4 h-4 text-gray-700 fas fa-users"></i>
                                 </div>
                                 <div>
