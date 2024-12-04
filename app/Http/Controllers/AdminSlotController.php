@@ -82,12 +82,12 @@ class AdminSlotController extends Controller
             'keterangan' => 'required|in:Tersedia,Terisi,Perbaikan'
         ], [
             // Custom error messages
-            'subzona_id.required' => 'Sub-zona harus dipilih.',
+            'subzona_id.required' => 'Sub-zona wajib diisi.',
             'subzona_id.exists' => 'Sub-zona yang dipilih tidak valid.',
             'nomor_slot.required' => 'Nomor slot harus diisi.',
             'nomor_slot.integer' => 'Nomor slot harus berupa angka.',
             'nomor_slot.min' => 'Nomor slot minimal adalah 1.',
-            'nomor_slot.unique' => 'Nomor slot ini sudah ada pada sub-zona yang dipilih.',
+            'nomor_slot.unique' => 'Nomor slot ini sudah terdaftar pada sub-zona yang dipilih.',
             'keterangan.required' => 'Keterangan harus dipilih.',
             'keterangan.in' => 'Keterangan tidak valid.'
         ]);
@@ -112,9 +112,23 @@ class AdminSlotController extends Controller
         $slot = Slot::findOrFail($id);
 
         $validatedData = $request->validate([
-            // 'subzona_id' => 'required|exists:subzona,id',
-            // 'nomor_slot' => 'required|unique:slot,nomor_slot,' . $id . ',id,subzona_id,' . $request->subzona_id,
-            'keterangan' => 'nullable|string'
+            'nomor_slot' => [
+                'required',
+                'integer',
+                'min:1',
+                // Unique validation for slot number within the specific subzona
+                Rule::unique('slot', 'nomor_slot')->where(function ($query) use ($request) {
+                    return $query->where('subzona_id', $request->subzona_id);
+                })
+            ],
+            'keterangan' => 'required|in:Tersedia,Terisi,Perbaikan'
+        ], [
+            'nomor_slot.required' => 'Nomor slot harus diisi.',
+            'nomor_slot.integer' => 'Nomor slot harus berupa angka.',
+            'nomor_slot.min' => 'Nomor slot minimal adalah 1.',
+            'nomor_slot.unique' => 'Nomor slot ini sudah terdaftar pada sub-zona yang dipilih.',
+            'keterangan.required' => 'Keterangan harus dipilih.',
+            'keterangan.in' => 'Keterangan tidak valid.'
         ]);
 
         $slot->update($validatedData);
