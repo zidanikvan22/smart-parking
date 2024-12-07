@@ -31,6 +31,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/real-time', [RealTimeController::class, 'index'])->name('real-time');
         Route::get('/get-subzonas', [RealTimeController::class, 'getSubzonas']);
 
+        Route::post('/simpan-kendaraan', [QrCodeController::class, 'storeVehicle'])
+        ->name('vehicle.store');
+
         Route::get('/qr-code', [QrCodeController::class, 'index'])->name('qr-code');
         Route::get('generate-pdf', [QrCodeController::class, 'generatePDF'])->name('generate.pdf');
         //analysis
@@ -54,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
             //aprove
             Route::get('/approval', [AdminApprovalController::class, 'index'])->name('admin-approval');
             Route::put('/approval/{id_pengguna}', [AdminApprovalController::class, 'updateUserStatus'])->name('update.userStatus');
+            Route::put('/handleApproval/{id_kendaraan}', [AdminApprovalController::class, 'handleApproval'])->name('admin.handleApproval');
 
             // zona
             Route::get('/zona', [AdminZonaController::class, 'index'])->name('admin-zona');

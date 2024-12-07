@@ -15,6 +15,12 @@ class User extends Authenticatable
     protected $primaryKey = 'id_pengguna';
     public $timestamps = false;
 
+    public function kendaraan()
+    {
+        return $this->hasOne(Datakendaraan::class, 'id_pengguna');
+    }
+    
+
     /**
      * The attributes that are mass assignable.
      *

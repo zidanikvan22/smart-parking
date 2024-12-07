@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Datakendaraan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -13,9 +14,14 @@ class AdminApprovalController extends Controller
     {
         $approvals = User::where('status', 'nonAktif')->paginate(5);
 
+        $vehicles = Datakendaraan::with('pengguna')
+            ->where('status1', 'nonAktif')
+            ->get();
+
         return view('admin.approval', [
             'title' => 'approval',
-            'approvals' => $approvals
+            'approvals' => $approvals,
+            'vehicles' => $vehicles
         ]);
     }
 
@@ -72,5 +78,33 @@ class AdminApprovalController extends Controller
 
         return redirect()->back()->with('success', $message);
     }
+
+
+    public function handleApproval(Request $request, $id_kendaraan)
+    {
+        $vehicle = Datakendaraan::findOrFail($id_kendaraan);
+
+        $action = $request->input('status');
+
+
+        if ($action === 'approve') {
+            $vehicle->status1 = 'aktif';
+            $vehicle->save();
+
+            return redirect()->back()->with('success', 'Data kendaraan berhasil disetujui.');
+        }
+
+        elseif ($action === 'reject') {
+            $vehicle->delete();
+
+            return redirect()->back()->with('success', 'Data kendaraan berhasil ditolak.');
+        } else{
+            return redirect()->back()->with('error', 'Aksi tidak valid.');
+        }
+
+    }
+
+
+
 
 }
