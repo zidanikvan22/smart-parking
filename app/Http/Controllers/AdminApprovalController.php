@@ -86,25 +86,50 @@ class AdminApprovalController extends Controller
 
         $action = $request->input('status');
 
-
         if ($action === 'approve') {
             $vehicle->status1 = 'aktif';
+
+            // Generate QR Code with vehicle details in JSON format
+            $qrCodeContent = json_encode([
+                'nama_pengguna' => $vehicle->pengguna->nama ?? 'Tidak diketahui',
+                'jenis_kendaraan' => $vehicle->jenis_kendaraan1,
+                'plat_kendaraan' => $vehicle->no_plat1,
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+
+            $qrCodeFilename = "qrcodes/vehicle_qr_{$vehicle->id_kendaraan}.png";
+            $fullPath = storage_path('app/public/' . $qrCodeFilename);
+
+            if (!file_exists(dirname($fullPath))) {
+                mkdir(dirname($fullPath), 0755, true);
+            }
+
+            try {
+                QrCode::format('png')
+                    ->encoding('UTF-8')
+                    ->size(300)
+                    ->margin(10)
+                    ->generate($qrCodeContent, $fullPath);
+
+                $vehicle->qr_code1 = $qrCodeFilename; // Store QR code path in the database
+            } catch (\Exception $e) {
+                \Log::error('QR Code Generation Error for Vehicle: ' . $e->getMessage());
+                return redirect()->back()->with('error', 'Gagal membuat QR Code kendaraan: ' . $e->getMessage());
+            }
+
             $vehicle->save();
 
-            return redirect()->back()->with('success', 'Data kendaraan berhasil disetujui.');
-        }
-
-        elseif ($action === 'reject') {
+            return redirect()->back()->with('success', 'Data kendaraan berhasil disetujui dan QR Code dibuat.');
+        } elseif ($action === 'reject') {
+            // Remove vehicle data if rejected
+            if ($vehicle->qr_code1) {
+                Storage::disk('public')->delete($vehicle->qr_code1);
+            }
             $vehicle->delete();
 
             return redirect()->back()->with('success', 'Data kendaraan berhasil ditolak.');
-        } else{
+        } else {
             return redirect()->back()->with('error', 'Aksi tidak valid.');
         }
-
     }
-
-
-
 
 }
