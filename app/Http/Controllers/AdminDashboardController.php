@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Datakendaraan;
 use App\Models\User;
 use App\Models\Transaksi;
 use App\Models\Zona;
@@ -13,7 +14,7 @@ class AdminDashboardController extends Controller
     {
             $data = [
                 'total_user' => User::where('status', 'aktif')->count(),
-                'total_persetujuan' => User::where('status', '!=', 'aktif')->count(),
+                'total_persetujuan' => User::where('status', '!=', 'aktif')->count() + Datakendaraan::where('status1', '!=', 'aktif')->count(),
                 'total_transaksi' => Transaksi::count(),
                 'total_zona' => Zona::count(),
                 'total_slot' => Slot::count(),
