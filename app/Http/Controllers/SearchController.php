@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use App\Models\Datakendaraan;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,8 +14,16 @@ class SearchController extends Controller
                 ->orWhere('no_plat', 'LIKE', "%{$search}%");
         })->get();
 
+        $vehicles = Datakendaraan::with('pengguna')
+        ->whereHas('pengguna', function ($query) use ($search) {
+            $query->where('nama', 'like', '%' . $search . '%');
+        })
+        ->orWhere('no_plat1', 'like', '%' . $search . '%')
+        ->get();
+
         return response()->json([
             'data' => $users,
+            'data_kendaraan' => $vehicles,
         ]);
     }
 }
