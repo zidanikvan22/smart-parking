@@ -80,14 +80,15 @@
             </div>
         </div>
     </main>
-    <div id="customAlert">
+    <div id="customAlert" class="fixed w-full max-w-sm px-4 transform -translate-x-1/2 rounded-lg top-4 left-1/2 sm:max-w-md md:max-w-lg lg:max-w-xl">
         @if (session('success'))
-            <div
-                class="fixed px-4 py-2 text-white transform -translate-x-1/2 bg-green-500 rounded shadow-lg top-4 left-1/2">
-                {{ session('success') }}</div>
+            <div class="px-4 py-2 text-center text-white bg-green-500 rounded shadow-lg">
+                {{ session('success') }}
+            </div>
         @elseif(session('error'))
-            <div class="fixed px-4 py-2 text-white transform -translate-x-1/2 bg-red-500 rounded shadow-lg top-4 left-1/2">
-                {{ session('error') }}</div>
+            <div class="px-4 py-2 text-center text-white bg-red-500 rounded shadow-lg">
+                {{ session('error') }}
+            </div>
         @endif
     </div>
 
@@ -110,7 +111,7 @@
             if (alertBox) {
                 setTimeout(() => {
                     alertBox.style.display = 'none';
-                }, 5000);
+                }, 3000);
             }
         })
     </script>

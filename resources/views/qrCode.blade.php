@@ -25,9 +25,9 @@
                 <div class="space-y-4 text-gray-600">
                     <h2 class="mb-6 text-2xl font-bold text-blue-500">Informasi Qr Code :</h2>
                     <!-- <p>
-                                    <span class="text-lg font-bold">Email</span><br />
-                                    cristiano@gmail.com
-                                </p> -->
+                                        <span class="text-lg font-bold">Email</span><br />
+                                        cristiano@gmail.com
+                                    </p> -->
                     <p>
                         <span class="text-lg font-bold">Nama Lengkap</span><br />
                         {{ auth()->user()->nama }}
@@ -256,4 +256,28 @@
             </div>
         </div>
     </div>
+
+    <div id="customAlert" class="fixed w-full max-w-sm px-4 transform -translate-x-1/2 rounded-lg top-4 left-1/2 sm:max-w-md md:max-w-lg lg:max-w-xl">
+        @if (session('success'))
+            <div class="px-4 py-2 text-center text-white bg-green-500 rounded shadow-lg">
+                {{ session('success') }}
+            </div>
+        @elseif(session('error'))
+            <div class="px-4 py-2 text-center text-white bg-red-500 rounded shadow-lg">
+                {{ session('error') }}
+            </div>
+        @endif
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const alertBox = document.querySelector('#customAlert > div');
+            if (alertBox) {
+                setTimeout(() => {
+                    alertBox.style.display = 'none';
+                }, 3000);
+            }
+        })
+    </script>
 @endsection
