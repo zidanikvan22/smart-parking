@@ -62,9 +62,9 @@
         @foreach ($subzonas as $subzona)
             <div class="p-4">
                 <div class="flex items-center pl-6 mb-4 space-x-6">
-                    <h2 class="p-2 text-2xl font-bold text-white rounded-lg shadow-lg">
+                    <h4 class="p-2 text-lg font-bold text-center text-white rounded-lg shadow-lg md:text-xl lg:text-2xl">
                         {{ $subzona->nama_subzona }}
-                    </h2>
+                    </h4>
 
                     <div class="flex mt-2 space-x-4">
                         <div class="flex items-center">
@@ -104,7 +104,7 @@
                 <div class="flex justify-center mt-6">
                     <button data-modal-target="lihat-subzona-{{ $subzona->id }}"
                         data-modal-toggle="lihat-subzona-{{ $subzona->id }}"
-                        class="flex items-center justify-center w-1/3 py-3 text-sm text-white transition duration-300 bg-blue-500 rounded-lg hover:bg-blue-600">
+                        class="flex items-center justify-center w-1/3 px-4 py-3 text-sm text-white transition duration-300 bg-blue-500 rounded-lg hover:bg-blue-600">
                         <i class="mr-2 fas fa-eye"></i>
                         Lihat Area Subzona
                     </button>

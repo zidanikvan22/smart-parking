@@ -54,7 +54,7 @@
             <canvas id="durationChart" width="400" height="200"></canvas>
         </div>
 
-        <div class="w-full max-w-xl p-4 mb-5 bg-white border-2 rounded-lg shadow dark:bg-gray-800 md:p-4">
+        <div class="w-full h-full col-span-1 p-4 mb-5 bg-white border-2 rounded-lg shadow hp-4 dark:bg-gray-800 md:p-4">
             <div class="flex justify-between pb-4 mb-4 border-b border-gray-400 dark:border-gray-700">
                 <div class="flex items-center">
                     <div class="flex items-center justify-center bg-gray-100 rounded-lg dark:bg-gray-700 me-3">
@@ -70,7 +70,7 @@
                     </div>
                 </div>
             </div>
-            <div>
+            <div class="px-6 py-4">
                 <ul class="space-y-4 list-inside">
                     <li>Senin : 08.00, 11.00, 14.00-16.00 </li>
                     <li>Selasa : 09.00, 11.00</li>
