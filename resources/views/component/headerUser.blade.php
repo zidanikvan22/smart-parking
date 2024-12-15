@@ -1,27 +1,33 @@
 <nav class="relative z-50 p-4 text-white bg-blue-600">
     <div class="container flex items-center justify-between mx-auto">
-        <h1 class="pl-2 text-base font-bold leading-loose">Hallo, Selamat Datang</h1>
+        <h1 id="greeting" class="pl-2 text-base font-bold leading-loose">Hallo, Selamat Datang</h1>
         <div class="relative">
             <div class="flex items-center cursor-pointer" id="profileDropdown" onclick="toggleDropdown()">
-                <span class="mr-2 text-lg leading-loose">{{ auth()->user()->nama }}</span>
+                <span class="mr-2 text-lg leading-loose block truncate max-w-[120px] sm:max-w-none"
+                    title="{{ auth()->user()->nama }}">
+                    {{ auth()->user()->nama }}
+                </span>
                 <div class="flex items-center justify-center w-10 bg-gray-300 rounded-full">
                     <img src="{{ Storage::url(auth()->user()->foto_pengguna) }}" alt="Profile Picture"
                         class="object-cover w-full h-full rounded-full">
                 </div>
             </div>
             <div id="dropdownMenu"
-                class="absolute right-0 z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-md w-44 dark:bg-gray-700 dark:divide-gray-600">
-                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+                class="absolute right-0 z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-lg dark:bg-gray-800 dark:divide-gray-600">
+                <ul class="py-4 text-sm text-gray-700 dark:text-gray-200">
                     <li>
                         <a href="{{ route('ubah-sandi') }}"
-                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Change
-                            Password</a>
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                            Change Password
+                        </a>
                     </li>
                     <li>
-                        <form action="{{ route('logout') }}" method="POST">
+                        <form action="{{ route('logout') }}" method="POST" class="m-0">
                             @csrf
                             <button type="submit"
-                                class="block w-full px-4 py-2 text-start hover:bg-gray-100 dark:hover:bg-gray-600">Keluar</button>
+                                class="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                                Keluar
+                            </button>
                         </form>
                     </li>
                 </ul>
