@@ -8,14 +8,14 @@
             <img alt="Indonesian flag" class="h-6 -mt-2 md:h-10 md:-mt-5" src="{{ asset('images/Indonesia.png') }}" />
         </header>
 
-        <main class="flex flex-col items-center justify-center gap-6 pt-32 md:gap-12 md:pt-10">
+        <main class="flex flex-col items-center justify-center">
             <!-- ukuran logo responsive -->
             <div class="w-full max-w-md">
-                <img alt="Parkwell logo" class="h-24 mx-auto md:h-32" src="{{ asset('images/LogoParkwell.png') }}" />
+                <img alt="Parkwell logo" class="w-64 h-64 mx-auto" style="max-width: none; max-height: none;" src="{{ asset('images/icon.png') }}" />
             </div>
 
             <!-- ukuran form login -->
-            <div class="w-full max-w-[90%] md:max-w-md -mt-2 md:-mt-5">
+            <div class="w-full max-w-[90%] md:max-w-md md:-mt-10 -mt-10">
                 <div class="p-6 bg-white rounded-lg shadow-lg md:p-8">
                     <h2 class="mb-4 text-2xl font-bold text-center md:text-3xl md:mb-6">Masuk</h2>
                     <form action="{{ route('login_proses') }}" method="POST">
