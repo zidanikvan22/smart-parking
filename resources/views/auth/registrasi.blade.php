@@ -8,14 +8,14 @@
             <!-- header responsive -->
         </header>
 
-        <main class="flex flex-col items-center justify-center gap-6 pt-10 md:gap-12 md:pt-10">
+        <main class="flex flex-col items-center justify-center">
             <!-- ukuran logo responsive -->
             <div class="w-full max-w-md">
-                <img alt="Parkwell logo" class="h-24 mx-auto md:h-32" src="{{ asset('images/LogoParkwell.png') }}" />
+                <img alt="Parkwell logo" class="w-64 h-64 mx-auto" src="{{ asset('images/icon.png')}}" />
             </div>
 
             <!-- ukuran form registrasi -->
-            <div class="w-full max-w-[90%] md:max-w-md -mt-2 md:-mt-5">
+            <div class="w-full max-w-[90%] md:max-w-md -mt-16 md:-mt-16">
                 <div class="px-8 pt-6 pb-8 bg-white rounded-lg shadow-lg">
                     <h2 class="mb-4 text-2xl font-bold text-center md:text-3xl md:mb-6">Registrasi</h2>
                     <form action="{{ route('registrasi_proses') }}" method="POST" enctype="multipart/form-data">
