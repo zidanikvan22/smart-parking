@@ -33,10 +33,10 @@
         <table class="font-medium table-fixed ">
             <thead class="bg-[#95AFE5]">
                 <tr>
-                    <th class="px-1 py-2 text-sm rounded-tl-lg w-[5rem]">No</th>
+                    <th class="px-1 py-2 text-sm w-[5rem]">No</th>
                     <th class="px-1 py-2 text-sm w-[30rem]">Nama Lengkap</th>
                     <th class="px-1 py-2 text-sm w-[15rem]">Nomor Plat Kendaraan</th>
-                    <th class="px-1 py-2 text-sm rounded-tr-lg">Aksi</th>
+                    <th class="px-1 py-2 text-sm ">Aksi</th>
                 </tr>
             </thead>
             <tbody class="text-center" id="userTableBody">
@@ -228,10 +228,10 @@
         <table class="font-medium table-fixed ">
             <thead class="bg-[#95AFE5]">
                 <tr>
-                    <th class="px-1 py-2 text-sm rounded-tl-lg w-[5rem]">No</th>
+                    <th class="px-1 py-2 text-sm w-[5rem]">No</th>
                     <th class="px-1 py-2 text-sm w-[30rem]">Nama Lengkap</th>
                     <th class="px-1 py-2 text-sm w-[15rem]">Nomor Plat Kendaraan</th>
-                    <th class="px-1 py-2 text-sm rounded-tr-lg">Aksi</th>
+                    <th class="px-1 py-2 text-sm ">Aksi</th>
                 </tr>
             </thead>
             <tbody class="text-center" id="vehicleSearchInput">

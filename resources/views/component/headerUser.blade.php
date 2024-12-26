@@ -1,4 +1,4 @@
-<nav class="relative z-50 p-4 text-white bg-blue-600">
+<nav class="relative z-50 p-2 text-white bg-gradient-to-r from-blue-700 to-cyan-500">
     <div class="container flex items-center justify-between mx-auto">
         <h1 id="greeting" class="pl-2 text-base font-bold leading-loose">Hallo, Selamat Datang</h1>
         <div class="relative">

@@ -3,7 +3,7 @@
 @section('main')
     <div class="container px-4 py-8 mx-auto">
         <nav class="flex items-center justify-between mb-8">
-            <div class="flex items-center col-span-2 mt-3">
+            <div class="flex items-center col-span-2">
                 <a href="{{ route('dashboard') }}" class="flex items-center">
                     <i class="mr-2 text-xl fas fa-arrow-left text-gray-50"></i>
                     <span class="text-xl font-semibold text-gray-50">Kembali</span>

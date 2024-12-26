@@ -3,7 +3,7 @@
 @include('component/headerUser')
 
 @section('main')
-    <main class="container px-4 py-6 pb-20 mx-auto content-wrapper">
+    <main class="container px-4 py-6 pb-10 mx-auto content-wrapper">
 
         <div class="mb-6 overflow-hidden bg-white rounded-lg shadow-lg md:mb-8">
             <div class="relative h-72 carousel-container">
@@ -67,7 +67,7 @@
                 <div class="flex-1 space-y-4">
 
                     <div class="pb-2 border-b">
-                        <h3 class="text-base font-semibold text-gray-800">{{ auth()->user()->nama }}</h3>
+                        <h3 class="text-base font-semibold text-gray-800 uppercase">{{ auth()->user()->nama }}</h3>
                         <p class="text-sm text-gray-500">Pengguna sejak {{ date('Y') }}</p>
                     </div>
 

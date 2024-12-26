@@ -104,7 +104,7 @@
                 <div class="flex justify-center mt-6">
                     <button data-modal-target="lihat-subzona-{{ $subzona->id }}"
                         data-modal-toggle="lihat-subzona-{{ $subzona->id }}"
-                        class="flex items-center justify-center w-1/3 px-4 py-3 text-sm text-white transition duration-300 bg-blue-500 rounded-lg hover:bg-blue-600">
+                        class="flex items-center justify-center w-2/5 px-4 py-3 text-sm text-white transition duration-300 bg-blue-500 rounded-lg hover:bg-blue-600">
                         <i class="mr-2 fas fa-eye"></i>
                         Lihat Area Subzona
                     </button>
@@ -152,7 +152,7 @@
             class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative w-full max-w-md mx-auto bg-white rounded-lg shadow dark:bg-gray-700">
                 <!-- Header Modal -->
-                <div class="flex items-center justify-between p-4 border-b rounded-t dark:border-gray-600">
+                <div class="flex items-center justify-between pl-4 py-2 border-b-4 rounded-t dark:border-gray-700">
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white">
                         Informasi Zona
                     </h3>
