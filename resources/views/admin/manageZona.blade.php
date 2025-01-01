@@ -16,7 +16,12 @@
         </div>
         <!-- tabel zona -->
         <div class="grid w-9/12 grid-cols-1 p-5 mx-6 ">
-
+            @if (session('success'))
+                <div class="p-4 mb-4 text-sm text-green-800 bg-green-400 rounded-lg dark:bg-gray-800 dark:text-green-400"
+                    role="alert">
+                    <span class="font-medium">Success!</span> {{ session('success') }}
+                </div>
+            @endif
             <table class="font-medium table-fixed">
                 <thead class="bg-[#95AFE5]">
                     <tr>
@@ -87,6 +92,12 @@
 
         <!-- Tabel Subzona -->
         <div class="grid w-9/12 grid-cols-1 p-5 mx-6">
+            @if (session('succes'))
+                <div class="p-4 mb-4 text-sm text-green-800 bg-green-400 rounded-lg dark:bg-gray-800 dark:text-green-400"
+                    role="alert">
+                    <span class="font-medium">Success!</span> {{ session('succes') }}
+                </div>
+            @endif
             <table class="text-sm font-medium">
                 <thead class="bg-[#95AFE5]">
                     <tr>
@@ -560,6 +571,15 @@
     @endforeach
 
     <script>
+        setTimeout(() => {
+            const alert = document.querySelector('[role="alert"]');
+            if (alert) {
+                alert.style.transition = 'opacity 0.5s ease';
+                alert.style.opacity = '0';
+                setTimeout(() => alert.remove(), 500);
+            }
+        }, 5000);
+
         document.getElementById('foto').addEventListener('change', function(event) {
             const preview = document.getElementById('image-previewsubzona');
             const file = event.target.files[0];

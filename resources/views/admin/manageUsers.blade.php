@@ -25,6 +25,12 @@
 
 
     <div class="grid grid-cols-1 p-5 mx-6">
+        @if (session('success'))
+            <div class="p-4 mb-4 text-sm text-green-800 bg-green-400 rounded-lg dark:bg-gray-800 dark:text-green-400"
+                role="alert">
+                <span class="font-medium">Success!</span> {{ session('success') }}
+            </div>
+        @endif
         <table class="font-medium table-fixed">
             <thead class="bg-[#95AFE5]">
                 <tr>
@@ -286,6 +292,15 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        setTimeout(() => {
+            const alert = document.querySelector('[role="alert"]');
+            if (alert) {
+                alert.style.transition = 'opacity 0.5s ease';
+                alert.style.opacity = '0';
+                setTimeout(() => alert.remove(), 500);
+            }
+        }, 5000);
+
         $(document).ready(function() {
             $('#searchInput').on('keyup', function() {
                 var search = $(this).val();

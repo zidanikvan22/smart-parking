@@ -114,7 +114,7 @@ class AdminZonaController extends Controller
         }
 
         Subzona::create($validated);
-        return redirect()->back()->with('success', 'Subzona berhasil ditambahkan.');
+        return redirect()->back()->with('succes', 'Subzona berhasil ditambahkan.');
     }
 
     public function updateSubzona(Request $request, $id)
@@ -136,7 +136,7 @@ class AdminZonaController extends Controller
         }
 
         $subzona->update($validated);
-        return redirect()->back()->with('success', 'Foto Subzona berhasil diupdate.');
+        return redirect()->back()->with('succes', 'Foto Subzona berhasil diupdate.');
     }
 
 
@@ -155,6 +155,6 @@ class AdminZonaController extends Controller
         }
 
         $subzona->delete();
-        return redirect()->back()->with('success', 'Subzona berhasil dihapus');
+        return redirect()->back()->with('succes', 'Subzona berhasil dihapus');
     }
 }
