@@ -229,7 +229,7 @@
                                         <p class="font-medium text-gray-800">{{ $pengguna->no_plat }}</p>
                                     </div>
                                 </div>
-                                <!-- <div class="flex items-center space-x-2">
+                                <div class="flex items-center space-x-2">
                                     <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50">
                                         <i class="w-4 h-4 text-gray-700 fas fa-car"></i>
                                     </div>
@@ -249,15 +249,6 @@
                                     </div>
                                 </div>
 
-                                <div class="flex items-center space-x-2">
-                                    <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50">
-                                        <i class="w-4 h-4 text-gray-700 fas fa-users"></i>
-                                    </div>
-                                    <div>
-                                        <p class="text-sm text-gray-500">Pengguna sejak</p>
-                                        <p class="font-medium text-gray-800">{{ date('Y') }}</p>
-                                    </div>
-                                </div> -->
                             </div>
                         </div>
                     </div>

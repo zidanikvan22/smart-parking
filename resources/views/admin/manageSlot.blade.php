@@ -306,7 +306,7 @@
                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                     <div class="p-4 text-center">
                         <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                            Apakah Anda yakin ingin menghapus slot ini?
+                            Apakah Anda yakin ingin menghapus slot "{{ $slot->nomor_slot }}" ini?
                         </h3>
                         <form action="{{ route('slot.destroy', $slot->id) }}" method="POST"
                             class="inline">

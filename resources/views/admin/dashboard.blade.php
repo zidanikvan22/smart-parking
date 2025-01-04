@@ -132,7 +132,7 @@
         <!-- Card 5 -->
         <div
             class="flex flex-col max-w-sm h-auto bg-[#95AFE5] border border-gray-200 shadow-md p-7 md:rounded-2xl hover:bg-blue-400">
-            <a href="{{ route('admin-analysis') }}" class="block">
+            <a href="{{ route('admin-users') }}" class="block">
                 <div class="flex items-center mb-1 pl-7">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="#000000"
@@ -150,7 +150,7 @@
                             "max": 150
                             }'
                                 class="text-4xl font-semibold text-center text-gray-800">
-                                {{ $data['total_transaksi'] }}
+                                {{ $data['total_mobil'] }}
                             </p>
                             <h4 class="text-xl text-center text-black">Mobil</h4>
                         </div>
@@ -162,7 +162,7 @@
         <!-- Card 6 -->
         <div
             class="flex flex-col max-w-sm h-auto bg-[#95AFE5] border border-gray-200 shadow-md p-7 md:rounded-2xl hover:bg-blue-400">
-            <a href="{{ route('admin-analysis') }}" class="block">
+            <a href="{{ route('admin-users') }}" class="block">
                 <div class="flex items-center mb-1 pl-7">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="#000000"
@@ -180,7 +180,7 @@
                             "max": 150
                             }'
                                 class="text-4xl font-semibold text-center text-gray-800">
-                                {{ $data['total_transaksi'] }}
+                                {{ $data['total_motor'] }}
                             </p>
                             <h4 class="text-lg text-center text-black">Motor</h4>
                         </div>

@@ -77,14 +77,14 @@ class AuthController extends Controller
     public function registrasi_proses(Request $request)
     {
         $validated = $request->validate([
-            'identitas' => 'required',
+            'identitas' => 'required|unique:pengguna',
             'jenis_pengguna' => 'required',
             'email' => 'required|unique:pengguna|email',
-            'nomor_telepon' => 'required',
+            'nomor_telepon' => 'required|unique:pengguna',
             'nama' => 'required',
             'password' => 'required',
             'jenis_kendaraan' => 'required',
-            'no_plat' => 'required',
+            'no_plat' => 'required|unique:pengguna',
             'foto_kendaraan' => 'required|image|file|mimes:jpeg,png,jpg',
             'foto_pengguna' => 'required|image|file|mimes:jpeg,png,jpg',
         ], [
@@ -101,6 +101,10 @@ class AuthController extends Controller
             'foto_kendaraan.required' => 'Foto kendaraan harus diisi',
             'foto_kendaraan.mimes' => 'Foto kendaraan tidak sesuai format yang di tentukan',
             'foto_pengguna.required' => 'Foto pengguna harus diisi',
+            'nama.required' => 'Nama Lengkap harus diisi',
+            'identitas.unique' => 'Identitas sudah terdaftar',
+            'no_plat.unique' => 'Nomor Plat sudah terdaftar',
+            'nomor_telepon.unique' => 'no telepon sudah terdaftar',
             'foto_pengguna.mimes' => 'Foto pengguna tidak sesuai dengan format yang di tentukan'
         ]);
 
