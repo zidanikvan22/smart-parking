@@ -8,7 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Transaksi extends Model
 {
     use HasFactory;
+
     protected $table = 'transaksi';
     protected $primaryKey = 'id_transaksi';
-    protected $guarded = [];
+    protected $fillable = ['id_pengguna', 'zona_id', 'waktu_masuk', 'waktu_keluar', 'status_transaksi'];
+
+    public function zona()
+    {
+        return $this->belongsTo(Zona::class, 'zona_id');
+    }
 }

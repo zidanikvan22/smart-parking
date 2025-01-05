@@ -17,4 +17,9 @@ class Zona extends Model
         return $this->hasMany(Subzona::class, 'zona_id');
     }
 
+    public function transaksis()
+    {
+        return $this->hasMany(Transaksi::class, 'zona_id');
+    }
+
 }
