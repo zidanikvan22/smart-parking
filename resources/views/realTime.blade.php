@@ -139,7 +139,7 @@
                 <!-- container foto -->
                 @if ($subzona->foto)
                     <div class="overflow-hidden bg-white shadow-2xl rounded-xl">
-                        <img src="{{ asset($subzona->foto) }}" alt="Foto Subzona"
+                        <img src="{{ Storage::url($subzona->foto) }}" alt="Foto Subzona"
                             class="object-cover w-full h-auto transition-transform duration-300 hover:scale-105">
                     </div>
                 @endif
@@ -152,7 +152,7 @@
             class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative w-full max-w-md mx-auto bg-white rounded-lg shadow dark:bg-gray-700">
                 <!-- Header Modal -->
-                <div class="flex items-center justify-between pl-4 py-2 border-b-4 rounded-t dark:border-gray-700">
+                <div class="flex items-center justify-between py-2 pl-4 border-b-4 rounded-t dark:border-gray-700">
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white">
                         Informasi Zona
                     </h3>
@@ -169,7 +169,7 @@
                 </div>
                 <!-- Body Modal -->
                 <div class="p-4 space-y-4 rounded-b ">
-                    <img src="{{ asset($selectedZona->fotozona) }}" alt="Zona Image"
+                    <img src="{{ Storage::url($selectedZona->fotozona) }}" alt="Zona Image"
                         class="object-cover w-full h-64 rounded-lg">
                     <div class="">
                         <p class="text-base font-semibold text-gray-900 dark:text-white">Keterangan:</p>
