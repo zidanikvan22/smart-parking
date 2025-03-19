@@ -17,7 +17,7 @@ Leader:
 
 Member:  
 3312301025 – Nayla Nabillah Arishima  
-3312301046 – Meizua Muhsana
+3312301046 – Meizua Muhsana 
 3312311133 - Grey Ari Daniel Simatupang 
 
 ---
