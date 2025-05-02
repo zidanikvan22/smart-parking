@@ -18,7 +18,7 @@ use App\Http\Controllers\LandingPageController;
 
 
 // landing Page
-Route::get('/', [LandingPageController::class, 'index'])->name('index');
+Route::get('/', [LandingPageController::class, 'index'])->name('landing_page');
 
 //Autentikasi
 Route::get('login', [AuthController::class, 'login'])->name('login');
