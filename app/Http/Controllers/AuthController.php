@@ -30,7 +30,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ];
-        
+
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
@@ -118,6 +118,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-        return redirect()->route('login')->with('succes', 'Logout Berhasil');
+        return redirect()->route('landing_page')->with('succes', 'Logout Berhasil');
     }
 }
