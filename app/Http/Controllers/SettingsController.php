@@ -5,12 +5,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
-class ChangePasswordController extends Controller
+class SettingsController extends Controller
 {
     public function index()
     {
-        return view('changePassword', [
-            'title' => 'ubah sandi'
+        return view('settings', [
+            'title' => 'pengaturan'
         ]);
     }
 
