@@ -55,7 +55,7 @@
     </div>
 
 
-    <div class="w-11/12 p-6 mx-auto mt-6 bg-white shadow-md md:w-3/4 rounded-xl">
+    <div class="w-11/12 p-6 mx-auto mt-6 bg-white border border-gray-300 shadow-md md:w-3/4 rounded-xl">
         <button onclick="toggleDetail()"
             class="flex items-center gap-2 mb-4 text-xl font-semibold text-gray-800 focus:outline-none">
             <svg id="iconArrow" class="w-5 h-5 transition-transform" fill="none" stroke="currentColor"
@@ -69,7 +69,7 @@
             <!-- Container for dropdowns and info box -->
             <div class="flex flex-col gap-6 md:flex-row">
                 <!-- Left Column - Dropdowns -->
-                <div class="w-full p-4 space-y-4 border border-gray-200 rounded-lg md:w-1/3 bg-gray-50">
+                <div class="w-full p-4 space-y-4 border border-gray-300 rounded-lg md:w-1/3 bg-gray-50">
                     <!-- Dropdown Pilih Zona -->
                     <div class="relative">
                         <button onclick="toggleDropdown('zona')"
@@ -108,7 +108,7 @@
                 </div>
 
                 <!-- Right Column - Zone Info Card -->
-                <div class="flex-1 p-4 border border-gray-200 rounded-lg bg-blue-50">
+                <div class="flex-1 p-4 border border-gray-300 rounded-lg bg-blue-50">
                     <h3 class="mb-4 text-lg font-semibold text-gray-800">Informasi Zona</h3>
 
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
