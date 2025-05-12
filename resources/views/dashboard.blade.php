@@ -3,7 +3,7 @@
 @include('component.headerUser')
 
 @section('main')
-    <div class="flex items-center justify-center p-10 overflow-hidden">
+    <div class="flex items-center justify-center p-10 overflow-hidden bg-gradient-to-br from-blue-50 to-gray-100">
         <div class="w-full py-12 text-center border-2 border-black shadow-xl rounded-xl" style="max-height: 90vh;">
             <div class="mb-6 w-[80vw] h-[40vh] overflow-hidden rounded-xl mx-auto">
                 <div class="swiper">
