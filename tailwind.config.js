@@ -1,4 +1,4 @@
-import plugin from 'tailwindcss/plugin';
+import plugin from 'tailwindcss/plugin'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -11,17 +11,30 @@ export default {
   theme: {
     extend: {
       colors: {
-        biru_tua: "#1E376B",
+        biru_tua: "#B3EBF2",
         biru_muda: "#00CCFF",
         hijau: "#376A3F",
         birumuda_login: "#DCF8FF",
         birutua_login: "#89E4FC",
         birutua_loginhover: "#6EB4C6",
       },
-
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
         londrina: ['"Londrina Shadow"', 'cursive'],
+      },
+      animation: {
+        fadeIn: 'fadeIn 0.3s ease-in-out',
+        zoomIn: 'zoomIn 0.3s ease-in-out both',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        zoomIn: {
+          '0%': { transform: 'scale(0.95)', opacity: '0' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        },
       },
     },
   },

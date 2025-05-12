@@ -16,6 +16,7 @@
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.0/dist/cdn.min.js"></script>
     @vite(['resources/css/app.css','resources/js/app.js'])
+    @vite('resources/css/app.css')
     <link href="{{ asset('css_user/user_landing_page.css') }}" rel="stylesheet">
 
 </head>
