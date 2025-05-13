@@ -22,4 +22,18 @@ class Zona extends Model
         return $this->hasMany(Transaksi::class, 'zona_id');
     }
 
+    public function scopeTersedia($query)
+    {
+        return $query->where('keterangan', 'tersedia');
+    }
+
+    public function scopeTerisi($query)
+    {
+        return $query->where('keterangan', 'terisi');
+    }
+
+    public function scopePerbaikan($query)
+    {
+        return $query->where('keterangan', 'perbaikan');
+    }
 }

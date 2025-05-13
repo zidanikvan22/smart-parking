@@ -2,45 +2,44 @@
 
 namespace App\Http\Controllers;
 
-// use App\Models\Slot;
 use App\Models\Zona;
 use App\Models\Subzona;
+use App\Models\Slot;
 use Illuminate\Http\Request;
 
 class RealTimeController extends Controller
 {
     public function index(Request $request)
     {
-        // Ambil semua zona
-        $zonas = Zona::all();
+        $zonas = Zona::with(['subzonas.slots' => function($query) {
+            $query->where('keterangan', 'tersedia');
+        }])->get();
 
-        // Ambil zona berdasarkan ID dari request atau default ke zona pertama
-        $selectedZona = $request->has('zona') 
-            ? Zona::find($request->zona) 
-            : null;
-
-        // Ambil subzona untuk zona yang dipilih
-        $subzonas = $selectedZona ? $selectedZona->subzonas()->with('slot')->get() : collect();
+        $selectedZonaId = $request->has('zona') ? $request->zona : ($zonas->first() ? $zonas->first()->id : null);
+        $selectedZona = $selectedZonaId ? Zona::with(['subzonas.slots'])->find($selectedZonaId) : null;
 
         return view('realTime', [
             'zonas' => $zonas,
             'selectedZona' => $selectedZona,
-            'subzonas' => $subzonas,
             'title' => 'real-time'
         ]);
     }
 
     public function getSubzonas(Request $request)
     {
-        $zonaId = $request->input('zona_id');
+        $request->validate([
+            'zona_id' => 'required|exists:zonas,id'
+        ]);
 
-        // Ambil subzona dan slot terkait
-        $subzonas = Subzona::where('zona_id', $zonaId)
-            ->with('slot:id,subzona_id,nomor_slot,keterangan,fotozona')
-            ->get();
+        $subzonas = Subzona::where('zona_id', $request->zona_id)
+            ->with(['slots' => function($query) {
+                $query->select('id', 'subzona_id', 'nomor_slot', 'keterangan', 'fotozona');
+            }])
+            ->get(['id', 'zona_id', 'nama']);
 
-        return response()->json($subzonas);
+        return response()->json([
+            'success' => true,
+            'data' => $subzonas
+        ]);
     }
-
-    
 }
