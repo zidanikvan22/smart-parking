@@ -19,10 +19,10 @@
         $zoneCount = count($zones);
     @endphp
 
-    <div class="overflow-hidden relative group">
+    <div class="overflow-hidden relative group py">
         <div class="flex {{ $zoneCount > 3 ? 'w-max animate-marquee group-hover:[animation-play-state:paused]' : 'w-full justify-center' }}">
 
-            <div class="flex">
+            <div class="flex py-2">
                 @foreach ($zones as $zone)
                     @php $percentage = round(($zone['available'] / $zone['total']) * 100); @endphp
                     <div class="min-w-[250px] mx-2 bg-gradient-to-br {{ $zone['bg'] }} p-5 rounded-xl shadow-md text-white transform transition hover:scale-105">
@@ -44,7 +44,7 @@
             </div>
 
             @if($zoneCount > 3)
-                <div class="flex">
+                <div class="flex py-2">
                     @foreach ($zones as $zone)
                         @php $percentage = round(($zone['available'] / $zone['total']) * 100); @endphp
                         <div class="min-w-[250px] mx-2 bg-gradient-to-br {{ $zone['bg'] }} p-5 rounded-xl shadow-md text-white transform transition hover:scale-105">
