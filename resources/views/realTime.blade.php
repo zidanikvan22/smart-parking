@@ -10,26 +10,26 @@
             <div class="mb-3 w-max">
                 <a href="{{ route('dashboard') }}"
                     class="inline-flex items-center bg-white hover:bg-gray-50 border border-gray-200 text-gray-700 px-4 py-2 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-x-0.5">
-                    <i class="fas fa-arrow-left mr-2 text-gray-500"></i>
+                    <i class="mr-2 text-gray-500 fas fa-arrow-left"></i>
                     Kembali
                 </a>
             </div>
 
-            <div class="w-full rounded-2xl overflow-hidden shadow-lg relative h-64 group cursor-pointer" onclick="openImageModal(this)">
+            <div class="relative w-full h-64 overflow-hidden shadow-lg cursor-pointer rounded-2xl group" onclick="openImageModal(this)">
                 <img
-                    src="{{asset('images/DashboardSIPPP.jpg')}}"
+                    src="{{asset('images/peta.png')}}"
                     alt="Parking Area"
-                    class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    class="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                 >
-                <div class="absolute inset-0 bg-gradient-to-t from-blue-900/70 to-blue-500/30 flex items-end p-6">
+                <div class="absolute inset-0 flex items-end p-6 bg-gradient-to-t from-blue-900/70 to-blue-500/30">
                     <div>
                         <h1 class="text-3xl font-bold text-white">Denah Lokasi Zona Parkiran</h1>
-                        <p class="text-blue-100 mt-2">Klik gambar untuk memperbesar</p>
+                        <p class="mt-2 text-blue-100">Klik gambar untuk memperbesar</p>
                     </div>
                 </div>
                 <!-- Overlay hover -->
-                <div class="absolute inset-0 bg-black bg-opacity-20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <span class="text-white font-medium bg-black bg-opacity-50 px-3 py-1 rounded-full">Lihat Ukuran Penuh</span>
+                <div class="absolute inset-0 flex items-center justify-center transition-opacity duration-300 bg-black rounded-lg opacity-0 bg-opacity-20 group-hover:opacity-100">
+                    <span class="px-3 py-1 font-medium text-white bg-black bg-opacity-50 rounded-full">Lihat Ukuran Penuh</span>
                 </div>
             </div>
 
@@ -38,13 +38,13 @@
             @include('component.real-time.tampilkan_sub_zona')
 
             <!-- Image Modal -->
-            <div id="imageModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-90 p-4 animate-fadeIn">
+            <div id="imageModal" class="fixed inset-0 z-50 items-center justify-center hidden p-4 bg-black bg-opacity-90 animate-fadeIn">
                 <div class="relative max-w-6xl w-full max-h-[30vh] mx-auto my-auto">
                     <button onclick="closeImageModal()"
-                            class="absolute top-2 right-2 text-white hover:text-gray-300 text-3xl focus:outline-none hover:scale-110 transition-transform duration-200"
+                            class="absolute text-3xl text-white transition-transform duration-200 top-2 right-2 hover:text-gray-300 focus:outline-none hover:scale-110"
                             aria-label="Tutup modal">
-                        <div class="w-10 h-10 flex items-center justify-center bg-black bg-opacity-50 rounded-full hover:bg-opacity-75 transition-all">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div class="flex items-center justify-center w-10 h-10 transition-all bg-black bg-opacity-50 rounded-full hover:bg-opacity-75">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                             </svg>
                         </div>

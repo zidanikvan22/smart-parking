@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="{{ asset('css_user/informasi_ringkas.css') }}">
 
-<div class="bg-white p-6 rounded-2xl shadow-xl">
-    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+<div class="p-6 bg-white shadow-xl rounded-2xl">
+    <h2 class="flex items-center mb-6 text-2xl font-bold text-gray-800">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" />
         </svg>
@@ -10,65 +10,104 @@
     </h2>
 
     @php
-        $zones = [
-            ['title' => 'Zona 1', 'bg' => 'from-blue-500 to-blue-600', 'available' => 13, 'total' => 28],
-            ['title' => 'Zona 2', 'bg' => 'from-green-500 to-green-600', 'available' => 5, 'total' => 12],
-            ['title' => 'Zona 3', 'bg' => 'from-purple-500 to-purple-600', 'available' => 8, 'total' => 15],
-            ['title' => 'Zona 4', 'bg' => 'from-amber-500 to-amber-600', 'available' => 3, 'total' => 64],
+        $zoneColors = [
+            'from-blue-500 to-blue-600',
+            'from-green-500 to-green-600',
+            'from-purple-500 to-purple-600',
+            'from-amber-500 to-amber-600',
+            'from-rose-500 to-rose-600',
+            'from-emerald-500 to-emerald-600'
         ];
+
+        $zones = $zonas ?? [];
         $zoneCount = count($zones);
+        $needsMarquee = $zoneCount > 5;
     @endphp
 
-    <div class="overflow-hidden relative group py">
-        <div class="flex {{ $zoneCount > 3 ? 'w-max animate-marquee group-hover:[animation-play-state:paused]' : 'w-full justify-center' }}">
-
-            <div class="flex py-2">
-                @foreach ($zones as $zone)
-                    @php $percentage = round(($zone['available'] / $zone['total']) * 100); @endphp
-                    <div class="min-w-[250px] mx-2 bg-gradient-to-br {{ $zone['bg'] }} p-5 rounded-xl shadow-md text-white transform transition hover:scale-105">
-                        <div class="flex justify-between items-start">
-                            <h3 class="font-bold text-xl">{{ $zone['title'] }}</h3>
-                        </div>
-                        <div class="mt-4">
-                            <p class="text-sm opacity-80">Slot Tersedia</p>
-                            <div class="flex items-end justify-between mt-1">
-                                <span class="text-3xl font-bold">{{ $zone['available'] }}</span>
-                                <span class="text-sm">/{{ $zone['total'] }} total</span>
-                            </div>
-                            <div class="w-full bg-white/30 rounded-full h-2 mt-2">
-                                <div class="bg-white h-2 rounded-full" style="width: {{ $percentage }}%"></div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-
-            @if($zoneCount > 3)
-                <div class="flex py-2">
-                    @foreach ($zones as $zone)
-                        @php $percentage = round(($zone['available'] / $zone['total']) * 100); @endphp
-                        <div class="min-w-[250px] mx-2 bg-gradient-to-br {{ $zone['bg'] }} p-5 rounded-xl shadow-md text-white transform transition hover:scale-105">
-                            <div class="flex justify-between items-start">
-                                <h3 class="font-bold text-xl">{{ $zone['title'] }}</h3>
+    @if($zoneCount > 0)
+        <div class="relative overflow-hidden group">
+            <div class="flex {{ $needsMarquee ? 'w-max animate-marquee group-hover:[animation-play-state:paused]' : 'w-full justify-center' }}">
+                <!-- Card Asli -->
+                <div class="flex">
+                    @foreach ($zones as $index => $zone)
+                        @php
+                            $available = $zone->available ?? 0;
+                            $total = $zone->total ?? 0;
+                            $percentage = $total > 0 ? min(100, round(($available / $total) * 100)) : 0;
+                            $colorIndex = $index % count($zoneColors);
+                            $bgClass = $zoneColors[$colorIndex];
+                            $progressColor = $percentage < 30 ? 'bg-red-400' : ($percentage < 70 ? 'bg-yellow-400' : 'bg-white');
+                        @endphp
+                        <div class="min-w-[250px] mx-2 bg-gradient-to-br {{ $bgClass }} p-5 rounded-xl shadow-md text-white transform transition hover:scale-105 hover:shadow-lg">
+                            <div class="flex items-start justify-between">
+                                <h3 class="text-xl font-bold">{{ $zone->nama_zona ?? 'Zona ' . ($index + 1) }}</h3>
+                                <span class="px-2 py-1 text-xs font-semibold bg-white/20 rounded-full">{{ $percentage }}%</span>
                             </div>
                             <div class="mt-4">
                                 <p class="text-sm opacity-80">Slot Tersedia</p>
                                 <div class="flex items-end justify-between mt-1">
-                                    <span class="text-3xl font-bold">{{ $zone['available'] }}</span>
-                                    <span class="text-sm">/{{ $zone['total'] }} total</span>
+                                    <span class="text-3xl font-bold">{{ $available }}</span>
+                                    <span class="text-sm">/{{ $total }} total</span>
                                 </div>
-                                <div class="w-full bg-white/30 rounded-full h-2 mt-2">
-                                    <div class="bg-white h-2 rounded-full" style="width: {{ $percentage }}%"></div>
+                                <div class="w-full h-2 mt-2 rounded-full bg-white/30">
+                                    <div class="h-2 {{ $progressColor }} rounded-full" style="width: {{ $percentage }}%"></div>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
-            @endif
+
+                @if($needsMarquee)
+                    <div class="flex" aria-hidden="true">
+                        @foreach ($zones as $index => $zone)
+                            @php
+                                $available = $zone->available ?? 0;
+                                $total = $zone->total ?? 0;
+                                $percentage = $total > 0 ? min(100, round(($available / $total) * 100)) : 0;
+                                $colorIndex = $index % count($zoneColors);
+                                $bgClass = $zoneColors[$colorIndex];
+                                $progressColor = $percentage < 30 ? 'bg-red-400' : ($percentage < 70 ? 'bg-yellow-400' : 'bg-white');
+                            @endphp
+                            <div class="min-w-[250px] mx-2 bg-gradient-to-br {{ $bgClass }} p-5 rounded-xl shadow-md text-white">
+                                <div class="flex items-start justify-between">
+                                    <h3 class="text-xl font-bold">{{ $zone->nama_zona ?? 'Zona ' . ($index + 1) }}</h3>
+                                    <span class="px-2 py-1 text-xs font-semibold bg-white/20 rounded-full">{{ $percentage }}%</span>
+                                </div>
+                                <div class="mt-4">
+                                    <p class="text-sm opacity-80">Slot Tersedia</p>
+                                    <div class="flex items-end justify-between mt-1">
+                                        <span class="text-3xl font-bold">{{ $available }}</span>
+                                        <span class="text-sm">/{{ $total }} total</span>
+                                    </div>
+                                    <div class="w-full h-2 mt-2 rounded-full bg-white/30">
+                                        <div class="h-2 {{ $progressColor }} rounded-full" style="width: {{ $percentage }}%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
         </div>
-    </div>
+    @else
+        <div class="py-8 text-center text-gray-500">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p class="text-lg font-medium">Tidak ada data zona tersedia</p>
+            <p class="text-sm">Silakan tambahkan zona terlebih dahulu</p>
+        </div>
+    @endif
 </div>
 
-@if($zoneCount > 3)
-    <script src="{{ asset('css_user/informasi_ringkas.css') }}"></script>
+@if($needsMarquee)
+    <style>
+        .animate-marquee {
+            animation: marquee {{ count($zones) * 3 }}s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
 @endif
