@@ -1,57 +1,51 @@
-<nav class="relative z-50 p-2 text-white bg-gradient-to-r from-blue-700 to-cyan-500">
-    <div class="container flex items-center justify-between mx-auto">
-        <h1 id="greeting" class="pl-2 text-base font-bold leading-loose">Hallo, Selamat Datang</h1>
-        <div class="relative">
-            <div class="flex items-center cursor-pointer" id="profileDropdown" onclick="toggleDropdown()">
-                <span class="mr-2 text-lg leading-loose block truncate max-w-[120px] sm:max-w-none"
-                    title="{{ auth()->user()->nama }}">
-                    {{ auth()->user()->nama }}
-                </span>
-                <div class="flex items-center justify-center w-10 bg-gray-300 rounded-full">
-                    <img src="{{ Storage::url(auth()->user()->foto_pengguna) }}" alt="Profile Picture"
-                        class="object-cover w-full h-full rounded-full">
-                </div>
+<!-- Navbar -->
+<nav class="bg-biru_tua shadow-lg font-poppins sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <!--logo dan nama-->
+        <div class="flex text-white items-center">
+            <img src="{{ asset('images/LogoParkwell.png') }}" alt="Logo" class="w-12 h-12 mr-3">
+            <h1 class="text-2xl font-bold">SPARKING</h1>
+        </div>
+
+
+        @guest
+        <!-- Menu untuk pengguna yang belum login (landing page) -->
+            <div>
+                <a href="#tentang" class="text-white hover:text-blue-500 px-4">Tentang</a>
+                <a href="#keunggulan" class="text-white hover:text-blue-500 px-4">Keunggulan</a>
+                <a href="javascript:void(0);" onclick="openModal()" class="bg-biru_muda hover:bg-white hover:text-biru_muda text-white font-semibold px-6 py-2 rounded-full transition duration-300 shadow">Login</a>
             </div>
-            <div id="dropdownMenu"
-                class="absolute right-0 z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-lg dark:bg-gray-800 dark:divide-gray-600">
-                <ul class="py-4 text-sm text-gray-700 dark:text-gray-200">
-                    <li>
-                        <a href="{{ route('ubah-sandi') }}"
-                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-                            Change Password
-                        </a>
-                    </li>
-                    <li>
-                        <form action="{{ route('logout') }}" method="POST" class="m-0">
-                            @csrf
-                            <button type="submit"
-                                class="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-                                Keluar
-                            </button>
-                        </form>
-                    </li>
-                </ul>
+        @endguest
+
+        @auth
+        <div x-data="{ open: false }" class="relative">
+            <button @click="open = !open" @click.outside="open = false"
+                class="text-blue-200 transition-colors hover:text-white focus:outline-none">
+                <i class="text-4xl fas fa-user-circle"></i>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                x-transition:enter-start="transform opacity-0 scale-95"
+                x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75"
+                x-transition:leave-start="transform opacity-100 scale-100"
+                x-transition:leave-end="transform opacity-0 scale-95"
+                class="absolute right-0 z-50 w-48 py-1 mt-2 bg-white border border-gray-200 rounded-md shadow-lg">
+                <a href="{{ route('settings') }}"
+                    class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+                    <i class="mr-2 text-gray-500 fas fa-cog"></i> Setting
+                </a>
+
+                <!-- Logout dengan form POST -->
+                <form method="POST" action="{{ route('logout') }}" class="w-full">
+                    @csrf
+                    <button type="submit"
+                        class="flex items-center w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+                        <i class="mr-2 text-gray-500 fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </form>
             </div>
         </div>
+        @endauth
     </div>
 </nav>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const greetingElement = document.getElementById("greeting");
-        const currentHour = new Date().getHours();
-
-        let greetingText = "Hallo, ";
-        if (currentHour >= 5 && currentHour < 12) {
-            greetingText += "Selamat Pagi";
-        } else if (currentHour >= 12 && currentHour < 18) {
-            greetingText += "Selamat Siang";
-        } else if (currentHour >= 18 && currentHour <= 23) {
-            greetingText += "Selamat Malam";
-        } else {
-            greetingText += "Selamat Dini Hari";
-        }
-
-        greetingElement.textContent = greetingText;
-    });
-</script>

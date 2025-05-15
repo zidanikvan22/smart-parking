@@ -6,7 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RealTimeController;
 use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\AnalysisController;
-use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminZonaController;
@@ -14,14 +14,30 @@ use App\Http\Controllers\AdminAnalysisController;
 use App\Http\Controllers\AdminApprovalController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AdminSlotController;
+use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\OnboardingController;
+
+// Onboarding
+Route::middleware(['auth'])->group(function () {
+    Route::get('/onboarding', [OnboardingController::class, 'show'])->name('onboarding.show');
+    Route::post('/onboarding/next', [OnboardingController::class, 'nextStep'])->name('onboarding.next');
+    Route::post('/onboarding', [OnboardingController::class, 'update'])->name('onboarding.update');
+});
+
+
+// landing Page
+Route::get('/', [LandingPageController::class, 'index'])->name('landing_page');
+
 
 //Autentikasi
-Route::get('/', [AuthController::class, 'login'])->name('login');
+Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('/login-proses', [AuthController::class, 'login_proses'])->name('login_proses');
 Route::get('/registrasi', [AuthController::class, 'registrasi'])->name('registrasi');
 Route::post('/registrasi-proses', [AuthController::class, 'registrasi_proses'])->name('registrasi_proses');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+
+// Route::middleware(['auth', 'onboarding'])->group(function () {
 Route::middleware(['auth'])->group(function () {
 
     Route::middleware('role:pengguna')->group(function () {
@@ -34,13 +50,14 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/simpan-kendaraan', [QrCodeController::class, 'storeVehicle'])
         ->name('vehicle.store');
 
-        Route::get('/qr-code', [QrCodeController::class, 'index'])->name('qr-code');
-        Route::get('generate-pdf', [QrCodeController::class, 'generatePDF'])->name('generate.pdf');
+        // Route::get('/qr-code', [QrCodeController::class, 'index'])->name('qr-code');
+        // Route::get('generate-pdf', [QrCodeController::class, 'generatePDF'])->name('generate.pdf');
+
         //analysis
         Route::get('/analysis', [AnalysisController::class, 'index'])->name('analysis');
         //ubah kata sandi
-        Route::get('/change-password', [ChangePasswordController::class, 'index'])->name('ubah-sandi');
-        Route::post('/change-password', [ChangePasswordController::class, 'changePassword'])->name('change.password');
+        Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
+        Route::post('/change-password', [SettingsController::class, 'changePassword'])->name('change.password');
     });
 
     Route::middleware('role:admin')->group(function () {
