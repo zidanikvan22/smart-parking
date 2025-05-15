@@ -16,8 +16,7 @@
                     <select name="zona"
                         class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 appearance-none bg-white shadow-sm"
                         onchange="this.form.submit()">
-                        <option value="" disabled {{ is_null($selectedZonaId) ? 'selected' : '' }}>Pilih Zona
-                        </option>
+                        <option value="" disabled {{ is_null($selectedZonaId) ? 'selected' : '' }}>Pilih Zona</option>
                         @foreach ($zonas as $zona)
                             <option value="{{ $zona->id }}" {{ $selectedZonaId == $zona->id ? 'selected' : '' }}>
                                 {{ $zona->nama_zona }}
@@ -27,8 +26,6 @@
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                         <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
                         </svg>
                     </div>
                 </div>
@@ -40,8 +37,7 @@
                     <select name="subzona"
                         class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 appearance-none bg-white shadow-sm"
                         onchange="this.form.submit()">
-                        <option value="" disabled {{ is_null($selectedSubzonaId) ? 'selected' : '' }}>Pilih Sub
-                            Zona</option>
+                        <option value="" disabled {{ is_null($selectedSubzonaId) ? 'selected' : '' }}>Pilih Sub Zona</option>
                         @foreach ($subzonas as $subzona)
                             <option value="{{ $subzona->id }}"
                                 {{ $selectedSubzonaId == $subzona->id ? 'selected' : '' }}>
@@ -52,8 +48,6 @@
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                         <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
                         </svg>
                     </div>
                     <!-- Hidden input untuk mempertahankan zona yang dipilih -->

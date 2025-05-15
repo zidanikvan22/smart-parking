@@ -28,7 +28,7 @@
         <div class="relative overflow-hidden group">
             <div class="flex {{ $needsMarquee ? 'w-max animate-marquee group-hover:[animation-play-state:paused]' : 'w-full justify-center' }}">
                 <!-- Card Asli -->
-                <div class="flex">
+                <div class="flex py-2">
                     @foreach ($zones as $index => $zone)
                         @php
                             $available = $zone->available ?? 0;
@@ -58,7 +58,7 @@
                 </div>
 
                 @if($needsMarquee)
-                    <div class="flex" aria-hidden="true">
+                    <div class="flex py-2" aria-hidden="true">
                         @foreach ($zones as $index => $zone)
                             @php
                                 $available = $zone->available ?? 0;
@@ -66,7 +66,7 @@
                                 $percentage = $total > 0 ? min(100, round(($available / $total) * 100)) : 0;
                                 $colorIndex = $index % count($zoneColors);
                                 $bgClass = $zoneColors[$colorIndex];
-                                $progressColor = $percentage < 30 ? 'bg-red-400' : ($percentage < 70 ? 'bg-yellow-400' : 'bg-white');
+                                $progressColor = $percentage < 30 ? 'bg-red-400' : ($percentage < 70 ? 'bg-yellow-400' : 'bg-white transform transition hover:scale-105 hover:shadow-lg');
                             @endphp
                             <div class="min-w-[250px] mx-2 bg-gradient-to-br {{ $bgClass }} p-5 rounded-xl shadow-md text-white">
                                 <div class="flex items-start justify-between">
