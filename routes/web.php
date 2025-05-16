@@ -52,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
 
         // Route::get('/qr-code', [QrCodeController::class, 'index'])->name('qr-code');
         // Route::get('generate-pdf', [QrCodeController::class, 'generatePDF'])->name('generate.pdf');
+        Route::post('/profil/update-foto-kendaraan', [SettingsController::class, 'updateFotoKendaraan'])->name('profil.update.foto.kendaraan');
 
         //analysis
         Route::get('/analysis', [AnalysisController::class, 'index'])->name('analysis');

@@ -191,3 +191,49 @@ function openImageModal(imageUrl) {
 function closeImageModal() {
     document.getElementById('imageModal').classList.add('hidden');
 }
+
+function saveVehiclePhoto() {
+    const fileInput = document.getElementById('vehiclePhotoUpload');
+
+    if (!fileInput.files || fileInput.files.length === 0) {
+        return;
+    }
+
+    const file = fileInput.files[0];
+    const formData = new FormData();
+    formData.append('foto_kendaraan', file);
+
+    const saveButton = document.getElementById('saveVehiclePhotoBtn');
+    saveButton.disabled = true;
+    saveButton.textContent = 'Menyimpan...';
+
+    fetch('/profil/update-foto-kendaraan', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Gagal menyimpan foto kendaraan. Silakan coba lagi.');
+        }
+        return response.json();
+    })
+    .then(data => {
+        document.getElementById('updatedVehiclePhoto').src = data.path;
+        closeVehiclePhotoModal();
+
+        setTimeout(() => {
+            openVehiclePhotoSuccessModal();
+        }, 350);
+    })
+    .catch(error => {
+        console.error('Terjadi kesalahan:', error);
+        alert(error.message);
+    })
+    .finally(() => {
+        saveButton.disabled = false;
+        saveButton.textContent = 'Simpan Perubahan';
+    });
+}

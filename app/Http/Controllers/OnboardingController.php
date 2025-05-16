@@ -90,7 +90,7 @@ class OnboardingController extends Controller
 
             Log::info('Validasi step 2 berhasil');
 
-            $profilePath = $request->file('foto_pengguna')->store('public/foto_pengguna');
+            $profilePath = $request->file('foto_pengguna')->store('foto_pengguna','public');
 
             $user->update([
                 'foto_pengguna' => str_replace('public/', '', $profilePath),
@@ -130,7 +130,7 @@ class OnboardingController extends Controller
 
             Log::info('Validasi step 4 berhasil');
 
-            $vehiclePath = $request->file('foto_kendaraan')->store('public/foto_kendaraan');
+            $vehiclePath = $request->file('foto_kendaraan')->store('foto_kendaraan','public');
 
             $user->update([
                 'foto_kendaraan' => str_replace('public/', '', $vehiclePath),

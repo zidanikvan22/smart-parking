@@ -1,4 +1,3 @@
-<!-- Full Size Image Modal -->
 <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
     <div class="relative max-w-3xl w-full">
         <img id="modalImage" src="" class="rounded-lg max-h-[90vh] mx-auto" alt="Full Size">
