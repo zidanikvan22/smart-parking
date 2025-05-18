@@ -33,24 +33,18 @@
                         @php
                             $available = $zone->available ?? 0;
                             $total = $zone->total ?? 0;
-                            $percentage = $total > 0 ? min(100, round(($available / $total) * 100)) : 0;
                             $colorIndex = $index % count($zoneColors);
                             $bgClass = $zoneColors[$colorIndex];
-                            $progressColor = $percentage < 30 ? 'bg-red-400' : ($percentage < 70 ? 'bg-yellow-400' : 'bg-white');
                         @endphp
                         <div class="min-w-[250px] mx-2 bg-gradient-to-br {{ $bgClass }} p-5 rounded-xl shadow-md text-white transform transition hover:scale-105 hover:shadow-lg">
                             <div class="flex items-start justify-between">
                                 <h3 class="text-xl font-bold">{{ $zone->nama_zona ?? 'Zona ' . ($index + 1) }}</h3>
-                                <span class="px-2 py-1 text-xs font-semibold bg-white/20 rounded-full">{{ $percentage }}%</span>
                             </div>
                             <div class="mt-4">
                                 <p class="text-sm opacity-80">Slot Tersedia</p>
                                 <div class="flex items-end justify-between mt-1">
                                     <span class="text-3xl font-bold">{{ $available }}</span>
                                     <span class="text-sm">/{{ $total }} total</span>
-                                </div>
-                                <div class="w-full h-2 mt-2 rounded-full bg-white/30">
-                                    <div class="h-2 {{ $progressColor }} rounded-full" style="width: {{ $percentage }}%"></div>
                                 </div>
                             </div>
                         </div>
@@ -63,24 +57,18 @@
                             @php
                                 $available = $zone->available ?? 0;
                                 $total = $zone->total ?? 0;
-                                $percentage = $total > 0 ? min(100, round(($available / $total) * 100)) : 0;
                                 $colorIndex = $index % count($zoneColors);
                                 $bgClass = $zoneColors[$colorIndex];
-                                $progressColor = $percentage < 30 ? 'bg-red-400' : ($percentage < 70 ? 'bg-yellow-400' : 'bg-white');
                             @endphp
                             <div class="min-w-[250px] mx-2 bg-gradient-to-br {{ $bgClass }} p-5 rounded-xl shadow-md text-white">
                                 <div class="flex items-start justify-between">
                                     <h3 class="text-xl font-bold">{{ $zone->nama_zona ?? 'Zona ' . ($index + 1) }}</h3>
-                                    <span class="px-2 py-1 text-xs font-semibold bg-white/20 rounded-full">{{ $percentage }}%</span>
                                 </div>
                                 <div class="mt-4">
                                     <p class="text-sm opacity-80">Slot Tersedia</p>
                                     <div class="flex items-end justify-between mt-1">
                                         <span class="text-3xl font-bold">{{ $available }}</span>
                                         <span class="text-sm">/{{ $total }} total</span>
-                                    </div>
-                                    <div class="w-full h-2 mt-2 rounded-full bg-white/30">
-                                        <div class="h-2 {{ $progressColor }} rounded-full" style="width: {{ $percentage }}%"></div>
                                     </div>
                                 </div>
                             </div>
