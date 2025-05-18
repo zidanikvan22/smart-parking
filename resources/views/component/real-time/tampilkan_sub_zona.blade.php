@@ -1,88 +1,122 @@
+<!-- Tombol untuk Menampilkan Modal -->
+<button onclick="document.getElementById('subZoneModal').classList.remove('hidden')"
+    class="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-medium rounded-xl shadow-md transition duration-300 ease-in-out transform hover:scale-[1.02] flex items-center justify-center">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+    </svg>
+    Tampilkan Sub Zona
+</button>
+
 <div id="subZoneModal" class="fixed inset-0 z-50 hidden overflow-hidden">
-    <!-- Background Overlay -->
-    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+    <div class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75"></div>
 
-    <!-- Tombol Close di luar modal -->
-    <button id="closeModal" class="absolute top-6 right-6 z-50 text-white hover:text-gray-300 bg-black/40 p-2 rounded-full backdrop-blur-md">
-        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-    </button>
-
-    <!-- Modal Container -->
     <div class="fixed inset-0 flex items-center justify-center p-4">
-        <div class="relative bg-white rounded-lg shadow-xl transform transition-all w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <!-- Header Modal -->
-            <div class="flex justify-between items-start p-4 border-b">
-                <h3 class="text-2xl font-bold text-gray-900">
-                    Sub Zona <span id="subZoneName">A</span>
-                </h3>
-            </div>
+        <div class="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-lg shadow-xl">
+            <button onclick="document.getElementById('subZoneModal').classList.add('hidden')"
+                class="absolute z-50 p-2 text-white rounded-full top-6 right-6 hover:text-gray-300 bg-black/40 backdrop-blur-md">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
 
-            <!-- Konten Modal -->
-            <div class="p-6 overflow-y-auto">
-                <div class="mb-6 rounded-lg overflow-hidden shadow-md">
-                    <img
-                        id="subZoneImage"
-                        src="https://images.unsplash.com/photo-1584799580661-53b7c6b99430?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
-                        alt="Sub Zona Parkir"
-                        class="w-full h-64 object-cover"
-                    />
+            <div class="p-6">
+                <h3 class="mb-4 text-2xl font-bold">Sub Zona: {{ $subzona->nama_subzona }}</h3>
+
+                <div class="mb-6 overflow-hidden rounded-lg shadow-md">
+                    <img src="{{ asset('storage/' . $subzona->foto) }}" alt="Foto Subzona"
+                        class="object-cover w-full h-64"
+                        onclick="showImageModal('{{ asset('storage/' . $subzona->foto) }}')">
+                </div>
+                <div id="imageModal"
+                    class="fixed inset-0 z-[999] hidden items-center justify-center bg-black bg-opacity-70">
+                    <span class="absolute text-3xl text-white cursor-pointer top-6 right-6"
+                        onclick="closeImageModal()">&times;</span>
+                    <img id="modalImage" class="max-w-full max-h-full rounded-lg shadow-xl" src=""
+                        alt="Preview">
                 </div>
 
-                <div class="mb-6">
-                    <h4 class="text-lg font-semibold mb-3">Denah Slot</h4>
+                <div>
+                    <h4 class="mb-3 text-lg font-semibold">Denah Slot</h4>
                     <div class="grid grid-cols-10 gap-2">
-                        <!-- Slot Grid -->
-                        <div class="h-10 bg-green-500 rounded flex items-center justify-center text-white font-bold cursor-pointer hover:opacity-80" title="Slot 1 - Kosong">1</div>
-                        <div class="h-10 bg-red-500 rounded flex items-center justify-center text-white font-bold cursor-pointer hover:opacity-80" title="Slot 2 - Terisi">2</div>
-                        <div class="h-10 bg-yellow-300 rounded flex items-center justify-center text-white font-bold cursor-pointer hover:opacity-80" title="Slot 3 - Perbaikan">3</div>
-                        <div class="h-10 bg-green-500 rounded flex items-center justify-center text-white font-bold cursor-pointer hover:opacity-80" title="Slot 4 - Kosong">4</div>
-                        <div class="h-10 bg-green-500 rounded flex items-center justify-center text-white font-bold cursor-pointer hover:opacity-80" title="Slot 5 - Kosong">5</div>
-                        <div class="h-10 bg-red-500 rounded flex items-center justify-center text-white font-bold cursor-pointer hover:opacity-80" title="Slot 6 - Terisi">6</div>
-                        <div class="h-10 bg-red-500 rounded flex items-center justify-center text-white font-bold cursor-pointer hover:opacity-80" title="Slot 7 - Terisi">7</div>
-                        <div class="h-10 bg-green-500 rounded flex items-center justify-center text-white font-bold cursor-pointer hover:opacity-80" title="Slot 8 - Kosong">8</div>
-                        <div class="h-10 bg-yellow-300 rounded flex items-center justify-center text-white font-bold cursor-pointer hover:opacity-80" title="Slot 9 - Perbaikan">9</div>
-                        <div class="h-10 bg-green-500 rounded flex items-center justify-center text-white font-bold cursor-pointer hover:opacity-80" title="Slot 10 - Kosong">10</div>
+                        @foreach ($subzona->slots as $slot)
+                            @php
+                                $colorClasses = match ($slot->keterangan) {
+                                    'Tersedia' => 'bg-blue-500 text-white',
+                                    'Terisi' => 'bg-red-500 text-white',
+                                    'perbaikan' => 'bg-yellow-300 text-black',
+                                    default => 'bg-gray-400 text-white',
+                                };
+                            @endphp
+                            <div class="w-full aspect-square rounded flex items-center justify-center text-xs cursor-pointer hover:opacity-80 {{ $colorClasses }}"
+                                title="Slot {{ $slot->nomor_slot }} ({{ $slot->keterangan }})">
+                                {{ $slot->nomor_slot }}
+                            </div>
+                        @endforeach
                     </div>
 
-                    <!-- Keterangan Warna -->
-                    <div class="mt-4 flex flex-wrap gap-4">
+                    <!-- Legend -->
+                    <div class="flex flex-wrap gap-4 mt-4">
                         <div class="flex items-center">
-                            <div class="w-4 h-4 bg-green-500 rounded mr-2"></div>
-                            <span class="text-sm">Kosong</span>
+                            <div class="w-4 h-4 mr-2 bg-blue-500 rounded"></div><span class="text-sm">Tersedia</span>
                         </div>
                         <div class="flex items-center">
-                            <div class="w-4 h-4 bg-red-500 rounded mr-2"></div>
-                            <span class="text-sm">Terisi</span>
+                            <div class="w-4 h-4 mr-2 bg-green-500 rounded"></div><span class="text-sm">Kosong</span>
                         </div>
                         <div class="flex items-center">
-                            <div class="w-4 h-4 bg-yellow-300 rounded mr-2"></div>
-                            <span class="text-sm">Perbaikan</span>
+                            <div class="w-4 h-4 mr-2 bg-red-500 rounded"></div><span class="text-sm">Terisi</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 mr-2 bg-yellow-300 rounded"></div><span class="text-sm">Perbaikan</span>
                         </div>
                     </div>
-                </div>
 
-                <!-- Info Ringkasan -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="bg-green-50 p-3 rounded-lg">
-                        <h5 class="font-medium text-green-800">Tersedia</h5>
-                        <p class="text-2xl font-bold text-green-600">15</p>
-                    </div>
-                    <div class="bg-red-50 p-3 rounded-lg">
-                        <h5 class="font-medium text-red-800">Terisi</h5>
-                        <p class="text-2xl font-bold text-red-600">13</p>
-                    </div>
-                    <div class="bg-yellow-50 p-3 rounded-lg">
-                        <h5 class="font-medium text-yellow-500">Perbaikan</h5>
-                        <p class="text-2xl font-bold text-yellow-300">28</p>
+                    <!-- Ringkasan Slot -->
+                    @php
+                        $tersedia = $subzona->slots->where('keterangan', 'Tersedia')->count();
+                        $kosong = $subzona->slots->where('keterangan', 'Tersedia')->count();
+                        $terisi = $subzona->slots->where('keterangan', 'Terisi')->count();
+                        $diperbaiki = $subzona->slots->where('keterangan', 'Perbaikan')->count();
+                    @endphp
+
+                    <div class="grid grid-cols-1 gap-4 mt-6 md:grid-cols-4">
+                        <div class="p-3 rounded-lg bg-blue-50">
+                            <h5 class="font-medium text-blue-800">Tersedia</h5>
+                            <p class="text-2xl font-bold text-blue-600">{{ $tersedia }}</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-green-50">
+                            <h5 class="font-medium text-green-800">Kosong</h5>
+                            <p class="text-2xl font-bold text-green-600">{{ $kosong }}</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-red-50">
+                            <h5 class="font-medium text-red-800">Terisi</h5>
+                            <p class="text-2xl font-bold text-red-600">{{ $terisi }}</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-yellow-50">
+                            <h5 class="font-medium text-yellow-500">Perbaikan</h5>
+                            <p class="text-2xl font-bold text-yellow-300">{{ $diperbaiki }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
 
-<!-- Script -->
-<script src="{{ asset('js/tampilkan_sub_zona.js') }}"></script>
+<script>
+    function showImageModal(imageSrc) {
+        const modal = document.getElementById('imageModal');
+        const img = document.getElementById('modalImage');
+        img.src = imageSrc;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+
+    function closeImageModal() {
+        const modal = document.getElementById('imageModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.getElementById('modalImage').src = '';
+    }
+</script>

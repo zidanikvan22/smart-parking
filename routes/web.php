@@ -54,6 +54,7 @@ Route::middleware(['auth'])->group(function () {
         // Route::get('generate-pdf', [QrCodeController::class, 'generatePDF'])->name('generate.pdf');
         Route::post('/profil/update-foto-kendaraan', [SettingsController::class, 'updateFotoKendaraan'])->name('profil.update.foto.kendaraan');
 
+        Route::get('/real-time/subzona/{subzonaId}', [RealTimeController::class, 'getSubzonaDetails'])->name('realTime.subzonaDetails');
         //analysis
         Route::get('/analysis', [AnalysisController::class, 'index'])->name('analysis');
         //ubah kata sandi
