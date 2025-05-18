@@ -11,10 +11,18 @@ class RealTimeController extends Controller
 {
     public function index(Request $request)
     {
-        // Ambil semua zona dengan subzona dan slot tersedia
-        $zonas = Zona::with(['subzonas.slots' => function($query) {
-            $query->where('keterangan', 'tersedia');
-        }])->get();
+        // Ambil semua zona dengan subzona dan semua slot (tanpa filter 'tersedia')
+        $zonas = Zona::with(['subzonas.slots'])->get();
+
+        // Tambahkan properti available dan total ke setiap zona
+        $zonas->each(function ($zona) {
+            $zona->total = $zona->subzonas->sum(function ($subzona) {
+                return $subzona->slots->count();
+            });
+            $zona->available = $zona->subzonas->sum(function ($subzona) {
+                return $subzona->slots->where('keterangan', 'tersedia')->count();
+            });
+        });
 
         // Ambil zona yang dipilih dari request atau default ke zona pertama
         $selectedZonaId = $request->has('zona') ? $request->zona : ($zonas->first() ? $zonas->first()->id : null);
@@ -66,14 +74,48 @@ class RealTimeController extends Controller
         ]);
 
         $subzonas = Subzona::where('zona_id', $request->zona_id)
-            ->with(['slots' => function($query) {
-                $query->select('id', 'subzona_id', 'nomor_slot', 'keterangan', 'fotozona');
-            }])
+            ->with([
+                'slots' => function ($query) {
+                    $query->select('id', 'subzona_id', 'nomor_slot', 'keterangan', 'fotozona');
+                }
+            ])
             ->get(['id', 'zona_id', 'nama']);
 
         return response()->json([
             'success' => true,
             'data' => $subzonas
+        ]);
+    }
+
+    public function getSubzonaDetails($subzonaId)
+    {
+        // Ambil data dengan eager loading
+        $subzona = Subzona::with([
+            'slots' => function ($query) {
+                $query->select('id', 'subzona_id', 'nomor_slot', 'keterangan')
+                    ->orderBy('nomor_slot');
+            }
+        ])->findOrFail($subzonaId);
+
+        // Hitung statistik
+        $slotStats = [
+            'tersedia' => $subzona->slots->where('keterangan', 'tersedia')->count(),
+            'kosong' => $subzona->slots->where('keterangan', 'kosong')->count(),
+            'terisi' => $subzona->slots->where('keterangan', 'terisi')->count(),
+            'diperbaiki' => $subzona->slots->where('keterangan', 'diperbaiki')->count(),
+        ];
+
+        return response()->json([
+            'nama_subzona' => $subzona->nama_subzona,
+            'foto' => $subzona->foto ? asset('storage/' . $subzona->foto) : asset('images/default-subzona.jpg'),
+            'slots' => $subzona->slots->map(function ($slot) {
+                return [
+                    'id' => $slot->id,
+                    'nomor_slot' => $slot->nomor_slot,
+                    'keterangan' => $slot->keterangan
+                ];
+            }),
+            'slotStats' => $slotStats
         ]);
     }
 }

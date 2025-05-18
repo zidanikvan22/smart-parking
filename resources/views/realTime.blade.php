@@ -35,7 +35,6 @@
 
             @include('component.real-time.informasi_ringkas')
             @include('component.real-time.informasi_detail')
-            @include('component.real-time.tampilkan_sub_zona')
 
             <!-- Image Modal -->
             <div id="imageModal" class="fixed inset-0 z-50 items-center justify-center hidden p-4 bg-black bg-opacity-90 animate-fadeIn">

@@ -39,9 +39,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/simpan-kendaraan', [QrCodeController::class, 'storeVehicle'])
         ->name('vehicle.store');
 
-        // Route::get('/qr-code', [QrCodeController::class, 'index'])->name('qr-code');
-        // Route::get('generate-pdf', [QrCodeController::class, 'generatePDF'])->name('generate.pdf');
-
+        Route::get('/real-time/subzona/{subzonaId}', [RealTimeController::class, 'getSubzonaDetails'])->name('realTime.subzonaDetails');
         //analysis
         Route::get('/analysis', [AnalysisController::class, 'index'])->name('analysis');
         //ubah kata sandi
