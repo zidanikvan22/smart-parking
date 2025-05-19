@@ -15,10 +15,19 @@ use App\Http\Controllers\AdminApprovalController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AdminSlotController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\OnboardingController;
+
+// Onboarding
+Route::middleware(['auth'])->group(function () {
+    Route::get('/onboarding', [OnboardingController::class, 'show'])->name('onboarding.show');
+    Route::post('/onboarding/next', [OnboardingController::class, 'nextStep'])->name('onboarding.next');
+    Route::post('/onboarding', [OnboardingController::class, 'update'])->name('onboarding.update');
+});
 
 
 // landing Page
 Route::get('/', [LandingPageController::class, 'index'])->name('landing_page');
+
 
 //Autentikasi
 Route::get('login', [AuthController::class, 'login'])->name('login');
@@ -27,6 +36,8 @@ Route::get('/registrasi', [AuthController::class, 'registrasi'])->name('registra
 Route::post('/registrasi-proses', [AuthController::class, 'registrasi_proses'])->name('registrasi_proses');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+
+// Route::middleware(['auth', 'onboarding'])->group(function () {
 Route::middleware(['auth'])->group(function () {
 
     Route::middleware('role:pengguna')->group(function () {
@@ -40,6 +51,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('vehicle.store');
 
         Route::get('/real-time/subzona/{subzonaId}', [RealTimeController::class, 'getSubzonaDetails'])->name('realTime.subzonaDetails');
+        Route::post('/profil/update-foto-kendaraan', [SettingsController::class, 'updateFotoKendaraan'])->name('profil.update.foto.kendaraan');
         //analysis
         Route::get('/analysis', [AnalysisController::class, 'index'])->name('analysis');
         //ubah kata sandi

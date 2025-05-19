@@ -28,7 +28,7 @@
         <div class="relative overflow-hidden group">
             <div class="flex {{ $needsMarquee ? 'w-max animate-marquee group-hover:[animation-play-state:paused]' : 'w-full justify-center' }}">
                 <!-- Card Asli -->
-                <div class="flex">
+                <div class="flex py-2">
                     @foreach ($zones as $index => $zone)
                         @php
                             $available = $zone->available ?? 0;
@@ -52,7 +52,7 @@
                 </div>
 
                 @if($needsMarquee)
-                    <div class="flex" aria-hidden="true">
+                    <div class="flex py-2" aria-hidden="true">
                         @foreach ($zones as $index => $zone)
                             @php
                                 $available = $zone->available ?? 0;
