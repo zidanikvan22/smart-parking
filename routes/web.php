@@ -50,14 +50,11 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/simpan-kendaraan', [QrCodeController::class, 'storeVehicle'])
         ->name('vehicle.store');
 
-<<<<<<<<< Temporary merge branch 1
-        Route::get('/real-time/subzona/{subzonaId}', [RealTimeController::class, 'getSubzonaDetails'])->name('realTime.subzonaDetails');
-=========
         // Route::get('/qr-code', [QrCodeController::class, 'index'])->name('qr-code');
         // Route::get('generate-pdf', [QrCodeController::class, 'generatePDF'])->name('generate.pdf');
         Route::post('/profil/update-foto-kendaraan', [SettingsController::class, 'updateFotoKendaraan'])->name('profil.update.foto.kendaraan');
 
->>>>>>>>> Temporary merge branch 2
+        Route::get('/real-time/subzona/{subzonaId}', [RealTimeController::class, 'getSubzonaDetails'])->name('realTime.subzonaDetails');
         //analysis
         Route::get('/analysis', [AnalysisController::class, 'index'])->name('analysis');
         //ubah kata sandi
