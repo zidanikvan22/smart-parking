@@ -71,36 +71,24 @@
                                 <span class="absolute inset-y-0 left-0 z-10 flex items-center pl-3 text-white">
                                     <i class="fas fa-user"></i>
                                 </span>
-                                @error('nama')
-                                    <div class="mt-1 text-red-500">{{ $message }}</div>
-                                @enderror
                                 <input type="text" placeholder="Nama Lengkap" name="nama" value="{{old('nama')}}" class="w-full px-3 py-2 pl-10 text-white border shadow-md bg-white/20 backdrop-blur-md backdrop-saturate-200 border-white/30 placeholder-white/70 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white focus:border-white/50" />
                             </div>
                             <div class="relative py-2">
                                 <span class="absolute inset-y-0 left-0 z-10 flex items-center pl-3 text-white">
                                     <i class="fas fa-envelope"></i>
                                 </span>
-                                @error('email')
-                                    <div class="mt-1 text-red-500">{{ $message }}</div>
-                                @enderror
                                 <input type="email" placeholder="Email" name="email" value="{{old('email')}}" class="w-full px-3 py-2 pl-10 text-white border shadow-md bg-white/20 backdrop-blur-md backdrop-saturate-200 border-white/30 placeholder-white/70 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white focus:border-white/50" />
                             </div>
                             <div class="relative py-2">
                                 <span class="absolute inset-y-0 left-0 z-10 flex items-center pl-3 text-white">
                                     <i class="fas fa-lock"></i>
                                 </span>
-                                @error('password')
-                                    <div class="mt-1 text-red-500">{{ $message }}</div>
-                                @enderror
                                 <input type="password" placeholder="Password" name="password" value="{{old('password')}}" class="w-full px-3 py-2 pl-10 text-white border shadow-md bg-white/20 backdrop-blur-md backdrop-saturate-200 border-white/30 placeholder-white/70 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white focus:border-white/50" />
                             </div>
                             <div class="relative py-2">
                                 <span class="absolute inset-y-0 left-0 z-10 flex items-center pl-3 text-white">
                                     <i class="fas fa-lock"></i>
                                 </span>
-                                @error('password_confirmation')
-                                    <div class="mt-1 text-red-500">{{ $message }}</div>
-                                @enderror
                                 <input type="password" placeholder="Konfirmasi Password" name="password_confirmation" class="w-full px-3 py-2 pl-10 text-white border shadow-md bg-white/20 backdrop-blur-md backdrop-saturate-150 border-white/30 placeholder-white/70 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white focus:border-white/50" />
                             </div>
                             <div class="flex flex-col items-center mt-6 mb-2 space-y-2">

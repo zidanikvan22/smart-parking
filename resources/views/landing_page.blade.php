@@ -4,13 +4,6 @@
 
 @section('main')
     @include('component.auth.modal_login_regis')
-    @if (session('error') || $errors->any())
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                showModal();
-            });
-        </script>
-    @endif
 
     <!-- kemungkinan di ubah menjadi 1 gambar yagn uda di edit -->
     <section class="relative h-[calc(100vh-4rem)]">
@@ -26,6 +19,13 @@
             <img src="img/keunggulan.png" class="flex-shrink-0 object-cover w-full" alt="Keunggulan" />
         </div>
     </section>
+
+
+
+
+
+    @include('component.succes-error')
+
 
     @include('component.lending_page.animasi_tiga_gambar')
 
@@ -120,7 +120,6 @@
             @endif
         });
     </script>
-
 
     @include('component/footerUser')
 @endsection

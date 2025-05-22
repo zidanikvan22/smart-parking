@@ -17,6 +17,13 @@ use App\Http\Controllers\AdminSlotController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\OnboardingController;
 
+
+// verifikasi email
+Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verifyEmail'])
+    ->middleware(['signed'])
+    ->name('verification.verify');
+
+
 // Onboarding
 Route::middleware(['auth'])->group(function () {
     Route::get('/onboarding', [OnboardingController::class, 'show'])->name('onboarding.show');
@@ -50,8 +57,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/simpan-kendaraan', [QrCodeController::class, 'storeVehicle'])
         ->name('vehicle.store');
 
-        // Route::get('/qr-code', [QrCodeController::class, 'index'])->name('qr-code');
-        // Route::get('generate-pdf', [QrCodeController::class, 'generatePDF'])->name('generate.pdf');
         Route::post('/profil/update-foto-kendaraan', [SettingsController::class, 'updateFotoKendaraan'])->name('profil.update.foto.kendaraan');
 
         Route::get('/real-time/subzona/{subzonaId}', [RealTimeController::class, 'getSubzonaDetails'])->name('realTime.subzonaDetails');
