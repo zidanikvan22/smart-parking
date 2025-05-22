@@ -89,20 +89,19 @@ class RealTimeController extends Controller
 
     public function getSubzonaDetails($subzonaId)
     {
-        // Ambil data dengan eager loading
         $subzona = Subzona::with([
             'slots' => function ($query) {
                 $query->select('id', 'subzona_id', 'nomor_slot', 'keterangan')
                     ->orderBy('nomor_slot');
             }
-        ])->findOrFail($subzonaId);
+        ])->select('id', 'zona_id', 'nama_subzona', 'foto')
+            ->findOrFail($subzonaId);
 
-        // Hitung statistik
         $slotStats = [
-            'tersedia' => $subzona->slots->where('keterangan', 'tersedia')->count(),
-            'kosong' => $subzona->slots->where('keterangan', 'kosong')->count(),
-            'terisi' => $subzona->slots->where('keterangan', 'terisi')->count(),
-            'diperbaiki' => $subzona->slots->where('keterangan', 'diperbaiki')->count(),
+            'Tersedia' => $subzona->slots->where('keterangan', 'Tersedia')->count(),
+            'Kosong' => $subzona->slots->where('keterangan', 'Kosong')->count(),
+            'Terisi' => $subzona->slots->where('keterangan', 'Terisi')->count(),
+            'Perbaikan' => $subzona->slots->where('keterangan', 'Perbaikan')->count(),
         ];
 
         return response()->json([

@@ -94,6 +94,8 @@ class AuthController extends Controller
             'email' => $validated['email'],
             'nama' => $validated['nama'],
             'password' => Hash::make($validated['password']),
+            'onboarding_step' => 0, // ⬅️ Tambahkan ini
+            'onboarding_completed' => false, // ⬅️ Dan ini
         ];
 
         $user = User::create($store);
