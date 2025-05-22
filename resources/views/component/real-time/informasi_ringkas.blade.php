@@ -21,7 +21,7 @@
 
         $zones = $zonas ?? [];
         $zoneCount = count($zones);
-        $needsMarquee = $zoneCount > 5;
+        $needsMarquee = $zoneCount > 4;
     @endphp
 
     @if($zoneCount > 0)
