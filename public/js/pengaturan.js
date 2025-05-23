@@ -19,11 +19,29 @@ function closePasswordResetModal() {
 }
 
 function sendPasswordResetLink() {
-
-    closePasswordResetModal();
-    setTimeout(() => {
-        openPasswordResetSuccessModal();
-    }, 350);
+    fetch("{{ route('password.email') }}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        },
+        body: JSON.stringify({
+            email: "{{ $user->email }}"
+        })
+    })
+    .then(response => {
+        if (response.ok) {
+            closePasswordResetModal();
+            openPasswordResetSuccessModal();
+        } else {
+            return response.json().then(data => {
+                throw new Error(data.message || 'Gagal mengirim email.');
+            });
+        }
+    })
+    .catch(error => {
+        alert(error.message);
+    });
 }
 
 function openPasswordResetSuccessModal() {
@@ -183,6 +201,7 @@ function closeVehiclePhotoSuccessModal() {
         window.location.reload();
     }, 300);
 }
+
 function openImageModal(imageUrl) {
     document.getElementById('modalImage').src = imageUrl;
     document.getElementById('imageModal').classList.remove('hidden');

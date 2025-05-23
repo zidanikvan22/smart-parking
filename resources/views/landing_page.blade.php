@@ -21,18 +21,9 @@
     </section>
 
 
-
-
-
-    @include('component.succes-error')
-
-
+    @include('component.success-error')
     @include('component.lending_page.animasi_tiga_gambar')
-
-
     @include('component.lending_page.tentang_kami')
-
-
     @include('component.lending_page.keunggulan')
 
     <script>

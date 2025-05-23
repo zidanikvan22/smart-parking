@@ -98,14 +98,10 @@
     </div>
 </div>
 
+@include('component.success-error')
 @include('component.pengaturan.perbesar_gambar')
-
-
-@include('component.pengaturan.ubah_kata_sandi')
-
-
 @include('component.pengaturan.ubah_foto_kendaraan')
-
+@include('component.pengaturan.ubah_kata_sandi')
 
 <script src="{{ asset('js/pengaturan.js') }}"></script>
 
